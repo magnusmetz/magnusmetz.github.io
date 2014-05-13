@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      
+        Mathematical Annotation in R - 
+      
+      Magnus Metz
+    </title>
+    
+    <meta name="author" content="Magnus Metz">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/themes/hooligan/css-social-buttons/css/zocial.stripped.css">
+    <link href="/assets/themes/hooligan/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- fav and touch icons -->
+    <!-- Update these with your own images
+      <link rel="shortcut icon" href="images/favicon.ico">
+      <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    -->
+  </head>
+
+  <body>
+    <div id="page-wrap">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+            <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+
+            <a class="brand" href="/">Magnus Metz</a>
+
+            <div class="nav-collapse">
+              <ul class="nav">
+                
+                
+                
+
+
+  
+    
+      
+      	
+      	<li><a href="/about.html">About</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+              </ul>
+              <ul class="nav pull-right social visible-desktop">
+                <li class="divider-vertical"></li>
+                
+                <li>
+                  <a href="https://github.com/magnusmetz" class="zocial github icon" target="_blank">
+                    <span class="hidden-desktop">Github</span>
+                  </a>
+                </li>
+                
+                
+                
+                <li>
+                  <a href="https://twitter.com/papeteries" class="zocial twitter icon" target="_blank">
+                    <span class="hidden-desktop">Twitter</span>
+                  </a>
+                </li>
+                
+                
+                
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="content">
+          
+<div class="page-header">
+  <h1>
+    Mathematical Annotation in R 
+    
+  </h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    
+<p>Want to write mathematical symbols and expressions in R graphics? You can use an R <code>expression()</code>
+instead of normal text, e.g. <code>plot(1:10, main = expression(alpha + beta))</code>. Below is a demo that
+shows you everything about plotting math in R (it was written by the R Core Team; see <code>?plotmath</code>
+for details):</p>
+
+<div class="highlight"><pre><code class="r">demo<span class="p">(</span>plotmath<span class="p">)</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/plotmath1.png" alt="plot of chunk plotmath" /> <img src="http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/plotmath2.png" alt="plot of chunk plotmath" /> <img src="http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/plotmath3.png" alt="plot of chunk plotmath" /> <img src="http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/plotmath4.png" alt="plot of chunk plotmath" /> <img src="http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/plotmath5.png" alt="plot of chunk plotmath" /> </p>
+
+<h2 id="combining-expressions-and-text">Combining expressions and text</h2>
+
+<p>If you want to combine multiple mathematical expressions with text, use <code>paste()</code> <em>inside</em>
+<code>expression()</code>, as in the following.</p>
+
+<div class="highlight"><pre><code class="r">par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">0.1</span><span class="p">))</span>
+plot<span class="p">(</span>rnorm<span class="p">(</span><span class="m">100</span><span class="p">),</span> rnorm<span class="p">(</span><span class="m">100</span><span class="p">),</span>
+  xlab <span class="o">=</span> expression<span class="p">(</span>hat<span class="p">(</span>mu<span class="p">)[</span><span class="m">0</span><span class="p">]),</span> ylab <span class="o">=</span> expression<span class="p">(</span>alpha<span class="o">^</span>beta<span class="p">),</span>
+  main <span class="o">=</span> expression<span class="p">(</span>paste<span class="p">(</span><span class="s">&quot;Plot of &quot;</span><span class="p">,</span> alpha<span class="o">^</span>beta<span class="p">,</span> <span class="s">&quot; versus &quot;</span><span class="p">,</span> hat<span class="p">(</span>mu<span class="p">)[</span><span class="m">0</span><span class="p">])))</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/math-text.png" alt="plot of chunk math-text" /> </p>
+
+<p>Finally, if we want to include variables from an R session in mathematical expressions, and
+substitute in their actual values, we can use <code>substitute()</code>.</p>
+
+<div class="highlight"><pre><code class="r">par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">0.1</span><span class="p">))</span>
+x_mean <span class="o">&lt;-</span> <span class="m">1.5</span>
+x_sd <span class="o">&lt;-</span> <span class="m">1.2</span>
+hist<span class="p">(</span>rnorm<span class="p">(</span><span class="m">100</span><span class="p">,</span> x_mean<span class="p">,</span> x_sd<span class="p">),</span>
+  main <span class="o">=</span> substitute<span class="p">(</span>
+    paste<span class="p">(</span>X<span class="p">[</span>i<span class="p">],</span> <span class="s">&quot; ~ N(&quot;</span><span class="p">,</span> mu<span class="p">,</span> <span class="s">&quot;=&quot;</span><span class="p">,</span> m<span class="p">,</span> <span class="s">&quot;, &quot;</span><span class="p">,</span> sigma<span class="o">^</span><span class="m">2</span><span class="p">,</span> <span class="s">&quot;=&quot;</span><span class="p">,</span> s2<span class="p">,</span> <span class="s">&quot;)&quot;</span><span class="p">),</span>
+    list<span class="p">(</span>m <span class="o">=</span> x_mean<span class="p">,</span> s2 <span class="o">=</span> x_sd<span class="o">^</span><span class="m">2</span><span class="p">)</span>
+  <span class="p">)</span>
+<span class="p">)</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/math-text-sub.png" alt="plot of chunk math-text-sub" /> </p>
+
+
+    <hr>
+    <div class="pagination btn-group">
+      
+        <a class="btn prev" href="/2013/03/draw-easter-eggs" title="Draw Easter Eggs">&larr; Previous</a>
+      
+        <a class="btn" href="/archive.html">Archive</a>
+      
+        <a class="btn next" href="/2013/04/plotting-symbols-and-color-palettes" title="Cheat Sheets for Plotting Symbols and Color Palettes">Next &rarr;</a>
+      
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'vistat'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </div>
+  
+  <div class="span4">
+    <section>
+      <h4>Published</h4>
+      <div class="date"><span>08 April 2013</span></div>
+    </section>
+         
+    
+      <section>
+        <h4>Tags</h4>
+        <ul class="tag_box">
+          
+          
+
+
+  
+     
+    	<li><a href="/tags.html#mathematical annotation-ref">mathematical annotation <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#Greek letters-ref">Greek letters <span>1</span></a></li>
+    
+  
+
+
+
+        </ul>
+      </section>
+             
+  </div>
+</div>
+
+
+        </div>
+      </div> <!-- /container -->
+
+      <div class="footer-push"></div>
+    </div><!--/.page-wrap -->
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2014 Magnus Metz
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/assets/themes/hooligan/js/jquery.min.js"><\/script>')</script>
+    <script src="/assets/themes/hooligan/bootstrap/js/bootstrap.min.js"></script>
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      
+        Making Visual Illusions in R - 
+      
+      Magnus Metz
+    </title>
+    
+    <meta name="author" content="Magnus Metz">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/themes/hooligan/css-social-buttons/css/zocial.stripped.css">
+    <link href="/assets/themes/hooligan/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- fav and touch icons -->
+    <!-- Update these with your own images
+      <link rel="shortcut icon" href="images/favicon.ico">
+      <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    -->
+  </head>
+
+  <body>
+    <div id="page-wrap">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+            <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+
+            <a class="brand" href="/">Magnus Metz</a>
+
+            <div class="nav-collapse">
+              <ul class="nav">
+                
+                
+                
+
+
+  
+    
+      
+      	
+      	<li><a href="/about.html">About</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+              </ul>
+              <ul class="nav pull-right social visible-desktop">
+                <li class="divider-vertical"></li>
+                
+                <li>
+                  <a href="https://github.com/magnusmetz" class="zocial github icon" target="_blank">
+                    <span class="hidden-desktop">Github</span>
+                  </a>
+                </li>
+                
+                
+                
+                <li>
+                  <a href="https://twitter.com/papeteries" class="zocial twitter icon" target="_blank">
+                    <span class="hidden-desktop">Twitter</span>
+                  </a>
+                </li>
+                
+                
+                
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="content">
+          
+<div class="page-header">
+  <h1>
+    Making Visual Illusions in R 
+    
+  </h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    
+<p>This article demonstrates how to make <a href="http://en.wikipedia.org/wiki/Optical_illusion">visual
+illusions</a> with R. A visual illusion is a distortion
+of form, size or color in the visual field. In the <a href="http://yihui.name/animation"><strong>animation</strong>
+package</a>, functions <code>vi.grid.illusion()</code> and <code>vi.lilac.chaser()</code> can
+be used to produce visual illusions.</p>
+
+<h2 id="scintillating-grid-illusion">Scintillating grid illusion</h2>
+
+<p><code>vi.grid.illusion()</code> function provides illustrations for the Scintillating grid illusion and
+Hermann grid illusion. They are two most common types of <a href="http://en.wikipedia.org/wiki/Grid_illusion">grid
+illusions</a>.</p>
+
+<p>You can see dark dots appear and disappear rapidly at random intersections.</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
+vi.grid.illusion<span class="p">()</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2013-03-26-make-visual-illusions-in-r/scintillating-grid-illusion.png" alt="plot of chunk scintillating-grid-illusion" /> </p>
+
+<h2 id="hermann-grid-illusion">Hermann grid illusion</h2>
+
+<p>From Hermann grid illusion picture, you can see grey blobs disappear when looking directly at an
+intersection.</p>
+
+<div class="highlight"><pre><code class="r">vi.grid.illusion<span class="p">(</span>type <span class="o">=</span> <span class="s">&quot;h&quot;</span><span class="p">,</span> lwd <span class="o">=</span> <span class="m">22</span><span class="p">,</span> nrow <span class="o">=</span> <span class="m">5</span><span class="p">,</span> ncol <span class="o">=</span> <span class="m">5</span><span class="p">,</span> col <span class="o">=</span> <span class="s">&quot;white&quot;</span><span class="p">)</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2013-03-26-make-visual-illusions-in-r/hermann-grid-illusion.png" alt="plot of chunk hermann-grid-illusion" /> </p>
+
+<h2 id="lilac-chaser">Lilac Chaser</h2>
+
+<p>We can draw a <a href="http://en.wikipedia.org/wiki/Lilac_chaser">Lilac chaser</a> with the function
+<code>vi.lilac.chaser()</code>.</p>
+
+<p>Stare at the center cross for a few (say 30) seconds to experience the illusion.</p>
+
+<ul>
+  <li>A gap running around the circle of lilac discs;</li>
+  <li>A green disc running around the circle of lilac discs in place of the gap;</li>
+  <li>The green disc running around on the grey background, with the lilac discs having disappeared in sequence.</li>
+</ul>
+
+<div class="highlight"><pre><code class="r">ani.options<span class="p">(</span>nmax <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
+vi.lilac.chaser<span class="p">()</span></code></pre></div>
+
+<div class="scianimator">
+<div id="lilac_chaser" style="display: inline-block;">
+</div>
+</div>
+<script type="text/javascript">
+  (function($) {
+    $(document).ready(function() {
+      var imgs = Array(16);
+      for (i=0; ; i++) {
+        if (i == imgs.length) break;
+        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-03-26-make-visual-illusions-in-r/lilac-chaser" + (i + 1) + ".png";
+      }
+      $("#lilac_chaser").scianimator({
+          "images": imgs,
+          "delay": 50,
+          "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
+      });
+      $("#lilac_chaser").scianimator("play");
+    });
+  })(jQuery);
+</script>
+
+<h2 id="note">Note</h2>
+
+<p>Don’t worry if you can’t see all the phenomena described. For many illusions, there is a percentage
+of people with perfectly normal vision who just don’t see it, often for reasons currently unknown.</p>
+
+<h2 id="further-reading">Further reading</h2>
+
+<p>You can see more illusions created by <a href="http://rpubs.com/kohske/R-de-illusion">Kohske</a> in R, which
+also illustrated the power of the <strong>grid</strong> package.</p>
+
+    <hr>
+    <div class="pagination btn-group">
+      
+        <a class="btn prev" href="/2013/03/gradient-descent-algorithm-with-r" title="Demonstration of the Gradient Descent Algorithm">&larr; Previous</a>
+      
+        <a class="btn" href="/archive.html">Archive</a>
+      
+        <a class="btn next" href="/2013/03/simulation-of-coin-flipping" title="Simulation of Coin Flipping">Next &rarr;</a>
+      
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'vistat'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </div>
+  
+  <div class="span4">
+    <section>
+      <h4>Published</h4>
+      <div class="date"><span>26 March 2013</span></div>
+    </section>
+         
+    
+      <section>
+        <h4>Tags</h4>
+        <ul class="tag_box">
+          
+          
+
+
+  
+     
+    	<li><a href="/tags.html#Scintillating grid-ref">Scintillating grid <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#Hermann grid-ref">Hermann grid <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#Lilac chaser-ref">Lilac chaser <span>1</span></a></li>
+    
+  
+
+
+
+        </ul>
+      </section>
+             
+  </div>
+</div>
+
+
+        </div>
+      </div> <!-- /container -->
+
+      <div class="footer-push"></div>
+    </div><!--/.page-wrap -->
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2014 Magnus Metz
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/assets/themes/hooligan/js/jquery.min.js"><\/script>')</script>
+    <script src="/assets/themes/hooligan/bootstrap/js/bootstrap.min.js"></script>
+
+    
+  </body>
+</html>
+

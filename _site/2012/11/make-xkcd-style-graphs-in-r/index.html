@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      
+        Make XKCD Style Graphs in R - 
+      
+      Magnus Metz
+    </title>
+    
+    <meta name="author" content="Magnus Metz">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/themes/hooligan/css-social-buttons/css/zocial.stripped.css">
+    <link href="/assets/themes/hooligan/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- fav and touch icons -->
+    <!-- Update these with your own images
+      <link rel="shortcut icon" href="images/favicon.ico">
+      <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    -->
+  </head>
+
+  <body>
+    <div id="page-wrap">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+            <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+
+            <a class="brand" href="/">Magnus Metz</a>
+
+            <div class="nav-collapse">
+              <ul class="nav">
+                
+                
+                
+
+
+  
+    
+      
+      	
+      	<li><a href="/about.html">About</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+              </ul>
+              <ul class="nav pull-right social visible-desktop">
+                <li class="divider-vertical"></li>
+                
+                <li>
+                  <a href="https://github.com/magnusmetz" class="zocial github icon" target="_blank">
+                    <span class="hidden-desktop">Github</span>
+                  </a>
+                </li>
+                
+                
+                
+                <li>
+                  <a href="https://twitter.com/papeteries" class="zocial twitter icon" target="_blank">
+                    <span class="hidden-desktop">Twitter</span>
+                  </a>
+                </li>
+                
+                
+                
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="content">
+          
+<div class="page-header">
+  <h1>
+    Make XKCD Style Graphs in R 
+    
+  </h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    
+<p>Fonts play an important role in graphics. This article was motivated from a <a href="http://stackoverflow.com/q/12675147/559676">StackOverflow
+post</a>, and shows how to draw <a href="http://xkcd.com">xkcd</a>
+style graphs in R using the <a href="http://cran.r-project.org/package=Cairo"><strong>Cairo</strong> package</a>. Before
+get started, you need to install the Humor Sans font (please Google it yourself).</p>
+
+<h2 id="set-up-fonts-for-r">Set up fonts for R</h2>
+
+<p>After the font has been installed, we can tell <strong>Cairo</strong> to use it:</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>Cairo<span class="p">)</span>
+CairoFonts<span class="p">(</span>
+  regular <span class="o">=</span> <span class="s">&quot;Humor Sans:style=Regular&quot;</span><span class="p">,</span>
+  bold <span class="o">=</span> <span class="s">&quot;Humor Sans:style=Bold&quot;</span><span class="p">,</span>
+  italic <span class="o">=</span> <span class="s">&quot;Humor Sans:style=Italic&quot;</span><span class="p">,</span>
+  bolditalic <span class="o">=</span> <span class="s">&quot;Humor Sans:style=Bold Italic,BoldItalic&quot;</span>
+<span class="p">)</span></code></pre></div>
+
+<h2 id="draw-it">Draw it</h2>
+
+<p>Now we use the <code>CairoPNG()</code> device to save a plot. Because I&#8217;m using <strong>knitr</strong>, I only need to
+specify the chunk option <code>dev='CairoPNG'</code> instead of really opening the device in the code below.</p>
+
+<div class="highlight"><pre><code class="r"><span class="c1"># you may need CairoPNG() and dev.off() around this chunk</span>
+set.seed<span class="p">(</span><span class="m">20121108</span><span class="p">)</span>
+x <span class="o">=</span> seq<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="m">0.1</span><span class="p">)</span>
+r <span class="o">=</span> <span class="kr">function</span><span class="p">()</span> runif<span class="p">(</span>length<span class="p">(</span>x<span class="p">),</span> <span class="m">-0.05</span><span class="p">,</span> <span class="m">0.05</span><span class="p">)</span>
+y1 <span class="o">=</span> sin<span class="p">(</span>x<span class="p">)</span> <span class="o">+</span> r<span class="p">()</span>
+y2 <span class="o">=</span> cos<span class="p">(</span>x<span class="p">)</span> <span class="o">+</span> r<span class="p">()</span>
+<span class="c1"># draw the lines and texts</span>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">0.1</span><span class="p">,</span> <span class="m">0.1</span><span class="p">,</span> <span class="m">0.1</span><span class="p">))</span>
+plot.new<span class="p">()</span>
+plot.window<span class="p">(</span>range<span class="p">(</span>x<span class="p">),</span> c<span class="p">(</span><span class="m">-1.5</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
+grid<span class="p">()</span>
+matplot<span class="p">(</span>x<span class="p">,</span> cbind<span class="p">(</span>y1<span class="p">,</span> y2<span class="p">,</span> y2<span class="p">),</span> type <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">,</span> lty <span class="o">=</span> <span class="m">1</span><span class="p">,</span> col <span class="o">=</span> c<span class="p">(</span><span class="s">&quot;black&quot;</span><span class="p">,</span> 
+  <span class="s">&quot;white&quot;</span><span class="p">,</span> <span class="s">&quot;red&quot;</span><span class="p">),</span> lwd <span class="o">=</span> c<span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">15</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span> add <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+axis<span class="p">(</span><span class="m">1</span><span class="p">,</span> c<span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">9</span><span class="p">),</span> c<span class="p">(</span><span class="s">&quot;YARD&quot;</span><span class="p">,</span> <span class="s">&quot;STEPS&quot;</span><span class="p">,</span> <span class="s">&quot;DOOR&quot;</span><span class="p">,</span> <span class="s">&quot;INSIDE&quot;</span><span class="p">),</span> lwd <span class="o">=</span> <span class="m">0</span><span class="p">,</span> 
+  line <span class="o">=</span> <span class="m">-1</span><span class="p">)</span>
+text<span class="p">(</span><span class="m">7</span><span class="p">,</span> <span class="m">-1.25</span><span class="p">,</span> <span class="s">&quot;A SIN AND COS CURVE&quot;</span><span class="p">,</span> cex <span class="o">=</span> <span class="m">1.5</span><span class="p">)</span>
+lines<span class="p">(</span>x<span class="p">,</span> <span class="m">-1.5</span> <span class="o">+</span> runif<span class="p">(</span>length<span class="p">(</span>x<span class="p">),</span> <span class="m">-0.005</span><span class="p">,</span> <span class="m">0.005</span><span class="p">),</span> xpd <span class="o">=</span> <span class="kc">NA</span><span class="p">,</span> lwd <span class="o">=</span> <span class="m">2</span><span class="p">)</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2012-11-08-make-xkcd-style-graphs-in-r/draw-xkcd.png" alt="plot of chunk draw-xkcd" /> </p>
+
+<p>There are other ways to use additional fonts in R graphics, such as the <strong>tikzDevice</strong> and
+<strong>extrafonts</strong> package; the former requires knowledge of LaTeX, and the latter is easier to use.</p>
+
+<h2 id="acknowledgments">Acknowledgments</h2>
+
+<p>I thank Mark Bulling for the answer under the SO post. I used base R graphics instead of
+<strong>ggplot2</strong> as Mark did because I think the pen-and-paper model of base R is more natural for
+drawing such a plot (the grammar of graphics seems to be overkill).</p>
+
+<h2 id="session-info">Session info</h2>
+
+<p>Since I&#8217;m not entirely sure about how <strong>Cairo</strong> performs under Windows; here is my R session info:</p>
+
+<div class="highlight"><pre><code class="r">print<span class="p">(</span>sessionInfo<span class="p">(),</span> locale <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="text">## R version 3.0.1 (2013-05-16)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  base     
+## 
+## other attached packages:
+## [1] Cairo_1.5-2 knitr_1.4.9
+## 
+## loaded via a namespace (and not attached):
+## [1] codetools_0.2-8 digest_0.6.3    evaluate_0.4.9 
+## [4] formatR_0.9     stringr_0.6.2   tools_3.0.1</code></pre></div>
+
+
+    <hr>
+    <div class="pagination btn-group">
+      
+        <a class="btn prev" href="/2012/11/contour-plots-with-d3-and-r" title="Contour Plots with D3 and R">&larr; Previous</a>
+      
+        <a class="btn" href="/archive.html">Archive</a>
+      
+        <a class="btn next" href="/2013/03/gradient-descent-algorithm-with-r" title="Demonstration of the Gradient Descent Algorithm">Next &rarr;</a>
+      
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'vistat'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </div>
+  
+  <div class="span4">
+    <section>
+      <h4>Published</h4>
+      <div class="date"><span>08 November 2012</span></div>
+    </section>
+         
+    
+      <section>
+        <h4>Tags</h4>
+        <ul class="tag_box">
+          
+          
+
+
+  
+     
+    	<li><a href="/tags.html#XKCD-ref">XKCD <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#Humor Sans-ref">Humor Sans <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#Cairo-ref">Cairo <span>1</span></a></li>
+    
+  
+
+
+
+        </ul>
+      </section>
+             
+  </div>
+</div>
+
+
+        </div>
+      </div> <!-- /container -->
+
+      <div class="footer-push"></div>
+    </div><!--/.page-wrap -->
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2014 Magnus Metz
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/assets/themes/hooligan/js/jquery.min.js"><\/script>')</script>
+    <script src="/assets/themes/hooligan/bootstrap/js/bootstrap.min.js"></script>
+
+    
+  </body>
+</html>
+

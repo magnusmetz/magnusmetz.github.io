@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      
+        Brownian Motion with R - 
+      
+      Magnus Metz
+    </title>
+    
+    <meta name="author" content="Magnus Metz">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/themes/hooligan/css-social-buttons/css/zocial.stripped.css">
+    <link href="/assets/themes/hooligan/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- fav and touch icons -->
+    <!-- Update these with your own images
+      <link rel="shortcut icon" href="images/favicon.ico">
+      <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    -->
+  </head>
+
+  <body>
+    <div id="page-wrap">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+            <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+
+            <a class="brand" href="/">Magnus Metz</a>
+
+            <div class="nav-collapse">
+              <ul class="nav">
+                
+                
+                
+
+
+  
+    
+      
+      	
+      	<li><a href="/about.html">About</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+              </ul>
+              <ul class="nav pull-right social visible-desktop">
+                <li class="divider-vertical"></li>
+                
+                <li>
+                  <a href="https://github.com/magnusmetz" class="zocial github icon" target="_blank">
+                    <span class="hidden-desktop">Github</span>
+                  </a>
+                </li>
+                
+                
+                
+                <li>
+                  <a href="https://twitter.com/papeteries" class="zocial twitter icon" target="_blank">
+                    <span class="hidden-desktop">Twitter</span>
+                  </a>
+                </li>
+                
+                
+                
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="content">
+          
+<div class="page-header">
+  <h1>
+    Brownian Motion with R 
+    
+  </h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    
+<p>We can use the <a href="http://yihui.name/animation"><strong>animation</strong> package</a> to produce animations in R.
+This short article shows you how to create a Brownian motion with the <code>brownian.motion()</code> function.</p>
+
+<p>Simply speaking, a Brownian motion shows the trace of the coordinates</p>
+
+<script type="math/tex; mode=display">x_{i+1}=x_{i}+\epsilon_{i+1}</script>
+
+<p>where $\epsilon_i$ is i.i.d from a standard Normal distribution. That is fairly easy to program in
+R &#8211; it is nothing but <code>cumsum(rnorm(n))</code>, and that is what <code>brownian.motion()</code> does internally.</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
+ani.options<span class="p">(</span>nmax <span class="o">=</span> <span class="m">50</span><span class="p">)</span>  <span class="c1"># create 50 image frames</span>
+set.seed<span class="p">(</span><span class="m">20121106</span><span class="p">)</span>
+brownian.motion<span class="p">(</span>n <span class="o">=</span> <span class="m">20</span><span class="p">,</span> pch <span class="o">=</span> <span class="m">21</span><span class="p">,</span> cex <span class="o">=</span> <span class="m">4</span><span class="p">,</span> col <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">,</span> bg <span class="o">=</span> <span class="s">&quot;yellow&quot;</span><span class="p">,</span> 
+  xlim <span class="o">=</span> c<span class="p">(</span><span class="m">-10</span><span class="p">,</span> <span class="m">10</span><span class="p">),</span> ylim <span class="o">=</span> c<span class="p">(</span><span class="m">-15</span><span class="p">,</span> <span class="m">15</span><span class="p">))</span></code></pre></div>
+
+<div class="scianimator">
+<div id="bw_fun" style="display: inline-block;">
+</div>
+</div>
+<script type="text/javascript">
+  (function($) {
+    $(document).ready(function() {
+      var imgs = Array(50);
+      for (i=0; ; i++) {
+        if (i == imgs.length) break;
+        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2012-11-06-brownian-motion-with-r/bw-fun" + (i + 1) + ".png";
+      }
+      $("#bw_fun").scianimator({
+          "images": imgs,
+          "delay": 200,
+          "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
+      });
+      $("#bw_fun").scianimator("play");
+    });
+  })(jQuery);
+</script>
+
+<p>Done.</p>
+
+    <hr>
+    <div class="pagination btn-group">
+      
+        <a class="btn prev" href="/2012/11/to-see-a-world-in-grains-of-sand" title="To See a World in Grains of Sand">&larr; Previous</a>
+      
+        <a class="btn" href="/archive.html">Archive</a>
+      
+        <a class="btn next" href="/2012/11/contour-plots-with-d3-and-r" title="Contour Plots with D3 and R">Next &rarr;</a>
+      
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'vistat'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </div>
+  
+  <div class="span4">
+    <section>
+      <h4>Published</h4>
+      <div class="date"><span>06 November 2012</span></div>
+    </section>
+         
+    
+      <section>
+        <h4>Tags</h4>
+        <ul class="tag_box">
+          
+          
+
+
+  
+     
+    	<li><a href="/tags.html#Brownian motion-ref">Brownian motion <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#Normal distribution-ref">Normal distribution <span>1</span></a></li>
+    
+  
+
+
+
+        </ul>
+      </section>
+             
+  </div>
+</div>
+
+
+        </div>
+      </div> <!-- /container -->
+
+      <div class="footer-push"></div>
+    </div><!--/.page-wrap -->
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2014 Magnus Metz
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/assets/themes/hooligan/js/jquery.min.js"><\/script>')</script>
+    <script src="/assets/themes/hooligan/bootstrap/js/bootstrap.min.js"></script>
+
+    
+  </body>
+</html>
+

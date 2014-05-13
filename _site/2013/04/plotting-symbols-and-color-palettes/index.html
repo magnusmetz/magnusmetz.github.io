@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      
+        Cheat Sheets for Plotting Symbols and Color Palettes - 
+      
+      Magnus Metz
+    </title>
+    
+    <meta name="author" content="Magnus Metz">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/themes/hooligan/css-social-buttons/css/zocial.stripped.css">
+    <link href="/assets/themes/hooligan/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- fav and touch icons -->
+    <!-- Update these with your own images
+      <link rel="shortcut icon" href="images/favicon.ico">
+      <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    -->
+  </head>
+
+  <body>
+    <div id="page-wrap">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+            <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+
+            <a class="brand" href="/">Magnus Metz</a>
+
+            <div class="nav-collapse">
+              <ul class="nav">
+                
+                
+                
+
+
+  
+    
+      
+      	
+      	<li><a href="/about.html">About</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+              </ul>
+              <ul class="nav pull-right social visible-desktop">
+                <li class="divider-vertical"></li>
+                
+                <li>
+                  <a href="https://github.com/magnusmetz" class="zocial github icon" target="_blank">
+                    <span class="hidden-desktop">Github</span>
+                  </a>
+                </li>
+                
+                
+                
+                <li>
+                  <a href="https://twitter.com/papeteries" class="zocial twitter icon" target="_blank">
+                    <span class="hidden-desktop">Twitter</span>
+                  </a>
+                </li>
+                
+                
+                
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="content">
+          
+<div class="page-header">
+  <h1>
+    Cheat Sheets for Plotting Symbols and Color Palettes 
+    
+  </h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    
+<p>This cheat sheet shows a few commonly used plotting symbols and color palettes in R. Now you do not
+need to memorize the facts like &#8220;19 is the big solid dot and 21 is an open circle that can have a
+different background color&#8221; &#8211; just bookmark this cheat sheet. In fact it was motivated by Dr
+<a href="http://rafalab.jhsph.edu/">Rafael Irizarry</a>, who printed the color palettes on a piece of paper
+and pinned that to the wall in his office.</p>
+
+<h2 id="plotting-symbols-pch">Plotting symbols (pch)</h2>
+
+<p>There are many plotting symbols in the <strong>graphics</strong> package. We can set the <code>pch</code> parameter to set
+the symbols. See <code>?points</code> for more information.</p>
+
+<p>Below is a figure containing the plot symbols from <code>pch = 0</code> to <code>25</code> along with some
+character-based plot symbols. We can use, for example, <code>plot(x, y, pch = 3)</code> for plus signs (<code>+</code>)
+in a scatterplot.</p>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2013-04-08-plotting-symbols-and-color-palettes/pch.png" alt="plot of chunk pch" /> </p>
+
+<h2 id="color-palettes">Color palettes</h2>
+
+<p>The default color palette in R:</p>
+
+<div class="highlight"><pre><code class="r"><span class="p">(</span>pal <span class="o">=</span> palette<span class="p">())</span></code></pre></div>
+
+<div class="highlight"><pre><code class="text">## [1] &quot;black&quot;   &quot;red&quot;     &quot;green3&quot;  &quot;blue&quot;    &quot;cyan&quot;    &quot;magenta&quot;
+## [7] &quot;yellow&quot;  &quot;gray&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="r">par<span class="p">(</span>mar <span class="o">=</span> rep<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">4</span><span class="p">))</span>
+pie<span class="p">(</span>rep<span class="p">(</span><span class="m">1</span><span class="p">,</span> length<span class="p">(</span>pal<span class="p">)),</span> labels <span class="o">=</span> sprintf<span class="p">(</span><span class="s">&quot;%d (%s)&quot;</span><span class="p">,</span> seq_along<span class="p">(</span>pal<span class="p">),</span> 
+  pal<span class="p">),</span> col <span class="o">=</span> pal<span class="p">)</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2013-04-08-plotting-symbols-and-color-palettes/default-pal.png" alt="plot of chunk default-pal" /> </p>
+
+<p>Below are the color palettes in <strong>RColorBrewer</strong> (if you do not want to use <strong>ggplot2</strong>, you should
+consider using this package to generate colors for your plots; just do not use the meaningless
+<code>rainbow()</code> palette):</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>RColorBrewer<span class="p">)</span>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
+display.brewer.all<span class="p">()</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2013-04-08-plotting-symbols-and-color-palettes/brewer-pal.png" alt="plot of chunk brewer-pal" /> </p>
+
+<div class="highlight"><pre><code class="r"><span class="c1"># generate 8 colors from the Set2 palette</span>
+brewer.pal<span class="p">(</span><span class="m">8</span><span class="p">,</span> <span class="s">&quot;Set2&quot;</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="text">## [1] &quot;#66C2A5&quot; &quot;#FC8D62&quot; &quot;#8DA0CB&quot; &quot;#E78AC3&quot; &quot;#A6D854&quot; &quot;#FFD92F&quot;
+## [7] &quot;#E5C494&quot; &quot;#B3B3B3&quot;</code></pre></div>
+
+<p>In R, the function <code>colors()</code> returns a vector of 657 color names. When you really
+need to specify the color by its name, you are recommended to check out this nice <a href="http://research.stowers-institute.org/efg/R/Color/Chart/ColorChart.pdf">color
+chart</a> created by Earl F.
+Glynn.</p>
+
+    <hr>
+    <div class="pagination btn-group">
+      
+        <a class="btn prev" href="/2013/04/mathematical-annotation-in-r" title="Mathematical Annotation in R">&larr; Previous</a>
+      
+        <a class="btn" href="/archive.html">Archive</a>
+      
+        <a class="btn next" href="/2013/04/bean-machine" title="The Bean Machine and the Central Limit Theorem">Next &rarr;</a>
+      
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'vistat'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </div>
+  
+  <div class="span4">
+    <section>
+      <h4>Published</h4>
+      <div class="date"><span>08 April 2013</span></div>
+    </section>
+         
+    
+      <section>
+        <h4>Tags</h4>
+        <ul class="tag_box">
+          
+          
+
+
+  
+     
+    	<li><a href="/tags.html#plotting symbols-ref">plotting symbols <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#color palettes-ref">color palettes <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#graphical parameters-ref">graphical parameters <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#RColorBrewer-ref">RColorBrewer <span>1</span></a></li>
+    
+  
+
+
+
+        </ul>
+      </section>
+             
+  </div>
+</div>
+
+
+        </div>
+      </div> <!-- /container -->
+
+      <div class="footer-push"></div>
+    </div><!--/.page-wrap -->
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2014 Magnus Metz
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/assets/themes/hooligan/js/jquery.min.js"><\/script>')</script>
+    <script src="/assets/themes/hooligan/bootstrap/js/bootstrap.min.js"></script>
+
+    
+  </body>
+</html>
+

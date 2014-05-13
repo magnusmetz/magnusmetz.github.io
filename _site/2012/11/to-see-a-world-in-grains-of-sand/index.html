@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      
+        To See a World in Grains of Sand - 
+      
+      Magnus Metz
+    </title>
+    
+    <meta name="author" content="Magnus Metz">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/themes/hooligan/css-social-buttons/css/zocial.stripped.css">
+    <link href="/assets/themes/hooligan/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- fav and touch icons -->
+    <!-- Update these with your own images
+      <link rel="shortcut icon" href="images/favicon.ico">
+      <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    -->
+  </head>
+
+  <body>
+    <div id="page-wrap">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+            <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+
+            <a class="brand" href="/">Magnus Metz</a>
+
+            <div class="nav-collapse">
+              <ul class="nav">
+                
+                
+                
+
+
+  
+    
+      
+      	
+      	<li><a href="/about.html">About</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+              </ul>
+              <ul class="nav pull-right social visible-desktop">
+                <li class="divider-vertical"></li>
+                
+                <li>
+                  <a href="https://github.com/magnusmetz" class="zocial github icon" target="_blank">
+                    <span class="hidden-desktop">Github</span>
+                  </a>
+                </li>
+                
+                
+                
+                <li>
+                  <a href="https://twitter.com/papeteries" class="zocial twitter icon" target="_blank">
+                    <span class="hidden-desktop">Twitter</span>
+                  </a>
+                </li>
+                
+                
+                
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="content">
+          
+<div class="page-header">
+  <h1>
+    To See a World in Grains of Sand 
+    
+  </h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    
+<p>This article was borrowed from my <a href="http://yihui.name/en/2008/09/to-see-a-circle-in-a-pile-of-sand/">blog
+post</a> to show how to visualize a
+large amount of data in scatter plots. Here is how the original data was generated:</p>
+
+<div class="highlight"><pre><code class="r"><span class="c1"># generate the data</span>
+set.seed<span class="p">(</span><span class="m">20111105</span><span class="p">)</span>
+x <span class="o">=</span> rbind<span class="p">(</span>matrix<span class="p">(</span>rnorm<span class="p">(</span><span class="m">10000</span> <span class="o">*</span> <span class="m">2</span><span class="p">),</span> ncol <span class="o">=</span> <span class="m">2</span><span class="p">),</span> local<span class="p">({</span>
+  r <span class="o">=</span> runif<span class="p">(</span><span class="m">10000</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">2</span> <span class="o">*</span> pi<span class="p">)</span>
+  <span class="m">0.5</span> <span class="o">*</span> cbind<span class="p">(</span>sin<span class="p">(</span>r<span class="p">),</span> cos<span class="p">(</span>r<span class="p">))</span>
+<span class="p">}))</span>
+x <span class="o">=</span> as.data.frame<span class="p">(</span>x<span class="p">[</span>sample<span class="p">(</span>nrow<span class="p">(</span>x<span class="p">)),</span> <span class="p">])</span></code></pre></div>
+
+<h2 id="original-scatter-plot">Original scatter plot</h2>
+
+<p>It is not useful since you can see nothing.</p>
+
+<div class="highlight"><pre><code class="r">plot<span class="p">(</span>x<span class="p">)</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2012-11-05-to-see-a-world-in-grains-of-sand/plot-orig.png" alt="plot of chunk plot-orig" /> </p>
+
+<h2 id="transparent-colors">Transparent colors</h2>
+
+<p>We take <code>alpha = 0.1</code> to generate semi-transparent colors.</p>
+
+<div class="highlight"><pre><code class="r">plot<span class="p">(</span>x<span class="p">,</span> col <span class="o">=</span> rgb<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0.1</span><span class="p">))</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2012-11-05-to-see-a-world-in-grains-of-sand/plot-alpha.png" alt="plot of chunk plot-alpha" /> </p>
+
+<h2 id="set-axis-limits">Set axis limits</h2>
+
+<p>Zoom into the point cloud:</p>
+
+<div class="highlight"><pre><code class="r">plot<span class="p">(</span>x<span class="p">,</span> xlim <span class="o">=</span> c<span class="p">(</span><span class="m">-1</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> ylim <span class="o">=</span> c<span class="p">(</span><span class="m">-1</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2012-11-05-to-see-a-world-in-grains-of-sand/plot-lim.png" alt="plot of chunk plot-lim" /> </p>
+
+<h2 id="smaller-symbols">Smaller symbols</h2>
+
+<p>Use smaller points:</p>
+
+<div class="highlight"><pre><code class="r">plot<span class="p">(</span>x<span class="p">,</span> pch <span class="o">=</span> <span class="s">&quot;.&quot;</span><span class="p">)</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2012-11-05-to-see-a-world-in-grains-of-sand/plot-dot.png" alt="plot of chunk plot-dot" /> </p>
+
+<h2 id="subset">Subset</h2>
+
+<p>Only take a look at a random subset:</p>
+
+<div class="highlight"><pre><code class="r">plot<span class="p">(</span>x<span class="p">[</span>sample<span class="p">(</span>nrow<span class="p">(</span>x<span class="p">),</span> <span class="m">1000</span><span class="p">),</span> <span class="p">])</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2012-11-05-to-see-a-world-in-grains-of-sand/plot-subset.png" alt="plot of chunk plot-subset" /> </p>
+
+<h2 id="hexagons">Hexagons</h2>
+
+<p>We can use the color of hexagons to denote the number of points in them:</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>hexbin<span class="p">)</span>
+with<span class="p">(</span>x<span class="p">,</span> plot<span class="p">(</span>hexbin<span class="p">(</span>V1<span class="p">,</span> V2<span class="p">)))</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2012-11-05-to-see-a-world-in-grains-of-sand/plot-hexbin.png" alt="plot of chunk plot-hexbin" /> </p>
+
+<h2 id="d-kernel-density-estimation">2D kernel density estimation</h2>
+
+<p>We can estimate the two-dimensional density surface using the <code>kde2d()</code> function in the <strong>MASS</strong>
+package:</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>MASS<span class="p">)</span>
+fit <span class="o">=</span> kde2d<span class="p">(</span>x<span class="p">[,</span> <span class="m">1</span><span class="p">],</span> x<span class="p">[,</span> <span class="m">2</span><span class="p">])</span>
+<span class="c1"># perspective plot by persp()</span>
+persp<span class="p">(</span>fit<span class="o">$</span>x<span class="p">,</span> fit<span class="o">$</span>y<span class="p">,</span> fit<span class="o">$</span>z<span class="p">)</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2012-11-05-to-see-a-world-in-grains-of-sand/plot-kde2d.png" alt="plot of chunk plot-kde2d" /> </p>
+
+<p>That is only a static plot, and we can actually interact with the surface (e.g. rotating and
+zooming) if we draw it with the <strong>rgl</strong> package:</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>rgl<span class="p">)</span>
+<span class="c1"># perspective plot by OpenGL</span>
+rgl.open<span class="p">()</span>
+rgl.surface<span class="p">(</span>fit<span class="o">$</span>x<span class="p">,</span> fit<span class="o">$</span>y<span class="p">,</span> <span class="m">5</span> <span class="o">*</span> fit<span class="o">$</span>z<span class="p">)</span>
+par3d<span class="p">(</span>zoom <span class="o">=</span> <span class="m">0.7</span><span class="p">)</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2012-11-05-to-see-a-world-in-grains-of-sand/plot-rgl.png" alt="plot of chunk plot-rgl" /> </p>
+
+<p>Run the code below to see the surface rotating automatically if you are interested:</p>
+
+<div class="highlight"><pre><code class="r"><span class="c1"># animation</span>
+M <span class="o">=</span> par3d<span class="p">(</span><span class="s">&quot;userMatrix&quot;</span><span class="p">)</span>
+play3d<span class="p">(</span>par3dinterp<span class="p">(</span>userMatrix <span class="o">=</span> list<span class="p">(</span>M<span class="p">,</span> rotate3d<span class="p">(</span>M<span class="p">,</span> pi<span class="o">/</span><span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> 
+  rotate3d<span class="p">(</span>M<span class="p">,</span> pi<span class="o">/</span><span class="m">2</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> rotate3d<span class="p">(</span>M<span class="p">,</span> pi<span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">))),</span> duration <span class="o">=</span> <span class="m">20</span><span class="p">)</span></code></pre></div>
+
+<iframe src="http://player.vimeo.com/video/4745847" width="500" height="465" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+
+<p>Please let me know if you have other ideas.</p>
+
+    <hr>
+    <div class="pagination btn-group">
+      
+        <a class="btn disabled prev">&larr; Previous</a>
+      
+        <a class="btn" href="/archive.html">Archive</a>
+      
+        <a class="btn next" href="/2012/11/brownian-motion-with-r" title="Brownian Motion with R">Next &rarr;</a>
+      
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'vistat'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </div>
+  
+  <div class="span4">
+    <section>
+      <h4>Published</h4>
+      <div class="date"><span>05 November 2012</span></div>
+    </section>
+         
+    
+      <section>
+        <h4>Tags</h4>
+        <ul class="tag_box">
+          
+          
+
+
+  
+     
+    	<li><a href="/tags.html#plotting symbols-ref">plotting symbols <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#scatterplot-ref">scatterplot <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#graphical parameters-ref">graphical parameters <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#hexbin-ref">hexbin <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#alpha-transparency-ref">alpha-transparency <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#overplotting-ref">overplotting <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#2D kernel density estimation-ref">2D kernel density estimation <span>1</span></a></li>
+    
+  
+
+
+
+        </ul>
+      </section>
+             
+  </div>
+</div>
+
+
+        </div>
+      </div> <!-- /container -->
+
+      <div class="footer-push"></div>
+    </div><!--/.page-wrap -->
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2014 Magnus Metz
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/assets/themes/hooligan/js/jquery.min.js"><\/script>')</script>
+    <script src="/assets/themes/hooligan/bootstrap/js/bootstrap.min.js"></script>
+
+    
+  </body>
+</html>
+

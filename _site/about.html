@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      
+        About - 
+      
+      Magnus Metz
+    </title>
+    
+    <meta name="author" content="Magnus Metz">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/themes/hooligan/css-social-buttons/css/zocial.stripped.css">
+    <link href="/assets/themes/hooligan/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- fav and touch icons -->
+    <!-- Update these with your own images
+      <link rel="shortcut icon" href="images/favicon.ico">
+      <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    -->
+  </head>
+
+  <body>
+    <div id="page-wrap">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+            <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+
+            <a class="brand" href="/">Magnus Metz</a>
+
+            <div class="nav-collapse">
+              <ul class="nav">
+                
+                
+                
+
+
+  
+    
+      
+      	
+      	<li class="active"><a href="/about.html" class="active">About</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+              </ul>
+              <ul class="nav pull-right social visible-desktop">
+                <li class="divider-vertical"></li>
+                
+                <li>
+                  <a href="https://github.com/magnusmetz" class="zocial github icon" target="_blank">
+                    <span class="hidden-desktop">Github</span>
+                  </a>
+                </li>
+                
+                
+                
+                <li>
+                  <a href="https://twitter.com/papeteries" class="zocial twitter icon" target="_blank">
+                    <span class="hidden-desktop">Twitter</span>
+                  </a>
+                </li>
+                
+                
+                
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="content">
+          
+<div class="page-header-wrapper">
+	<div class="page-header">
+  		<h1>About </h1>
+  	</div>
+</div>
+
+<div class="row">
+  <div class="span12">
+    
+<p>This page shows you all the instructions on how to contribute to Vistat. Before you get started, you need to fork the <a href="https://github.com/supstat/vistat">supstat/vistat</a> repository to your own Github account (click the <code>Fork</code> button). You are assumed to have basic knowledge of GIT and R.</p>
+
+<h2 id="new-article">New Article</h2>
+
+<p>To start a new article, run</p>
+
+<div class="highlight"><pre><code class="bash">rake post <span class="nv">title</span><span class="o">=</span><span class="s2">&quot;A Title&quot;</span></code></pre></div>
+
+<p>and you will get an <a href="http://www.rstudio.com/ide/docs/authoring/using_markdown">R Markdown</a> (Rmd) file under <code>_source/</code> named <code>yyyy-mm-dd-a-title.Rmd</code>, which is a plain text file and you can edit it with your favorite text editor. At the moment, RStudio has the best support for Rmd files. Here is an <a href="https://github.com/yihui/knitr-examples/blob/master/001-minimal.Rmd">Rmd sample file</a> and its <a href="https://github.com/yihui/knitr-examples/blob/master/001-minimal.md">output</a>.</p>
+
+<p>If you do not have or understand <code>rake</code>, just copy an existing Rmd file, rename and open it with a text editor.</p>
+
+<h2 id="edit-an-article">Edit an Article</h2>
+
+<p>There are a few fields in the header such as <code>author</code> and <code>tags</code>; if you have multiple entries, use the comma to separate them, e.g. <code>author: [taiyun, yihui]</code>. Note all authors need to put their information in <a href="https://github.com/supstat/vistat/blob/gh-pages/_config.yml"><code>_config.yml</code></a>, and input the author id&#8217;s to the <code>author</code> field (the same applies to reviewers).</p>
+
+<p>You can write math in the LaTeX syntax, e.g. <code>$$\alpha+\beta$$</code> in a paragraph renders inline like <script type="math/tex">\alpha+\beta</script>, and <code>$$f(x)=\frac{1}{\sqrt{2\pi}}e^{-x^2/2}$$</code> in a separate paragraph renders the display style</p>
+
+<script type="math/tex; mode=display">f(x)=\frac{1}{\sqrt{2\pi}}e^{-x^2/2}</script>
+
+<p>If you want to generate animations, set <code>animation: true</code> in the preamble of the article and use the chunk option <code>fig.show='animate'</code> in the chunk header (<a href="https://github.com/supstat/vistat/blob/gh-pages/_source/2012-11-06-brownian-motion-with-r.Rmd">example</a>).</p>
+
+<h2 id="compilation">Compilation</h2>
+
+<p>The executable script <code>_bin/knit</code> is essentially an R script. For Linux/Mac users, you can compile an Rmd file to md by</p>
+
+<div class="highlight"><pre><code class="bash">./_bin/knit _source/yyyy-mm-dd-your-post.Rmd</code></pre></div>
+
+<p>For Windows users, use <code>Rscript</code> instead:</p>
+
+<div class="highlight"><pre><code class="bash">Rscript ./_bin/knit _source/yyyy-mm-dd-your-post.Rmd</code></pre></div>
+
+<p>You can certainly preview the article inside your editor like RStudio, and the above approach is necessary only when you are ready to submit the article. Do not worry about images &#8211; we will compile your article again after it is accepted, and images will be re-generated and stored in the right place.</p>
+
+<h2 id="preview">Preview</h2>
+
+<p>If you want to preview your articles locally (<a href="http://localhost:4000">http://localhost:4000</a>), you can run</p>
+
+<div class="highlight"><pre><code class="bash">rake preview</code></pre></div>
+
+<p>which is basically a wrapper to <code>jekyll --server --auto</code>. Of course you need to install Jekyll first.</p>
+
+<h2 id="submission">Submission</h2>
+
+<p>After you are done with an article, commit it to your forked repository and submit a <a href="https://help.github.com/articles/using-pull-requests">pull request</a> to us. We will get it reviewed and you will see comments online. Further revisions may be required, in which case you just make the revision and continue to commit in the changes, and they will appear in the previous pull request.</p>
+
+<p>Please commit the source file only (<code>*.Rmd</code>) and do not commit the output files (<code>*.md</code> and figures). We will re-compile the source files and upload images after we accept the article. Therefore if your article involves special packages or data, you should add clear instructions on them in the article.</p>
+
+<h2 id="reviewers">Reviewers</h2>
+
+<p>Everyone is welcome to become a reviewer for Vistat. Reviews are public in the pull requests on Github. There are no <em>anonymous</em> reviewers here.</p>
+
+<h2 id="contributors">Contributors</h2>
+
+<p>We have had 7 contributors so far:</p>
+
+<ul>
+  <li>
+    <p><a href="http://www.carlboettiger.info">Carl Boettiger</a> A post-doctoral researcher with Marc Mangel and Steve Munch in the Center for Stock Assessment Research, at UC Santa Cruz, working on regime shifts in ecology and evolution.</p>
+  </li>
+  <li>
+    <p><a href="http://www.r-project.org">R Core Team</a> The R Project for Statistical Computing.</p>
+  </li>
+  <li>
+    <p><a href="http://taiyun.github.com">Taiyun Wei</a> School of Statistics, Renmin University of China; author of the <strong>corrplot</strong> package.</p>
+  </li>
+  <li>
+    <p><a href="http://yihui.name">Yihui Xie</a> Department of Statistics, Iowa State University; interested in statistical computing and graphics; author of <strong>knitr</strong>, <strong>animation</strong> and a few other R packages.</p>
+  </li>
+  <li>
+    <p><a href="http://lijiayu.net">Lijia Yu</a> A master candidate majoring in Bioinformatics at Beijing Institute of Genomics.</p>
+  </li>
+  <li>
+    <p><a href="http://www.biostat.wisc.edu/~kbroman">Karl Broman</a> Department of Biostatistics and Medical Informatics, University of Wisconsin-Madison; research in statistical genetics; developer of R/qtl (for R)</p>
+  </li>
+  <li>
+    <p><a href="http://cdrv.github.io">Kevin Ushey</a> MSc., University of British Columbia; interested in statistical genetics and data visualization</p>
+  </li>
+</ul>
+
+
+  </div>
+</div>
+
+
+        </div>
+      </div> <!-- /container -->
+
+      <div class="footer-push"></div>
+    </div><!--/.page-wrap -->
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2014 Magnus Metz
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/assets/themes/hooligan/js/jquery.min.js"><\/script>')</script>
+    <script src="/assets/themes/hooligan/bootstrap/js/bootstrap.min.js"></script>
+
+    
+  </body>
+</html>
+

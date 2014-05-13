@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About Vistat
+title: Blog
 ---
 {% include JB/setup %}
 

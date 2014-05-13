@@ -1,0 +1,805 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+        xmlns:content="http://purl.org/rss/1.0/modules/content/"
+        xmlns:atom="http://www.w3.org/2005/Atom"
+  >
+  <channel>
+    <title>Magnus Metz</title>
+    <atom:link href="http://vis.supstat.com/feed/" rel="self" type="application/rss+xml" />
+    <link>http://vis.supstat.com</link>
+    <lastBuildDate>2014-05-13T17:46:38+02:00</lastBuildDate>
+    <webMaster>metz.magnus@gmail.com</webMaster>
+    
+    <item>
+      <title>Demonstration of the Law of Large Numbers</title>
+      <link>http://vis.supstat.com/2013/04/law-of-large-numbers</link>
+      <pubDate>2013-04-18T00:00:00+02:00</pubDate>
+      <author>Lijia Yu</author>
+      <guid>http://vis.supstat.com/2013/04/law-of-large-numbers</guid>
+      <content:encoded><![CDATA[
+<p>The <a href="http://en.wikipedia.org/wiki/Law_of_large_numbers">Law of Large Numbers</a> (LLN) basically
+states that the average obtained from a large number of trials should be close to the expected
+value, and will tend to become closer as more trials are performed.</p>
+
+<p>The function <code>lln.ani()</code> in the <a href="http://yihui.name/animation"><strong>animation</strong> package</a> provides us a
+visualization method for the LLN. It plots the sample mean as the sample size grows to check
+whether the sample mean approaches to the population mean. Here we make an animation with the
+<a href="http://en.wikipedia.org/wiki/Chi-squared_distribution">Chi-squared distribution</a> as the population
+distribution.</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
+ani.options<span class="p">(</span>interval <span class="o">=</span> <span class="m">0.3</span><span class="p">)</span>
+lln.ani<span class="p">(</span>FUN <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>n<span class="p">,</span> mu<span class="p">)</span> rchisq<span class="p">(</span>n<span class="p">,</span> df <span class="o">=</span> mu<span class="p">),</span> mu <span class="o">=</span> <span class="m">5</span><span class="p">,</span> cex <span class="o">=</span> <span class="m">0.6</span><span class="p">)</span></code></pre></div>
+
+<div class="scianimator">
+<div id="chi_squared" style="display: inline-block;">
+</div>
+</div>
+<script type="text/javascript">
+  (function($) {
+    $(document).ready(function() {
+      var imgs = Array(50);
+      for (i=0; ; i++) {
+        if (i == imgs.length) break;
+        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-04-18-law-of-large-numbers/chi-squared" + (i + 1) + ".png";
+      }
+      $("#chi_squared").scianimator({
+          "images": imgs,
+          "delay": 300,
+          "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
+      });
+      $("#chi_squared").scianimator("play");
+    });
+  })(jQuery);
+</script>
+
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Buffon's needle</title>
+      <link>http://vis.supstat.com/2013/04/buffons-needle</link>
+      <pubDate>2013-04-16T00:00:00+02:00</pubDate>
+      <author>Lijia Yu</author>
+      <guid>http://vis.supstat.com/2013/04/buffons-needle</guid>
+      <content:encoded><![CDATA[
+<p>Given a needle of length <script type="math/tex">L</script> dropped on a plane ruled with parallel lines <script type="math/tex">D</script> units apart, what
+is the probability that the needle will cross a line? This question is first posed in the 18th
+century by <a href="http://en.wikipedia.org/wiki/Georges-Louis_Leclerc,_Comte_de_Buffon">Georges-Louis Leclerc, Comte de
+Buffon</a>. The answer is
+<script type="math/tex">P=\frac{2L}{D\pi}</script> where <script type="math/tex">D</script> is the distance between two adjacent lines, and <script type="math/tex">L</script> is the
+length of the needle.</p>
+
+<p>The solution, in the case where the needle length is not greater than the width of the strips, can
+be used to design a <a href="http://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo method</a> for
+approximating the number <script type="math/tex">\pi</script>.</p>
+
+<p>In the <a href="http://yihui.name/animation"><strong>animation</strong> package</a>, the function <code>buffon.needle()</code> can be
+used to simulate Buffon&#8217;s needle. There are three graphs made in each step: the top one is a
+simulation of the scenario, the bottom-left one can help us understand the connection between
+dropping needles and the mathematical method to estimate <script type="math/tex">\pi</script>, and the bottom-right one is the
+simulation result <script type="math/tex">\pi</script> for each drop.</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
+ani.options<span class="p">(</span>nmax <span class="o">=</span> <span class="m">100</span><span class="p">,</span> interval <span class="o">=</span> <span class="m">0.5</span><span class="p">)</span>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">2.5</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0.2</span><span class="p">),</span> pch <span class="o">=</span> <span class="m">20</span><span class="p">,</span> mgp <span class="o">=</span> c<span class="p">(</span><span class="m">1.5</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
+buffon.needle<span class="p">(</span>mat <span class="o">=</span> matrix<span class="p">(</span>c<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span> <span class="m">2</span><span class="p">))</span></code></pre></div>
+
+<div class="scianimator">
+<div id="buffon_needle" style="display: inline-block;">
+</div>
+</div>
+<script type="text/javascript">
+  (function($) {
+    $(document).ready(function() {
+      var imgs = Array(100);
+      for (i=0; ; i++) {
+        if (i == imgs.length) break;
+        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-04-16-buffons-needle/buffon-needle" + (i + 1) + ".png";
+      }
+      $("#buffon_needle").scianimator({
+          "images": imgs,
+          "delay": 500,
+          "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
+      });
+      $("#buffon_needle").scianimator("play");
+    });
+  })(jQuery);
+</script>
+
+<p>You can use larger <code>nmax</code> values in the code to drop the needle for more times.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Demonstration of the Central Limit Theorem</title>
+      <link>http://vis.supstat.com/2013/04/central-limit-theorem</link>
+      <pubDate>2013-04-15T00:00:00+02:00</pubDate>
+      <author>Lijia Yu</author>
+      <guid>http://vis.supstat.com/2013/04/central-limit-theorem</guid>
+      <content:encoded><![CDATA[
+<p>In <a href="http://en.wikipedia.org/wiki/Probability_theory">Probability Theory</a>, the <a href="http://en.wikipedia.org/wiki/Central_limit_theorem">Central Limit
+Theorem (CLT)</a> states that, given certain
+conditions, the mean of a sufficiently large number of independent random variables, each with a
+well-defined mean and well-defined variance, will be approximately normally distributed.</p>
+
+<p>As shown in the <a href="/2013/04/bean-machine/">Bean Machine</a> article, CLT has a number of variants. This
+article shows you as long as the conditions of CLT are satisfied, the distribution of the sample
+mean will be approximate to the Normal distribution when the sample size n is large enough, no
+matter what is the original distribution.</p>
+
+<p>In the <a href="http://yihui.name/animation"><strong>animation</strong> package</a>, there is a function named <code>clt.ani()</code>.
+It shows the distribution of the sample mean when the sample size <script type="math/tex">n</script> grows up. The test
+<code>shapiro.test()</code> is provided as a measure of normality.</p>
+
+<h2 id="classical-central-limit-theorem">Classical Central Limit Theorem</h2>
+
+<p>With the parameter <code>FUN</code> in the function <code>clt.ani()</code> you can select distribution which will be
+shown in the animation. Here is the example with the <a href="http://en.wikipedia.org/wiki/Poisson_distribution">Poisson
+distribution</a>.</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
+ani.options<span class="p">(</span>interval <span class="o">=</span> <span class="m">0.5</span><span class="p">)</span>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0.5</span><span class="p">),</span> mgp <span class="o">=</span> c<span class="p">(</span><span class="m">1.5</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> tcl <span class="o">=</span> <span class="m">-0.3</span><span class="p">)</span>
+lambda <span class="o">=</span> <span class="m">4</span>
+f <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>n<span class="p">)</span> rpois<span class="p">(</span>n<span class="p">,</span> lambda<span class="p">)</span>
+clt.ani<span class="p">(</span>FUN <span class="o">=</span> f<span class="p">,</span> mean <span class="o">=</span> lambda<span class="p">,</span> sd <span class="o">=</span> lambda<span class="p">)</span></code></pre></div>
+
+<div class="scianimator">
+<div id="poisson_clt" style="display: inline-block;">
+</div>
+</div>
+<script type="text/javascript">
+  (function($) {
+    $(document).ready(function() {
+      var imgs = Array(50);
+      for (i=0; ; i++) {
+        if (i == imgs.length) break;
+        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-04-15-central-limit-theorem/poisson-clt" + (i + 1) + ".png";
+      }
+      $("#poisson_clt").scianimator({
+          "images": imgs,
+          "delay": 500,
+          "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
+      });
+      $("#poisson_clt").scianimator("play");
+    });
+  })(jQuery);
+</script>
+
+<h2 id="when-clt-does-not-work">When CLT does not work</h2>
+
+<p>The <a href="http://en.wikipedia.org/wiki/Cauchy_distribution">Cauchy distribution</a> is an example of a
+distribution which has no mean, variance or higher moments defined, so we cannot apply CLT to this
+distribution.</p>
+
+<div class="highlight"><pre><code class="r">ani.options<span class="p">(</span>interval <span class="o">=</span> <span class="m">0.5</span><span class="p">)</span>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0.5</span><span class="p">),</span> mgp <span class="o">=</span> c<span class="p">(</span><span class="m">1.5</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> tcl <span class="o">=</span> <span class="m">-0.3</span><span class="p">)</span>
+f <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>n<span class="p">)</span> rcauchy<span class="p">(</span>n<span class="p">,</span> location <span class="o">=</span> <span class="m">0</span><span class="p">,</span> scale <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+clt.ani<span class="p">(</span>FUN <span class="o">=</span> f<span class="p">,</span> mean <span class="o">=</span> <span class="kc">NA</span><span class="p">,</span> sd <span class="o">=</span> <span class="kc">NA</span><span class="p">)</span></code></pre></div>
+
+<div class="scianimator">
+<div id="cauchy_clt" style="display: inline-block;">
+</div>
+</div>
+<script type="text/javascript">
+  (function($) {
+    $(document).ready(function() {
+      var imgs = Array(50);
+      for (i=0; ; i++) {
+        if (i == imgs.length) break;
+        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-04-15-central-limit-theorem/cauchy-clt" + (i + 1) + ".png";
+      }
+      $("#cauchy_clt").scianimator({
+          "images": imgs,
+          "delay": 500,
+          "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
+      });
+      $("#cauchy_clt").scianimator("play");
+    });
+  })(jQuery);
+</script>
+
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>The Bean Machine and the Central Limit Theorem</title>
+      <link>http://vis.supstat.com/2013/04/bean-machine</link>
+      <pubDate>2013-04-13T00:00:00+02:00</pubDate>
+      <author>Lijia Yu</author>
+      <guid>http://vis.supstat.com/2013/04/bean-machine</guid>
+      <content:encoded><![CDATA[
+<p>The bean machine, also known as the quincunx or Galton box, is a device invented by Sir <a href="http://en.wikipedia.org/wiki/Francis_Galton">Francis
+Galton</a> to demonstrate the <a href="http://en.wikipedia.org/wiki/Central_limit_theorem">Central Limit
+Theorem</a>, in particular that the Normal
+distribution is approximated from the Binomial distribution, or properly speaking, <a href="http://en.wikipedia.org/wiki/De_Moivre%E2%80%93Laplace_theorem">de
+Moivre–Laplace theorem</a>.</p>
+
+<p>The function <code>quincunx()</code> in the <a href="http://yihui.name/animation"><strong>animation</strong> package</a> shows you how
+balls bounce left and right as they hit the pins. You can see the height of ball columns in the
+bins approximates a <a href="http://en.wikipedia.org/wiki/Normal_distribution">bell curve</a>.</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
+ani.options<span class="p">(</span>interval <span class="o">=</span> <span class="m">0.03</span><span class="p">,</span> nmax <span class="o">=</span> <span class="m">213</span><span class="p">)</span>
+quincunx<span class="p">()</span></code></pre></div>
+
+<div class="scianimator">
+<div id="bean_machine" style="display: inline-block;">
+</div>
+</div>
+<script type="text/javascript">
+  (function($) {
+    $(document).ready(function() {
+      var imgs = Array(213);
+      for (i=0; ; i++) {
+        if (i == imgs.length) break;
+        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-04-13-bean-machine/bean-machine" + (i + 1) + ".png";
+      }
+      $("#bean_machine").scianimator({
+          "images": imgs,
+          "delay": 50,
+          "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
+      });
+      $("#bean_machine").scianimator("play");
+    });
+  })(jQuery);
+</script>
+
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Cheat Sheets for Plotting Symbols and Color Palettes</title>
+      <link>http://vis.supstat.com/2013/04/plotting-symbols-and-color-palettes</link>
+      <pubDate>2013-04-08T00:00:00+02:00</pubDate>
+      <author>R Core Team
+       and Yihui Xie
+       and Lijia Yu</author>
+      <guid>http://vis.supstat.com/2013/04/plotting-symbols-and-color-palettes</guid>
+      <content:encoded><![CDATA[
+<p>This cheat sheet shows a few commonly used plotting symbols and color palettes in R. Now you do not
+need to memorize the facts like &#8220;19 is the big solid dot and 21 is an open circle that can have a
+different background color&#8221; &#8211; just bookmark this cheat sheet. In fact it was motivated by Dr
+<a href="http://rafalab.jhsph.edu/">Rafael Irizarry</a>, who printed the color palettes on a piece of paper
+and pinned that to the wall in his office.</p>
+
+<h2 id="plotting-symbols-pch">Plotting symbols (pch)</h2>
+
+<p>There are many plotting symbols in the <strong>graphics</strong> package. We can set the <code>pch</code> parameter to set
+the symbols. See <code>?points</code> for more information.</p>
+
+<p>Below is a figure containing the plot symbols from <code>pch = 0</code> to <code>25</code> along with some
+character-based plot symbols. We can use, for example, <code>plot(x, y, pch = 3)</code> for plus signs (<code>+</code>)
+in a scatterplot.</p>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2013-04-08-plotting-symbols-and-color-palettes/pch.png" alt="plot of chunk pch" /> </p>
+
+<h2 id="color-palettes">Color palettes</h2>
+
+<p>The default color palette in R:</p>
+
+<div class="highlight"><pre><code class="r"><span class="p">(</span>pal <span class="o">=</span> palette<span class="p">())</span></code></pre></div>
+
+<div class="highlight"><pre><code class="text">## [1] &quot;black&quot;   &quot;red&quot;     &quot;green3&quot;  &quot;blue&quot;    &quot;cyan&quot;    &quot;magenta&quot;
+## [7] &quot;yellow&quot;  &quot;gray&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="r">par<span class="p">(</span>mar <span class="o">=</span> rep<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">4</span><span class="p">))</span>
+pie<span class="p">(</span>rep<span class="p">(</span><span class="m">1</span><span class="p">,</span> length<span class="p">(</span>pal<span class="p">)),</span> labels <span class="o">=</span> sprintf<span class="p">(</span><span class="s">&quot;%d (%s)&quot;</span><span class="p">,</span> seq_along<span class="p">(</span>pal<span class="p">),</span> 
+  pal<span class="p">),</span> col <span class="o">=</span> pal<span class="p">)</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2013-04-08-plotting-symbols-and-color-palettes/default-pal.png" alt="plot of chunk default-pal" /> </p>
+
+<p>Below are the color palettes in <strong>RColorBrewer</strong> (if you do not want to use <strong>ggplot2</strong>, you should
+consider using this package to generate colors for your plots; just do not use the meaningless
+<code>rainbow()</code> palette):</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>RColorBrewer<span class="p">)</span>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
+display.brewer.all<span class="p">()</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2013-04-08-plotting-symbols-and-color-palettes/brewer-pal.png" alt="plot of chunk brewer-pal" /> </p>
+
+<div class="highlight"><pre><code class="r"><span class="c1"># generate 8 colors from the Set2 palette</span>
+brewer.pal<span class="p">(</span><span class="m">8</span><span class="p">,</span> <span class="s">&quot;Set2&quot;</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="text">## [1] &quot;#66C2A5&quot; &quot;#FC8D62&quot; &quot;#8DA0CB&quot; &quot;#E78AC3&quot; &quot;#A6D854&quot; &quot;#FFD92F&quot;
+## [7] &quot;#E5C494&quot; &quot;#B3B3B3&quot;</code></pre></div>
+
+<p>In R, the function <code>colors()</code> returns a vector of 657 color names. When you really
+need to specify the color by its name, you are recommended to check out this nice <a href="http://research.stowers-institute.org/efg/R/Color/Chart/ColorChart.pdf">color
+chart</a> created by Earl F.
+Glynn.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Mathematical Annotation in R</title>
+      <link>http://vis.supstat.com/2013/04/mathematical-annotation-in-r</link>
+      <pubDate>2013-04-08T00:00:00+02:00</pubDate>
+      <author>R Core Team
+       and Lijia Yu
+       and Karl Broman
+       and Kevin Ushey</author>
+      <guid>http://vis.supstat.com/2013/04/mathematical-annotation-in-r</guid>
+      <content:encoded><![CDATA[
+<p>Want to write mathematical symbols and expressions in R graphics? You can use an R <code>expression()</code>
+instead of normal text, e.g. <code>plot(1:10, main = expression(alpha + beta))</code>. Below is a demo that
+shows you everything about plotting math in R (it was written by the R Core Team; see <code>?plotmath</code>
+for details):</p>
+
+<div class="highlight"><pre><code class="r">demo<span class="p">(</span>plotmath<span class="p">)</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/plotmath1.png" alt="plot of chunk plotmath" /> <img src="http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/plotmath2.png" alt="plot of chunk plotmath" /> <img src="http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/plotmath3.png" alt="plot of chunk plotmath" /> <img src="http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/plotmath4.png" alt="plot of chunk plotmath" /> <img src="http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/plotmath5.png" alt="plot of chunk plotmath" /> </p>
+
+<h2 id="combining-expressions-and-text">Combining expressions and text</h2>
+
+<p>If you want to combine multiple mathematical expressions with text, use <code>paste()</code> <em>inside</em>
+<code>expression()</code>, as in the following.</p>
+
+<div class="highlight"><pre><code class="r">par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">0.1</span><span class="p">))</span>
+plot<span class="p">(</span>rnorm<span class="p">(</span><span class="m">100</span><span class="p">),</span> rnorm<span class="p">(</span><span class="m">100</span><span class="p">),</span>
+  xlab <span class="o">=</span> expression<span class="p">(</span>hat<span class="p">(</span>mu<span class="p">)[</span><span class="m">0</span><span class="p">]),</span> ylab <span class="o">=</span> expression<span class="p">(</span>alpha<span class="o">^</span>beta<span class="p">),</span>
+  main <span class="o">=</span> expression<span class="p">(</span>paste<span class="p">(</span><span class="s">&quot;Plot of &quot;</span><span class="p">,</span> alpha<span class="o">^</span>beta<span class="p">,</span> <span class="s">&quot; versus &quot;</span><span class="p">,</span> hat<span class="p">(</span>mu<span class="p">)[</span><span class="m">0</span><span class="p">])))</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/math-text.png" alt="plot of chunk math-text" /> </p>
+
+<p>Finally, if we want to include variables from an R session in mathematical expressions, and
+substitute in their actual values, we can use <code>substitute()</code>.</p>
+
+<div class="highlight"><pre><code class="r">par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">0.1</span><span class="p">))</span>
+x_mean <span class="o">&lt;-</span> <span class="m">1.5</span>
+x_sd <span class="o">&lt;-</span> <span class="m">1.2</span>
+hist<span class="p">(</span>rnorm<span class="p">(</span><span class="m">100</span><span class="p">,</span> x_mean<span class="p">,</span> x_sd<span class="p">),</span>
+  main <span class="o">=</span> substitute<span class="p">(</span>
+    paste<span class="p">(</span>X<span class="p">[</span>i<span class="p">],</span> <span class="s">&quot; ~ N(&quot;</span><span class="p">,</span> mu<span class="p">,</span> <span class="s">&quot;=&quot;</span><span class="p">,</span> m<span class="p">,</span> <span class="s">&quot;, &quot;</span><span class="p">,</span> sigma<span class="o">^</span><span class="m">2</span><span class="p">,</span> <span class="s">&quot;=&quot;</span><span class="p">,</span> s2<span class="p">,</span> <span class="s">&quot;)&quot;</span><span class="p">),</span>
+    list<span class="p">(</span>m <span class="o">=</span> x_mean<span class="p">,</span> s2 <span class="o">=</span> x_sd<span class="o">^</span><span class="m">2</span><span class="p">)</span>
+  <span class="p">)</span>
+<span class="p">)</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/math-text-sub.png" alt="plot of chunk math-text-sub" /> </p>
+
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Draw Easter Eggs</title>
+      <link>http://vis.supstat.com/2013/03/draw-easter-eggs</link>
+      <pubDate>2013-03-31T00:00:00+01:00</pubDate>
+      <author>Lijia Yu</author>
+      <guid>http://vis.supstat.com/2013/03/draw-easter-eggs</guid>
+      <content:encoded><![CDATA[
+<p>This article shows you how to draw an egg with R. I wrote this article after I learned to use the
+<a href="http://yihui.name/animation"><strong>animation</strong> package</a> for one week. So I will show you the simplest
+way to create an animated figure. The only function used in this package is <code>ani.pause()</code>.</p>
+
+<p>Let&#8217;s get started!</p>
+
+<h2 id="a-simple-egg">A simple egg</h2>
+
+<p>The equations that define an egg are:</p>
+
+<script type="math/tex; mode=display">\begin{equation} \begin{cases} x = a*\cos(\theta)\\ y = b*\cos(\frac{\theta}{4})*\sin(\theta)\\
+\theta\leq\pi \end{cases} \end{equation}</script>
+
+<p>In the figure below, let&#8217;s swap the x axis and y axis for an egg in the vertical direction.</p>
+
+<div class="highlight"><pre><code class="r">t <span class="o">=</span> seq<span class="p">(</span><span class="o">-</span>pi<span class="p">,</span> pi<span class="p">,</span> by <span class="o">=</span> <span class="m">0.01</span><span class="p">)</span>
+H <span class="o">=</span> <span class="m">1</span>
+x <span class="o">=</span> H <span class="o">*</span> <span class="m">0.78</span> <span class="o">*</span> cos<span class="p">(</span>t<span class="o">/</span><span class="m">4</span><span class="p">)</span> <span class="o">*</span> sin<span class="p">(</span>t<span class="p">)</span>
+y <span class="o">=</span> <span class="o">-</span>H <span class="o">*</span> cos<span class="p">(</span>t<span class="p">)</span>
+par<span class="p">(</span>mar <span class="o">=</span> rep<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">4</span><span class="p">))</span>
+plot<span class="p">(</span>x<span class="p">,</span> y<span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">,</span> xlim <span class="o">=</span> c<span class="p">(</span><span class="m">-1</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> ylim <span class="o">=</span> c<span class="p">(</span><span class="m">-1</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> asp <span class="o">=</span> <span class="m">1</span><span class="p">,</span> 
+  col <span class="o">=</span> <span class="s">&quot;orange1&quot;</span><span class="p">,</span> lwd <span class="o">=</span> <span class="m">5</span><span class="p">,</span> axes <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2013-03-31-draw-easter-eggs/draw-egg.png" alt="plot of chunk draw-egg" /> </p>
+
+<p>We need a <a href="http://en.wikipedia.org/wiki/Rotation_matrix">Rotation matrix</a> to draw the rotating egg:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+R(\theta)= \begin{equation} \left(
+  \begin{array}{cc}
+    \cos\theta & -\sin\theta\\
+    \sin\theta & \cos\theta\\
+  \end{array}
+\right) \end{equation}  %]]></script>
+
+<p>The <code>ani.pause()</code> function is called to pause for a time interval (by default specified in
+<code>ani.options('interval')</code>) and flush the current device. We draw a egg with with different angles
+in 30 images, and you will see the egg rotating below:</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
+egg_rotation <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>H <span class="o">=</span> <span class="m">1</span><span class="p">,</span> angle <span class="o">=</span> seq<span class="p">(</span><span class="m">0</span><span class="p">,</span> pi <span class="o">*</span> <span class="m">2</span><span class="p">,</span> length <span class="o">=</span> <span class="m">30</span><span class="p">),</span> 
+  pos <span class="o">=</span> c<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span> <span class="p">{</span>
+  t <span class="o">=</span> seq<span class="p">(</span><span class="o">-</span>pi<span class="p">,</span> pi<span class="p">,</span> by <span class="o">=</span> <span class="m">0.01</span><span class="p">)</span>
+  <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>length<span class="p">(</span>angle<span class="p">))</span> <span class="p">{</span>
+    x <span class="o">=</span> H <span class="o">*</span> <span class="m">0.78</span> <span class="o">*</span> cos<span class="p">(</span>t<span class="o">/</span><span class="m">4</span><span class="p">)</span> <span class="o">*</span> sin<span class="p">(</span>t<span class="p">)</span>
+    y <span class="o">=</span> <span class="o">-</span>H <span class="o">*</span> cos<span class="p">(</span>t<span class="p">)</span>
+    <span class="c1"># Rotation matrix</span>
+    x1 <span class="o">=</span> cos<span class="p">(</span>angle<span class="p">[</span>i<span class="p">])</span> <span class="o">*</span> x <span class="o">-</span> sin<span class="p">(</span>angle<span class="p">[</span>i<span class="p">])</span> <span class="o">*</span> y <span class="o">+</span> pos<span class="p">[</span><span class="m">1</span><span class="p">]</span>
+    y1 <span class="o">=</span> sin<span class="p">(</span>angle<span class="p">[</span>i<span class="p">])</span> <span class="o">*</span> x <span class="o">+</span> cos<span class="p">(</span>angle<span class="p">[</span>i<span class="p">])</span> <span class="o">*</span> y <span class="o">+</span> pos<span class="p">[</span><span class="m">2</span><span class="p">]</span>
+    cols <span class="o">=</span> colors<span class="p">()</span>
+    flag <span class="o">=</span> sample<span class="p">(</span><span class="m">1</span><span class="o">:</span>length<span class="p">(</span>cols<span class="p">),</span> <span class="m">1</span><span class="p">)</span>
+    plot<span class="p">(</span>x1<span class="p">,</span> y1<span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">,</span> xlim <span class="o">=</span> c<span class="p">(</span><span class="m">-1</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> ylim <span class="o">=</span> c<span class="p">(</span><span class="m">-1</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> 
+      asp <span class="o">=</span> <span class="m">1</span><span class="p">,</span> col <span class="o">=</span> cols<span class="p">[</span>flag<span class="p">],</span> lwd <span class="o">=</span> <span class="m">8</span><span class="p">,</span> axes <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+    ani.pause<span class="p">(</span><span class="m">0.1</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+par<span class="p">(</span>mar <span class="o">=</span> rep<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">4</span><span class="p">))</span>
+egg_rotation<span class="p">()</span></code></pre></div>
+
+<div class="scianimator">
+<div id="rotating_egg" style="display: inline-block;">
+</div>
+</div>
+<script type="text/javascript">
+  (function($) {
+    $(document).ready(function() {
+      var imgs = Array(30);
+      for (i=0; ; i++) {
+        if (i == imgs.length) break;
+        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-03-31-draw-easter-eggs/rotating-egg" + (i + 1) + ".png";
+      }
+      $("#rotating_egg").scianimator({
+          "images": imgs,
+          "delay": 100,
+          "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
+      });
+      $("#rotating_egg").scianimator("play");
+    });
+  })(jQuery);
+</script>
+
+<p>Another example:</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
+egg <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>h <span class="o">=</span> rnorm<span class="p">(</span><span class="m">1</span><span class="p">),</span> angle <span class="o">=</span> rnorm<span class="p">(</span><span class="m">1</span><span class="p">),</span> pos <span class="o">=</span> rnorm<span class="p">(</span><span class="m">2</span><span class="p">))</span> <span class="p">{</span>
+  t <span class="o">=</span> seq<span class="p">(</span><span class="o">-</span>pi<span class="p">,</span> pi<span class="p">,</span> by <span class="o">=</span> <span class="m">0.01</span><span class="p">)</span>
+  <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)</span> <span class="p">{</span>
+    H <span class="o">=</span> h <span class="o">-</span> h<span class="o">/</span><span class="m">10</span> <span class="o">*</span> i
+    x <span class="o">=</span> H <span class="o">*</span> <span class="m">0.78</span> <span class="o">*</span> cos<span class="p">(</span>t<span class="o">/</span><span class="m">4</span><span class="p">)</span> <span class="o">*</span> sin<span class="p">(</span>t<span class="p">)</span>
+    y <span class="o">=</span> <span class="o">-</span>H <span class="o">*</span> cos<span class="p">(</span>t<span class="p">)</span>
+    <span class="c1"># Rotation matrix</span>
+    x1 <span class="o">=</span> cos<span class="p">(</span>angle<span class="p">)</span> <span class="o">*</span> x <span class="o">-</span> sin<span class="p">(</span>angle<span class="p">)</span> <span class="o">*</span> y <span class="o">+</span> pos<span class="p">[</span><span class="m">1</span><span class="p">]</span>
+    y1 <span class="o">=</span> sin<span class="p">(</span>angle<span class="p">)</span> <span class="o">*</span> x <span class="o">+</span> cos<span class="p">(</span>angle<span class="p">)</span> <span class="o">*</span> y <span class="o">+</span> pos<span class="p">[</span><span class="m">2</span><span class="p">]</span>
+    cols <span class="o">=</span> colors<span class="p">()</span>
+    flag <span class="o">=</span> sample<span class="p">(</span><span class="m">1</span><span class="o">:</span>length<span class="p">(</span>cols<span class="p">),</span> <span class="m">1</span><span class="p">)</span>
+    plot<span class="p">(</span>x1<span class="p">,</span> y1<span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">,</span> xlim <span class="o">=</span> c<span class="p">(</span><span class="m">-1</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> ylim <span class="o">=</span> c<span class="p">(</span><span class="m">-1</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> 
+      asp <span class="o">=</span> <span class="m">1</span><span class="p">,</span> col <span class="o">=</span> cols<span class="p">[</span>flag<span class="p">],</span> lwd <span class="o">=</span> <span class="m">8</span><span class="p">,</span> axes <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+    ani.pause<span class="p">(</span><span class="m">0.1</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+par<span class="p">(</span>mar <span class="o">=</span> rep<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">4</span><span class="p">))</span>
+set.seed<span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="kr">for</span> <span class="p">(</span>j <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)</span> <span class="p">{</span>
+  egg<span class="p">()</span>
+  ani.pause<span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+
+<div class="scianimator">
+<div id="easter_egg" style="display: inline-block;">
+</div>
+</div>
+<script type="text/javascript">
+  (function($) {
+    $(document).ready(function() {
+      var imgs = Array(100);
+      for (i=0; ; i++) {
+        if (i == imgs.length) break;
+        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-03-31-draw-easter-eggs/easter-egg" + (i + 1) + ".png";
+      }
+      $("#easter_egg").scianimator({
+          "images": imgs,
+          "delay": 100,
+          "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
+      });
+      $("#easter_egg").scianimator("play");
+    });
+  })(jQuery);
+</script>
+
+<h2 id="d-eggs">3D eggs</h2>
+
+<p>If you want to draw a 3D egg. The <strong>rgl</strong> package can help you do it. The 3D egg is just a
+perturbation of a sphere. The function is:</p>
+
+<script type="math/tex; mode=display"> \begin{equation} \left(
+  \begin{array}{c}
+    x\\
+    y\\
+    z\\
+  \end{array}
+\right) = \left(
+  \begin{array}{cc}
+    (1+c\mathscr{v})\cos\mathscr{u}-\sin\mathscr{v}\\
+    (1+c\mathscr{v})\sin\mathscr{u} -\cos\mathscr{v}\\
+    b\cos\mathscr{v}\\
+  \end{array}
+\right) \end{equation} </script>
+
+<p>Here we set $c=0.2, b=0.3$.</p>
+
+<div class="highlight"><pre><code class="r">meshgrid <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>a<span class="p">,</span> b<span class="p">)</span> <span class="p">{</span>
+  list<span class="p">(</span>x <span class="o">=</span> outer<span class="p">(</span>b <span class="o">*</span> <span class="m">0</span><span class="p">,</span> a<span class="p">,</span> FUN <span class="o">=</span> <span class="s">&quot;+&quot;</span><span class="p">),</span> y <span class="o">=</span> outer<span class="p">(</span>b<span class="p">,</span> a <span class="o">*</span> <span class="m">0</span><span class="p">,</span> FUN <span class="o">=</span> <span class="s">&quot;+&quot;</span><span class="p">))</span>
+<span class="p">}</span>
+library<span class="p">(</span>rgl<span class="p">)</span>
+c <span class="o">=</span> <span class="m">0.2</span>
+b <span class="o">=</span> <span class="m">1.7</span>
+theta <span class="o">=</span> seq<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">2</span> <span class="o">*</span> pi<span class="p">,</span> length <span class="o">=</span> <span class="m">40</span> <span class="o">*</span> <span class="m">4</span><span class="p">)</span>
+phi <span class="o">=</span> seq<span class="p">(</span><span class="m">0</span><span class="p">,</span> pi<span class="p">,</span> length <span class="o">=</span> <span class="m">40</span> <span class="o">*</span> <span class="m">4</span><span class="p">)</span>
+theta1 <span class="o">=</span> meshgrid<span class="p">(</span>theta<span class="p">,</span> phi<span class="p">)</span><span class="o">$</span>x
+phi2 <span class="o">=</span> meshgrid<span class="p">(</span>theta<span class="p">,</span> phi<span class="p">)</span><span class="o">$</span>y
+x <span class="o">=</span> <span class="p">(</span><span class="m">1</span> <span class="o">+</span> c <span class="o">*</span> phi2<span class="p">)</span> <span class="o">*</span> sin<span class="p">(</span>phi2<span class="p">)</span> <span class="o">*</span> cos<span class="p">(</span>theta1<span class="p">)</span>
+y <span class="o">=</span> <span class="p">(</span><span class="m">1</span> <span class="o">+</span> c <span class="o">*</span> phi2<span class="p">)</span> <span class="o">*</span> sin<span class="p">(</span>phi2<span class="p">)</span> <span class="o">*</span> sin<span class="p">(</span>theta1<span class="p">)</span>
+z <span class="o">&lt;-</span> b <span class="o">*</span> cos<span class="p">(</span>phi2<span class="p">)</span>
+surface3d<span class="p">(</span>x<span class="p">,</span> y<span class="p">,</span> z<span class="p">,</span> color <span class="o">=</span> rainbow<span class="p">(</span><span class="m">10</span><span class="p">))</span>
+par3d<span class="p">(</span>zoom <span class="o">=</span> <span class="m">0.7</span><span class="p">)</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2013-03-31-draw-easter-eggs/draw-3d-egg.png" alt="plot of chunk draw-3d-egg" /> </p>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="http://www16.ocn.ne.jp/~akiko-y/Egg_by_Itou/index_egg_by_Itou_E.html">Equation of Egg Shaped Curve II </a></li>
+  <li><a href="http://danielwalsh.tumblr.com/post/2742366331/mathematically-defined-easter-eggs">Mathematically defined Easter eggs</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Simulation of Coin Flipping</title>
+      <link>http://vis.supstat.com/2013/03/simulation-of-coin-flipping</link>
+      <pubDate>2013-03-27T00:00:00+01:00</pubDate>
+      <author>Lijia Yu</author>
+      <guid>http://vis.supstat.com/2013/03/simulation-of-coin-flipping</guid>
+      <content:encoded><![CDATA[
+<p>The function <code>flip.coin()</code> in the <a href="http://yihui.name/animation"><strong>animation</strong> package</a> provides a
+simulation to the process of flipping coins and computes the frequencies for <code>heads</code> and <code>tails</code>.
+Coin flipping is a well-known <a href="http://en.wikipedia.org/wiki/Bernoulli_trial">Bernoulli trial</a>. When
+you flip a coin, there are two possible outcomes: <code>head</code> or <code>tail</code>. A fair coin has the probability
+0.5 for <code>head</code> by definition.</p>
+
+<h2 id="head-or-tail">Head or tail</h2>
+
+<p>We toss a fair coin 100 times below.</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
+ani.options<span class="p">(</span>nmax <span class="o">=</span> <span class="m">100</span><span class="p">,</span> interval <span class="o">=</span> <span class="m">0.3</span><span class="p">)</span>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">))</span>
+flip.coin<span class="p">(</span>bg <span class="o">=</span> <span class="s">&quot;yellow&quot;</span><span class="p">)</span></code></pre></div>
+
+<div class="scianimator">
+<div id="head_or_tail" style="display: inline-block;">
+</div>
+</div>
+<script type="text/javascript">
+  (function($) {
+    $(document).ready(function() {
+      var imgs = Array(100);
+      for (i=0; ; i++) {
+        if (i == imgs.length) break;
+        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-03-27-simulation-of-coin-flipping/head-or-tail" + (i + 1) + ".png";
+      }
+      $("#head_or_tail").scianimator({
+          "images": imgs,
+          "delay": 300,
+          "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
+      });
+      $("#head_or_tail").scianimator("play");
+    });
+  })(jQuery);
+</script>
+
+<p>Note the outcome is random, so if you run the code above again, you are likely to see different
+results, but on average you should get 50 heads and 50 tails in the long run.</p>
+
+<h2 id="generalization">Generalization</h2>
+
+<p>The coin here does not have to mean a coin literally. We can generalize it to an object that can
+produce $n$ possible outcomes. For example, three outcomes <code>Head</code>, <code>Stand</code> (a coin may stand on the
+table) and <code>Tail</code> with probabilities 0.45, 0.1 and 0.45 respectively:</p>
+
+<div class="highlight"><pre><code class="r">ani.options<span class="p">(</span>nmax <span class="o">=</span> <span class="m">100</span><span class="p">,</span> interval <span class="o">=</span> <span class="m">0.3</span><span class="p">)</span>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">))</span>
+flip.coin<span class="p">(</span>faces <span class="o">=</span> c<span class="p">(</span><span class="s">&quot;Head&quot;</span><span class="p">,</span> <span class="s">&quot;Stand&quot;</span><span class="p">,</span> <span class="s">&quot;Tail&quot;</span><span class="p">),</span> type <span class="o">=</span> <span class="s">&quot;n&quot;</span><span class="p">,</span> prob <span class="o">=</span> c<span class="p">(</span><span class="m">0.45</span><span class="p">,</span> 
+  <span class="m">0.1</span><span class="p">,</span> <span class="m">0.45</span><span class="p">),</span> col <span class="o">=</span> c<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">4</span><span class="p">))</span></code></pre></div>
+
+<div class="scianimator">
+<div id="coin_stands" style="display: inline-block;">
+</div>
+</div>
+<script type="text/javascript">
+  (function($) {
+    $(document).ready(function() {
+      var imgs = Array(100);
+      for (i=0; ; i++) {
+        if (i == imgs.length) break;
+        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-03-27-simulation-of-coin-flipping/coin-stands" + (i + 1) + ".png";
+      }
+      $("#coin_stands").scianimator({
+          "images": imgs,
+          "delay": 300,
+          "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
+      });
+      $("#coin_stands").scianimator("play");
+    });
+  })(jQuery);
+</script>
+
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Making Visual Illusions in R</title>
+      <link>http://vis.supstat.com/2013/03/make-visual-illusions-in-r</link>
+      <pubDate>2013-03-26T00:00:00+01:00</pubDate>
+      <author>Lijia Yu</author>
+      <guid>http://vis.supstat.com/2013/03/make-visual-illusions-in-r</guid>
+      <content:encoded><![CDATA[
+<p>This article demonstrates how to make <a href="http://en.wikipedia.org/wiki/Optical_illusion">visual
+illusions</a> with R. A visual illusion is a distortion
+of form, size or color in the visual field. In the <a href="http://yihui.name/animation"><strong>animation</strong>
+package</a>, functions <code>vi.grid.illusion()</code> and <code>vi.lilac.chaser()</code> can
+be used to produce visual illusions.</p>
+
+<h2 id="scintillating-grid-illusion">Scintillating grid illusion</h2>
+
+<p><code>vi.grid.illusion()</code> function provides illustrations for the Scintillating grid illusion and
+Hermann grid illusion. They are two most common types of <a href="http://en.wikipedia.org/wiki/Grid_illusion">grid
+illusions</a>.</p>
+
+<p>You can see dark dots appear and disappear rapidly at random intersections.</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
+vi.grid.illusion<span class="p">()</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2013-03-26-make-visual-illusions-in-r/scintillating-grid-illusion.png" alt="plot of chunk scintillating-grid-illusion" /> </p>
+
+<h2 id="hermann-grid-illusion">Hermann grid illusion</h2>
+
+<p>From Hermann grid illusion picture, you can see grey blobs disappear when looking directly at an
+intersection.</p>
+
+<div class="highlight"><pre><code class="r">vi.grid.illusion<span class="p">(</span>type <span class="o">=</span> <span class="s">&quot;h&quot;</span><span class="p">,</span> lwd <span class="o">=</span> <span class="m">22</span><span class="p">,</span> nrow <span class="o">=</span> <span class="m">5</span><span class="p">,</span> ncol <span class="o">=</span> <span class="m">5</span><span class="p">,</span> col <span class="o">=</span> <span class="s">&quot;white&quot;</span><span class="p">)</span></code></pre></div>
+
+<p><img src="http://isu.r-forge.r-project.org/vistat/2013-03-26-make-visual-illusions-in-r/hermann-grid-illusion.png" alt="plot of chunk hermann-grid-illusion" /> </p>
+
+<h2 id="lilac-chaser">Lilac Chaser</h2>
+
+<p>We can draw a <a href="http://en.wikipedia.org/wiki/Lilac_chaser">Lilac chaser</a> with the function
+<code>vi.lilac.chaser()</code>.</p>
+
+<p>Stare at the center cross for a few (say 30) seconds to experience the illusion.</p>
+
+<ul>
+  <li>A gap running around the circle of lilac discs;</li>
+  <li>A green disc running around the circle of lilac discs in place of the gap;</li>
+  <li>The green disc running around on the grey background, with the lilac discs having disappeared in sequence.</li>
+</ul>
+
+<div class="highlight"><pre><code class="r">ani.options<span class="p">(</span>nmax <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
+vi.lilac.chaser<span class="p">()</span></code></pre></div>
+
+<div class="scianimator">
+<div id="lilac_chaser" style="display: inline-block;">
+</div>
+</div>
+<script type="text/javascript">
+  (function($) {
+    $(document).ready(function() {
+      var imgs = Array(16);
+      for (i=0; ; i++) {
+        if (i == imgs.length) break;
+        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-03-26-make-visual-illusions-in-r/lilac-chaser" + (i + 1) + ".png";
+      }
+      $("#lilac_chaser").scianimator({
+          "images": imgs,
+          "delay": 50,
+          "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
+      });
+      $("#lilac_chaser").scianimator("play");
+    });
+  })(jQuery);
+</script>
+
+<h2 id="note">Note</h2>
+
+<p>Don’t worry if you can’t see all the phenomena described. For many illusions, there is a percentage
+of people with perfectly normal vision who just don’t see it, often for reasons currently unknown.</p>
+
+<h2 id="further-reading">Further reading</h2>
+
+<p>You can see more illusions created by <a href="http://rpubs.com/kohske/R-de-illusion">Kohske</a> in R, which
+also illustrated the power of the <strong>grid</strong> package.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Demonstration of the Gradient Descent Algorithm</title>
+      <link>http://vis.supstat.com/2013/03/gradient-descent-algorithm-with-r</link>
+      <pubDate>2013-03-24T00:00:00+01:00</pubDate>
+      <author>Lijia Yu</author>
+      <guid>http://vis.supstat.com/2013/03/gradient-descent-algorithm-with-r</guid>
+      <content:encoded><![CDATA[
+<p>In the <a href="http://yihui.name/animation"><strong>animation</strong> package</a>, there is a function named
+<code>grad.desc()</code>. It provides a visual illustration for the process of minimizing a real-valued
+function through the <a href="http://en.wikipedia.org/wiki/Gradient_descent">Gradient Descent Algorithm</a>.
+The two examples below show you how to use the <code>grad.desc()</code> function.</p>
+
+<h2 id="a-simple-function">A simple function</h2>
+
+<p>The default objective function in <code>grad.desc()</code> is <script type="math/tex">f(x,y)=x{^2}+2y{^2}</script>. The arrows will take
+you to the minima step by step:</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">0.1</span><span class="p">))</span>
+grad.desc<span class="p">()</span></code></pre></div>
+
+<div class="scianimator">
+<div id="grad_desc_right" style="display: inline-block;">
+</div>
+</div>
+<script type="text/javascript">
+  (function($) {
+    $(document).ready(function() {
+      var imgs = Array(36);
+      for (i=0; ; i++) {
+        if (i == imgs.length) break;
+        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-03-24-gradient-descent-algorithm-with-r/grad-desc-right" + (i + 1) + ".png";
+      }
+      $("#grad_desc_right").scianimator({
+          "images": imgs,
+          "delay": 200,
+          "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
+      });
+      $("#grad_desc_right").scianimator("play");
+    });
+  })(jQuery);
+</script>
+
+<h2 id="when-the-algorithm-fails">When the algorithm fails</h2>
+
+<p>This example shows how the gradient descent algorithm will fail with a too large step length.</p>
+
+<p>To find a local minimum of a bivariate objective function:</p>
+
+<script type="math/tex; mode=display">z=\sin(\frac{1}{2}x{^2}-\frac{1}{4}y{^4}+3)\cos(2x+1-e{^y})</script>
+
+<div class="highlight"><pre><code class="r">ani.options<span class="p">(</span>nmax <span class="o">=</span> <span class="m">70</span><span class="p">)</span>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">0.1</span><span class="p">))</span>
+f2 <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">,</span> y<span class="p">)</span> sin<span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="m">2</span> <span class="o">*</span> x<span class="o">^</span><span class="m">2</span> <span class="o">-</span> <span class="m">1</span><span class="o">/</span><span class="m">4</span> <span class="o">*</span> y<span class="o">^</span><span class="m">2</span> <span class="o">+</span> <span class="m">3</span><span class="p">)</span> <span class="o">*</span> cos<span class="p">(</span><span class="m">2</span> <span class="o">*</span> x <span class="o">+</span> <span class="m">1</span> <span class="o">-</span> 
+  exp<span class="p">(</span>y<span class="p">))</span>
+grad.desc<span class="p">(</span>f2<span class="p">,</span> c<span class="p">(</span><span class="m">-2</span><span class="p">,</span> <span class="m">-2</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">),</span> c<span class="p">(</span><span class="m">-1</span><span class="p">,</span> <span class="m">0.5</span><span class="p">),</span> gamma <span class="o">=</span> <span class="m">0.3</span><span class="p">,</span> tol <span class="o">=</span> <span class="m">1e-04</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="text">## Warning: Maximum number of iterations reached!</code></pre></div>
+
+<div class="scianimator">
+<div id="grad_desc_wrong" style="display: inline-block;">
+</div>
+</div>
+<script type="text/javascript">
+  (function($) {
+    $(document).ready(function() {
+      var imgs = Array(70);
+      for (i=0; ; i++) {
+        if (i == imgs.length) break;
+        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-03-24-gradient-descent-algorithm-with-r/grad-desc-wrong" + (i + 1) + ".png";
+      }
+      $("#grad_desc_wrong").scianimator({
+          "images": imgs,
+          "delay": 200,
+          "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
+      });
+      $("#grad_desc_wrong").scianimator("play");
+    });
+  })(jQuery);
+</script>
+
+<p>Apparently the arrows get lost eventually. You can replace <code>gamma=0.3</code> with a smaller value and
+retry the function.</p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>
