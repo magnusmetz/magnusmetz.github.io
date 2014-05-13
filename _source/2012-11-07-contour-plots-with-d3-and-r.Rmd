@@ -1,0 +1,128 @@
+---
+layout: post
+title: "Contour Plots with D3 and R"
+author: [yihui]
+categories: [JavaScript, R language]
+tags: [D3, contour plot]
+reviewer: []
+d3: true
+---
+{% include JB/setup %}
+
+[D3](https://github.com/mbostock/d3) is a popular JavaScript library to draw graphics on the web.
+Powerful as it is, I often feel it is limited to me as a statistician, especially a statistician
+spoiled by [R](http://www.r-project.org) -- in which I can draw plots without thinking of
+primitives such as points, lines, segments and so on, and all kinds of statistical functions are
+there for me to call. In this article I explain how to combine R and D3 to draw a contour plot.
+
+## Computing in R
+
+![](http://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Mount_Eden.jpg/320px-Mount_Eden.jpg)
+
+The computation of contour lines can be challenging to JavaScript but is extremely easy with R
+using the `contourLines()` function, so we pre-process the data and make it ready to JavaScript. We
+make use of the good old `volcano` dataset here and draw a contour plot to visualize the altitude
+corresponding to a grid of latitudes and longitudes (the picture above of the volcano is from
+[Wikipedia](http://en.wikipedia.org/wiki/Mount_Eden)).
+
+```{r prepare-data}
+res = contourLines(volcano)
+str(res[1:2])  # first two elements of the list
+```
+
+We can see the results returned by `contourLines()` is a list of sub-lists: each sub-list contains
+the x-y coordinates of polylines. Now we convert this list to a JSON array of the form:
+
+{% highlight js %}
+[
+{
+  "x": [0, 0, 0, ...],
+  "y": [0, 0, 0, ...]
+},
+{
+  "x": [0, 0, 0, ...],
+  "y": [0, 0, 0, ...]
+},
+...
+]
+{% endhighlight %}
+
+And write the data to a `script` tag:
+
+```{r write-data, results='asis', dependson='prepare-data'}
+xy = paste(unlist(lapply(res, function(z) {
+  xs = paste(round(z$x, 3), collapse = ',')
+  ys = paste(round(z$y, 3), collapse = ',')
+  sprintf('{\n  "x": [%s],\n  "y": [%s]\n}', xs, ys)
+})), collapse = ', \n')
+cat('<script>',
+    sprintf('var data = [%s]', xy),
+    '</script>',
+    sep = '\n')
+```
+
+## Draw lines in D3
+
+Now we are ready to call D3 to draw all the lines (see the HTML source code of this page):
+
+<script src="http://d3js.org/d3.v2.min.js">
+</script>
+
+<div id="volcano" style="text-align: center;"></div>
+
+<script type="text/javascript">
+var width = 500, height = 300;
+
+var x = d3.scale.linear()
+    .domain([0, 1])
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .domain([0, 1])
+    .range([height, 0]);
+
+var line = d3.svg.line()
+    .x(function(d) { return x(d.x); })
+    .y(function(d) { return y(d.y); });
+
+var svg = d3.select("#volcano").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .selectAll("path")
+      .data(data.map(function(d) {
+        return d3.range(d.x.length).map(function(i) {
+          return {x: d.x[i], y: d.y[i]};
+        });
+      }))
+    .enter().append("svg:path")
+      .attr("d", line)
+      .on("mouseover", function(d, i) {
+        d3.select(this).style("stroke", "yellow");
+      })
+      .on("mouseout", function(d, i) {
+        d3.select(this).style("stroke", "darkgreen");
+      })
+      .style("fill", "none")
+      .style("stroke", "darkgreen")
+      .style("stroke-width", 0)
+      .transition()
+      .duration(10000)
+      .style("stroke-width", 2);
+</script>
+
+This is indeed a plot drawn by D3; if you do not believe it, mouse over the lines and you will see
+them highlighted in yellow, or refresh this page to see line width transition from 0 to 2.
+
+With R, it is just one line of code but it is a static plot (not interactive):
+
+```{r contour-r, echo=2, fig.height=4}
+par(mar = c(2, 4, .1, .1))
+contour(volcano, col = 'darkgreen', lwd = 2)
+```
+
+## Conclusion
+
+It is rare that we solve a problem with a single tool. Take the advantages of all tools instead of
+blindly believing that one ring will rule them all. R is good for statistical computing and
+graphics, and D3 is awesome for the web. Both are good in one way but weak in another, so let's
+make `1 + 1 > 2`.

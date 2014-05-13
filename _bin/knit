@@ -1,0 +1,49 @@
+#!/usr/bin/env Rscript
+
+stopifnot(packageVersion('knitr') >= '1.2')
+# install dependencies
+for (i in setdiff(c(
+  'Cairo',
+  'animation',
+  'knitr',
+  'hexbin',
+  'RColorBrewer'
+), .packages(TRUE))) {
+  install.packages(i)
+}
+
+# formatR indent 2 spaces; print width 65; no progress
+options(reindent.spaces = 2, knitr.width = 65)
+
+library(knitr)
+stopifnot('_source' %in% list.files()) # run me from the root directory
+render_jekyll()
+
+opts_chunk$set(
+  pars = list(mar = c(4, 4, .1, .1), mgp = c(2, 1, 0), bg = 'white'),
+  cache = TRUE, error = FALSE  # stop on error
+)
+knit_hooks$set(pars = function(before, options, envir) {
+  if (before) do.call(par, options$pars)
+}, rgl = hook_rgl, crop = hook_pdfcrop)
+opts_knit$set(animation.fun = hook_scianimator)
+
+invisible(local({
+  f = commandArgs(TRUE)
+  base = sub('\\.[Rr]md$', '', basename(f))
+  # each source file corresponds to a separate fig.path and cache.path
+  opts_chunk$set(cache.path = paste('cache', base, '', sep = '/'),
+                 fig.path = paste(base, '', sep = '/'))
+  server = Sys.getenv('USER') == 'yihui' # only I run the server version
+  # generate figures to the ./figure/ directory
+  if (!server && !file.exists('figures/')) dir.create('figures')
+  opts_knit$set(base.dir = normalizePath(ifelse(server, 'figure', 'figures'), mustWork = TRUE))
+  # save images to R-Forge; I can simply save them to my Dropbox folder, e.g.
+  # http://dl.dropbox.com/u/15335397/vistat/ but the problem is that animations
+  # do not work well under Google Chrome for some reason (SciAnimator keeps on
+  # fetching images from Dropbox)
+  opts_knit$set(base.url = ifelse(server, 'http://isu.r-forge.r-project.org/vistat/', '/figures/'))
+  message(f)
+  wrap_rmd(f, width = 100)  # reflow long lines in Rmd
+  knit(f, paste('_posts/', base, '.md', sep = ''), envir = globalenv(), quiet = TRUE)
+}))

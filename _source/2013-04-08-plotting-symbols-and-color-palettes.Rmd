@@ -1,0 +1,78 @@
+---
+layout: post
+title: "Cheat Sheets for Plotting Symbols and Color Palettes"
+author: [rcore, yihui, yulijia]
+categories: [Base Graphics, Color]
+tags: [plotting symbols, color palettes, graphical parameters, RColorBrewer]
+reviewer: []
+---
+{% include JB/setup %}
+
+This cheat sheet shows a few commonly used plotting symbols and color palettes in R. Now you do not
+need to memorize the facts like "19 is the big solid dot and 21 is an open circle that can have a
+different background color" -- just bookmark this cheat sheet. In fact it was motivated by Dr
+[Rafael Irizarry](http://rafalab.jhsph.edu/), who printed the color palettes on a piece of paper
+and pinned that to the wall in his office.
+
+## Plotting symbols (pch)
+
+There are many plotting symbols in the **graphics** package. We can set the `pch` parameter to set
+the symbols. See `?points` for more information.
+
+Below is a figure containing the plot symbols from `pch = 0` to `25` along with some
+character-based plot symbols. We can use, for example, `plot(x, y, pch = 3)` for plus signs (`+`)
+in a scatterplot.
+
+```{r pch, fig.height=5, echo=FALSE}
+# taken from example(points)
+pchShow = function(extras = c("*",".", "o","O","0","+","-","|","%","#"), cex = 3,
+                   col = "red3", bg = "gold", coltext = "brown", cextext = 1.2) {
+  nex <- length(extras)
+  np  <- 26 + nex
+  ipch <- 0:(np-1)
+  k <- floor(sqrt(np))
+  dd <- c(-1,1)/2
+  rx <- dd + range(ix <- ipch %/% k)
+  ry <- dd + range(iy <- 3 + (k-1)- ipch %% k)
+  pch <- as.list(ipch) # list with integers & strings
+  if(nex > 0) pch[26+ 1:nex] <- as.list(extras)
+  par(mar=rep(0,4))
+  plot(rx, ry, type = "n", axes  =  FALSE, xlab = "", ylab = "")
+  abline(v = ix, h = iy, col = "lightgray", lty = "dotted")
+  for(i in 1:np) {
+    pc <- pch[[i]]
+    ## 'col' symbols with a 'bg'-colored interior (where available) :
+    points(ix[i], iy[i], pch = pc, col = col, bg = bg, cex = cex)
+    if(cextext > 0)
+      text(ix[i] - 0.3, iy[i], pc, col = coltext, cex = cextext)
+    }
+  }
+pchShow()
+```
+
+## Color palettes
+
+The default color palette in R:
+
+```{r default-pal, fig.width=5, fig.height=5}
+(pal = palette())
+par(mar=rep(0,4))
+pie(rep(1, length(pal)), labels=sprintf('%d (%s)', seq_along(pal),pal), col=pal)
+```
+
+Below are the color palettes in **RColorBrewer** (if you do not want to use **ggplot2**, you should
+consider using this package to generate colors for your plots; just do not use the meaningless
+`rainbow()` palette):
+
+```{r brewer-pal, fig.height=9}
+library(RColorBrewer)
+par(mar=c(0,4,0,0))
+display.brewer.all()
+# generate 8 colors from the Set2 palette
+brewer.pal(8, 'Set2')
+```
+
+In R, the function `colors()` returns a vector of `r length(colors())` color names. When you really
+need to specify the color by its name, you are recommended to check out this nice [color
+chart](http://research.stowers-institute.org/efg/R/Color/Chart/ColorChart.pdf) created by Earl F.
+Glynn.
