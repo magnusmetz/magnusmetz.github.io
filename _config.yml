@@ -20,54 +20,54 @@ author :
 
 
 # All authors please enter your info here alphabetically by the last names:
-authors:
-  cboettig:
-    name: Carl Boettiger
-    email: cboettig@gmail.com
-    homepage: http://www.carlboettiger.info
-    github: cboettig
-    twitter: cboettig
-    bio: A post-doctoral researcher with Marc Mangel and Steve Munch in the Center for Stock Assessment Research, at UC Santa Cruz, working on regime shifts in ecology and evolution.
-  rcore:
-    name: R Core Team
-    email: R-core@R-project.org
-    homepage: http://www.r-project.org
-    bio: The R Project for Statistical Computing.
-  taiyun:
-    name: Taiyun Wei
-    email: taiyun.wei@cos.name
-    homepage: http://taiyun.github.com
-    github: taiyun
-    twitter: WeiTaiyun
-    bio: School of Statistics, Renmin University of China; author of the **corrplot** package.
-  yihui:
-    name: Yihui Xie
-    email: xie@yihui.name
-    homepage: http://yihui.name
-    github: yihui
-    twitter: xieyihui
-    bio: Department of Statistics, Iowa State University; interested in statistical computing and graphics; author of **knitr**, **animation** and a few other R packages.
-  yulijia:
-    name: Lijia Yu
-    email: yu@lijiayu.net
-    homepage: http://lijiayu.net
-    github: yulijia
-    twitter: YuLijia
-    bio: A master candidate majoring in Bioinformatics at Beijing Institute of Genomics.
-  kbroman:
-    name: Karl Broman
-    email: kbroman@biostat.wisc.edu
-    homepage: http://www.biostat.wisc.edu/~kbroman
-    github: kbroman
-    twitter: kwbroman
-    bio: Department of Biostatistics and Medical Informatics, University of Wisconsin-Madison; research in statistical genetics; developer of R/qtl (for R)
-  kushey:
-    name: Kevin Ushey
-    email: kevinushey@gmail.com
-    homepage: http://cdrv.github.io
-    github: cdrv
-    twitter: kevin_ushey
-    bio: MSc., University of British Columbia; interested in statistical genetics and data visualization
+#authors:
+#  cboettig:
+#    name: Carl Boettiger
+#    email: cboettig@gmail.com
+#    homepage: http://www.carlboettiger.info
+#    github: cboettig
+#    twitter: cboettig
+#    bio: A post-doctoral researcher with Marc Mangel and Steve Munch in the Center for Stock Assessment Research, at UC Santa Cruz, working on regime shifts in ecology #and evolution.
+#  rcore:
+#    name: R Core Team
+#    email: R-core@R-project.org
+#    homepage: http://www.r-project.org
+#    bio: The R Project for Statistical Computing.
+#  taiyun:
+#    name: Taiyun Wei
+#    email: taiyun.wei@cos.name
+#    homepage: http://taiyun.github.com
+#    github: taiyun
+#    twitter: WeiTaiyun
+#    bio: School of Statistics, Renmin University of China; author of the **corrplot** package.
+#  yihui:
+#    name: Yihui Xie
+#    email: xie@yihui.name
+#    homepage: http://yihui.name
+#    github: yihui
+#    twitter: xieyihui
+#    bio: Department of Statistics, Iowa State University; interested in statistical computing and graphics; author of **knitr**, **animation** and a few other R packages.
+#  yulijia:
+#    name: Lijia Yu
+#    email: yu@lijiayu.net
+#    homepage: http://lijiayu.net
+#    github: yulijia
+#    twitter: YuLijia
+#    bio: A master candidate majoring in Bioinformatics at Beijing Institute of Genomics.
+#  kbroman:
+#    name: Karl Broman
+#    email: kbroman@biostat.wisc.edu
+#    homepage: http://www.biostat.wisc.edu/~kbroman
+#    github: kbroman
+#    twitter: kwbroman
+#    bio: Department of Biostatistics and Medical Informatics, University of Wisconsin-Madison; research in statistical genetics; developer of R/qtl (for R)
+#  kushey:
+#    name: Kevin Ushey
+#    email: kevinushey@gmail.com
+#    homepage: http://cdrv.github.io
+#    github: cdrv
+#    twitter: kevin_ushey
+#    bio: MSc., University of British Columbia; interested in statistical genetics and data visualization
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -77,7 +77,7 @@ authors:
 # Else if you are pushing to username.github.com, replace with your username.
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
-production_url : http://vis.supstat.com
+production_url : http://magnusmetz.github.io
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
@@ -132,16 +132,16 @@ JB :
   comments :
     provider : disqus
     disqus :
-      short_name : vistat
+      short_name : magnusmetz
    
   # Settings for analytics helper
-  # Set 'provider' to the analytics provider you want to use.
+  # Set 'provider' to the analytics provider you want to use (e.g. google for Google Analytics, but also keep in mind you also have to set the tracking id like   'UI-997979')
   # Set 'provider' to false to turn analytics off globally.
   #        
   analytics :
-    provider : google 
+    provider : google
     google : 
-        tracking_id : 'UA-30884973-2'
+        tracking_id : 
 
   # Settings for sharing helper. 
   # Sharing is for things like tweet, plusone, like, reddit buttons etc.
