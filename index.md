@@ -25,4 +25,4 @@ You can [fork the repository](https://github.com/supstat/vistat) on Github, add 
 
 ## Copyright
 
-All the content in this website is licensed under [CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/). This site is a clone of [vistat](http://vis.supstat.com/) and hosted on [GitHub](https://github.com) Pages using the [Dinky theme](https://github.com/sodabrew/theme-dinky) for [Jekyll Bootstrap](http://jekyllbootstrap.com).
+All the content in this website is licensed under [CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/).
