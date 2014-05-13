@@ -1,0 +1,17 @@
+---
+layout: post
+title: "New post"
+author: [Magnus Metz]
+categories: [R]
+tags: [testing]
+reviewer: []
+---
+{% include JB/setup %}
+
+##Just testing
+This site is just a simple test.
+```{r}
+a <- rnorm(100)
+plot(a, col="green")
+```
+
