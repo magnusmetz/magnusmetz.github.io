@@ -5,7 +5,7 @@ group: navigation
 ---
 {% include JB/setup %}
 
-This page shows you all the instructions on how to contribute to Vistat. Before you get started, you need to fork the [supstat/vistat](https://github.com/supstat/vistat) repository to your own Github account (click the `Fork` button). You are assumed to have basic knowledge of GIT and R.
+This page shows you all the instructions on how to contribute to this blog. Before you get started, you need to fork the [magnusmetz.github.io](https://github.com/magnusmetz.github.io) repository to your own Github account (click the `Fork` button). You are assumed to have basic knowledge of GIT and R.
 
 ## New Article
 
@@ -21,13 +21,13 @@ If you do not have or understand `rake`, just copy an existing Rmd file, rename 
 
 ## Edit an Article
 
-There are a few fields in the header such as `author` and `tags`; if you have multiple entries, use the comma to separate them, e.g. `author: [taiyun, yihui]`. Note all authors need to put their information in [`_config.yml`](https://github.com/supstat/vistat/blob/gh-pages/_config.yml), and input the author id's to the `author` field (the same applies to reviewers).
+There are a few fields in the header such as `author` and `tags`; if you have multiple entries, use the comma to separate them, e.g. `author: [taiyun, yihui]`. Note all authors need to put their information in [`_config.yml`](https://github.com/magnusmetz/magnusmetz.github.io/blob/master/_config.yml), and input the author id's to the `author` field (the same applies to reviewers).
 
 You can write math in the LaTeX syntax, e.g. `$$\alpha+\beta$$` in a paragraph renders inline like $$\alpha+\beta$$, and `$$f(x)=\frac{1}{\sqrt{2\pi}}e^{-x^2/2}$$` in a separate paragraph renders the display style
 
 $$f(x)=\frac{1}{\sqrt{2\pi}}e^{-x^2/2}$$
 
-If you want to generate animations, set `animation: true` in the preamble of the article and use the chunk option `fig.show='animate'` in the chunk header ([example](https://github.com/supstat/vistat/blob/gh-pages/_source/2012-11-06-brownian-motion-with-r.Rmd)).
+If you want to generate animations, set `animation: true` in the preamble of the article and use the chunk option `fig.show='animate'` in the chunk header ([example](https://github.com/magnusmetz/magnusmetz.github.io/blob/master/_source/2012-11-06-brownian-motion-with-r.Rmd)).
 
 ## Compilation
 
@@ -50,10 +50,10 @@ You can certainly preview the article inside your editor like RStudio, and the a
 If you want to preview your articles locally (<http://localhost:4000>), you can run
 
 {% highlight bash %}
-rake preview
+jekyll serve
 {% endhighlight %}
 
-which is basically a wrapper to `jekyll --server --auto`. Of course you need to install Jekyll first.
+Of course you need to install Jekyll first.
 
 ## Submission
 
@@ -63,7 +63,7 @@ Please commit the source file only (`*.Rmd`) and do not commit the output files 
 
 ## Reviewers
 
-Everyone is welcome to become a reviewer for Vistat. Reviews are public in the pull requests on Github. There are no _anonymous_ reviewers here.
+Everyone is welcome to become a reviewer for this blog. Reviews are public in the pull requests on Github. There are no _anonymous_ reviewers here.
 
 ## Contributors
 

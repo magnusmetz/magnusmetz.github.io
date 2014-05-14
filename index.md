@@ -8,7 +8,7 @@ Statistical graphics are powerful -- your eyes will jump to the graph below imme
 
 ![via xkcd](http://i.imgur.com/4staRNH.png)
 
-Vistat aims to provide _working_ recipes for statistical graphics by building them from source. The website is based on Github/Jekyll, and graphs are generated dynamically through the R package [**knitr**](http://yihui.name/knitr), hence reproducibility is guaranteed, and readers can see the source code at the same time.
+This blog aims to provide knowledge for statistical graphics by building them from source and further statistical applications with R. The website is based on Github/Jekyll, and graphs and analyses are generated dynamically through the R package [**knitr**](http://yihui.name/knitr), hence reproducibility is guaranteed, and readers can see the source code at the same time.
 
 ## Latest 10 posts
 
@@ -19,9 +19,7 @@ Vistat aims to provide _working_ recipes for statistical graphics by building th
   <li><a href="archive.html">Read More...</a></li>
 </ul>
 
-## How to contribute
 
-You can [fork the repository](https://github.com/supstat/vistat) on Github, add your article to the `_source` directory and submit a pull request to us. We will run your code and upload images. For more details, see [about](about.html).
 
 ## Copyright
 
