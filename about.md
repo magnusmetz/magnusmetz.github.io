@@ -8,7 +8,7 @@ group: navigation
 This blog is an open source project. You cannot only use the source code of this blog and use it for other purposes but you also can contribute.
 
 ## Contribute
-As this blog is stored on Github and open source, you can either contribute to this blog or use it for your personal belongings on another domain (e.g. through Github page). For both ways you get started, you need to fork the [magnusmetz.github.io](https://github.com/magnusmetz.github.io) repository to your own Github account (click the `Fork` button). You are assumed to have basic knowledge of GIT and R.
+As this blog is stored on Github and open source, you can either contribute to this blog or use it for your personal belongings on another domain (e.g. through Github page). For both ways you get started, you need to fork the [magnusmetz.github.io](https://github.com/magnusmetz/magnusmetz.github.io) repository to your own Github account (click the `Fork` button). You are assumed to have basic knowledge of GIT and R.
 
 ## New Article
 
