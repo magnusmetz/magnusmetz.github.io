@@ -8,7 +8,7 @@ Statistical graphics are powerful -- your eyes will jump to the graph below imme
 
 ![via xkcd](http://i.imgur.com/4staRNH.png)
 
-This blog aims to provide knowledge for statistical graphics by building them from source and further statistical applications with R. It serves on the one hand as a personal reference book of interesting articles from [vistat](http://vis.supstat.com/) and a documentation of personal projects in R. The website is based on Github/Jekyll, and graphs and analyses are generated dynamically through the R package [**knitr**](http://yihui.name/knitr), hence reproducibility is guaranteed, and readers can see the source code at the same time.
+This blog aims to provide knowledge for statistical graphics by building them from source and further statistical applications with R. It serves as a personal reference book of interesting articles from [vistat](http://vis.supstat.com/) as well as a documentation of personal projects in R. The website is based on Github/Jekyll, and graphs and analyses are generated dynamically through the R package [**knitr**](http://yihui.name/knitr), hence reproducibility is guaranteed, and readers can see the source code at the same time.
 
 ## Latest 10 posts
 
