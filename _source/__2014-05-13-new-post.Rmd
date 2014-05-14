@@ -12,5 +12,5 @@ reviewer: []
 This site is just a simple test.
 ```{r}
 a <- rnorm(100)
-plot(a, col="green")
+plot(a, col="green", pch=19)
 ```
