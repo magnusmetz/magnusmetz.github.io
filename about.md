@@ -68,11 +68,11 @@ Please commit the source file only (`*.Rmd`) and do not commit the output files 
 
 Everyone is welcome to become a reviewer for this blog. Reviews are public in the pull requests on Github. There are no _anonymous_ reviewers here.
 
-## Contributors
+<!-- ## Contributors
 
 We have had {{site.authors | size}} contributors so far:
 
 {% for author in site.authors %}
 - [{{author[1].name}}]({{author[1].homepage}}) {{ author[1].bio }}
-{% endfor %}
+{% endfor %}  -->
 
