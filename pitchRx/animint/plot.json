@@ -1,0 +1,173 @@
+{
+ "geoms": {
+ "geom1_bar_bars": {
+ "geom": "rect",
+"classed": "geom1_bar_bars",
+"aes": {
+ "x": "factor(pitch_type)",
+"y": "count",
+"fill": "pitcher_name",
+"clickSelects": "type" 
+},
+"params": [],
+"subset_order": [],
+"types": {
+ "fill": "rgb",
+"x": "numeric",
+"y": "numeric",
+"clickSelects": "factor",
+"group": "integer",
+"ymin": "numeric",
+"ymax": "numeric",
+"xmin": "numeric",
+"xmax": "numeric" 
+},
+"chunks": 1,
+"total": 1,
+"chunk_order": [],
+"nest_order": [] 
+},
+"geom2_point_scatter": {
+ "geom": "point",
+"classed": "geom2_point_scatter",
+"aes": {
+ "x": "start_speed",
+"y": "end_speed",
+"fill": "pitcher_name",
+"showSelected": "type" 
+},
+"params": {
+ "na.rm": false,
+"alpha":   0.65 
+},
+"subset_order": [],
+"types": {
+ "fill": "rgb",
+"x": "numeric",
+"y": "numeric",
+"showSelected": "factor" 
+},
+"chunks": {
+ "FC.Mariano Rivera": 1,
+"FF.Mariano Rivera": 2,
+"FC.Phil Hughes": 3,
+"FF.Phil Hughes": 4 
+},
+"total": 4,
+"chunk_order": [
+ "type" 
+],
+"nest_order": [] 
+} 
+},
+"selectors": {
+ "type": {
+ "selected": "FC.Mariano Rivera",
+"update": [
+ "geom1_bar_bars",
+"geom2_point_scatter" 
+],
+"chunks": "type" 
+} 
+},
+"plots": {
+ "bars": {
+ "geoms": [
+ "geom1_bar_bars" 
+],
+"axis": {
+ "x": [ 0.27273, 0.72727 ],
+"xlab": [ "FC", "FF" ],
+"xrange": [    0.4,    2.6 ],
+"xname": "factor(pitch_type)",
+"xline": true,
+"xticks": true,
+"y": [ 0.045455, 0.27915, 0.51285, 0.74655, 0.98025 ],
+"ylab": [ "0", "100", "200", "300", "400" ],
+"yrange": [ -19.45, 408.45 ],
+"yname": "count",
+"yline": true,
+"yticks": true 
+},
+"legend": {
+ "pitcher_name": {
+ "guide": "legend",
+"geoms": "polygon",
+"title": "pitcher_name",
+"entries": [
+ {
+ "polygonfill": "#00BFC4",
+"polygonsize":    0.5,
+"polygonlinetype":      1,
+"polygonweight":      1,
+"polygonorder": 2,
+"label": [ "Phil Hughes" ] 
+},
+{
+ "polygonfill": "#F8766D",
+"polygonsize":    0.5,
+"polygonlinetype":      1,
+"polygonweight":      1,
+"polygonorder": 1,
+"label": [ "Mariano Rivera" ] 
+} 
+] 
+} 
+},
+"options": {
+ "width":    400,
+"height":    400 
+} 
+},
+"scatter": {
+ "geoms": [
+ "geom2_point_scatter" 
+],
+"axis": {
+ "x": [ 0.12354, 0.4024, 0.68126, 0.96012 ],
+"xlab": [ "80", "85", "90", "95" ],
+"xrange": [ 77.785, 95.715 ],
+"xname": "start_speed",
+"xline": true,
+"xticks": true,
+"y": [ 0.20484,    0.5, 0.79516 ],
+"ylab": [ "75", "80", "85" ],
+"yrange": [  71.53,  88.47 ],
+"yname": "end_speed",
+"yline": true,
+"yticks": true 
+},
+"legend": {
+ "pitcher_name": {
+ "guide": "legend",
+"geoms": "point",
+"title": "pitcher_name",
+"entries": [
+ {
+ "pointfill": "#00BFC4",
+"pointshape":     16,
+"pointcolour": "#000000",
+"pointsize":      2,
+"pointalpha":   0.65,
+"pointorder": 2,
+"label": [ "Phil Hughes" ] 
+},
+{
+ "pointfill": "#F8766D",
+"pointshape":     16,
+"pointcolour": "#000000",
+"pointsize":      2,
+"pointalpha":   0.65,
+"pointorder": 1,
+"label": [ "Mariano Rivera" ] 
+} 
+] 
+} 
+},
+"options": {
+ "width":    400,
+"height":    400 
+} 
+} 
+} 
+}
