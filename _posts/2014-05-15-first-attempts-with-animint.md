@@ -10,8 +10,8 @@ tags: [pitchRx, animint]
 
 Thanks to Carsen Sievert's
 [article](http://cpsievert.github.io/2014/03/fun-with-pitchrx-and-animint/) I was able to make some
-first experiences with the [animint](https://github.com/tdhock/animint) package which allows one to
-create linked, interactive (even animated) web graphics using ggplot2 code.
+first experiences with the [animint](https://github.com/tdhock/animint) package, which allows one
+to create linked, interactive (even animated) web graphics using ggplot2 code.
 
 This short post demonstrates linked plots using data from the
 [pitchRx](http://cran.r-project.org/web/packages/pitchRx/) package. The pitchRx package provides
@@ -40,5 +40,3 @@ viz <- list(bars = ggplot() +
 gg2animint(viz)
 {% endhighlight %}
 
-
-<iframe src="http://cpsievert.github.io/pitchRx/animint/" width="1200" height="500"> </iframe>

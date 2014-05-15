@@ -8,15 +8,19 @@ tags: [pitchRx, animint]
 {% include JB/setup %}
 
 
-Thanks to Carsen Sievert's [article](http://cpsievert.github.io/2014/03/fun-with-pitchrx-and-animint/) I was able to make some first experiences with the [animint](https://github.com/tdhock/animint) package which allows
-one to create linked, interactive (even animated) web graphics using ggplot2 code.
+Thanks to Carsen Sievert's
+[article](http://cpsievert.github.io/2014/03/fun-with-pitchrx-and-animint/) I was able to make some
+first experiences with the [animint](https://github.com/tdhock/animint) package, which allows one to
+create linked, interactive (even animated) web graphics using ggplot2 code.
 
 This short post demonstrates linked plots using data from the
-[pitchRx](http://cran.r-project.org/web/packages/pitchRx/) package. The pitchRx package provides Major League Baseball Advanced Media's Gamedata. In addition with PITCHf/x 3D animations of the baseball flightpaths can be created. If you click on the bars in the
-bar chart below, the corresponding start versus end speed scatterplot should change to reflect the
-current selection. According to Sievert the package fills a void
-where other similar (and also great) packages like [rCharts](http://rcharts.io/) and
-[ggvis](http://ggvis.rstudio.com/) currently fall short. I hopefully can spend more time with the package in the future and apply it to different data.
+[pitchRx](http://cran.r-project.org/web/packages/pitchRx/) package. The pitchRx package provides
+Major League Baseball Advanced Media's Gamedata. In addition with PITCHf/x 3D animations of the
+baseball flightpaths can be created. If you click on the bars in the bar chart below, the
+corresponding start versus end speed scatterplot should change to reflect the current selection.
+According to Sievert the package fills a void where other similar (and also great) packages like
+[rCharts](http://rcharts.io/) and [ggvis](http://ggvis.rstudio.com/) currently fall short. I
+hopefully can spend more time with the package in the future and apply it to different data.
 
 ```{r dat, results='asis', tidy=FALSE, eval=FALSE}
 library(pitchRx)
@@ -35,4 +39,3 @@ viz <- list(bars = ggplot() +
 gg2animint(viz)
 ```
 
-<iframe src="http://cpsievert.github.io/pitchRx/animint/" width="1200" height="500"> </iframe>
