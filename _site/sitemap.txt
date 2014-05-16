@@ -7,7 +7,23 @@ http://magnusmetz.github.io/index.html
 http://magnusmetz.github.io/sitemap.txt
 http://magnusmetz.github.io/tags.html
 
+http://magnusmetz.github.io/2014/05/normalized-pitchfx
+http://magnusmetz.github.io/2014/05/yu-darvishs-deception-factor
+http://magnusmetz.github.io/2014/05/first-attempts-with-animint
 http://magnusmetz.github.io/2014/05/new-post
+http://magnusmetz.github.io/2013/05/systematic-sampling
+http://magnusmetz.github.io/2013/05/stratified-sampling
+http://magnusmetz.github.io/2013/05/sampling-without-replacement
+http://magnusmetz.github.io/2013/05/least-squares
+http://magnusmetz.github.io/2013/05/k-means-cluster-algorithm
+http://magnusmetz.github.io/2013/05/concept-of-confidence-intervals
+http://magnusmetz.github.io/2013/05/cluster-sampling
+http://magnusmetz.github.io/2013/05/bubbles-animation
+http://magnusmetz.github.io/2013/05/bootstrapping-the-iid-data
+http://magnusmetz.github.io/2013/04/sample-mean-monte-carlo-integration
+http://magnusmetz.github.io/2013/04/newton-raphson-method-root-finding
+http://magnusmetz.github.io/2013/04/hit-or-miss-monte-carlo-integration
+http://magnusmetz.github.io/2013/04/bisection-method-root-finding
 http://magnusmetz.github.io/2013/04/law-of-large-numbers
 http://magnusmetz.github.io/2013/04/buffons-needle
 http://magnusmetz.github.io/2013/04/central-limit-theorem

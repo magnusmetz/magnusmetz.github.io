@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <meta name="author" content="Magnus Metz" />
-    <meta name="citation_title" content="Demonstration of the Gradient Descent Algorithm">
+    <meta name="citation_title" content="Least Squares Fitting">
     <meta name="citation_author" content="">
-    <meta name="citation_publication_date" content="2013/03/24">
+    <meta name="citation_publication_date" content="2013/05/08">
     <meta name="citation_journal_title" content="Magnus Metz">
-    <title>Demonstration of the Gradient Descent Algorithm | Vistat</title>
+    <title>Least Squares Fitting | Vistat</title>
 
     <link href="/feed/" rel="alternate" title="Magnus Metz" type="application/atom+xml" />
     <link rel="stylesheet" href="/assets/themes/dinky/css/styles.css">
@@ -118,7 +118,7 @@
       <section>
       
 <section>
-  <h1>Demonstration of the Gradient Descent Algorithm</h1>
+  <h1>Least Squares Fitting</h1>
   <ul class="author">
   
     <li>
@@ -127,82 +127,91 @@
   
   </ul>
   
-<p>In the <a href="http://yihui.name/animation"><strong>animation</strong> package</a>, there is a function named
-<code>grad.desc()</code>. It provides a visual illustration for the process of minimizing a real-valued
-function through the <a href="http://en.wikipedia.org/wiki/Gradient_descent">Gradient Descent Algorithm</a>.
-The two examples below show you how to use the <code>grad.desc()</code> function.</p>
+<p><a href="http://en.wikipedia.org/wiki/Least_squares">Least squares</a> fitting is a mathematical procedure for
+finding the best-fitting curve to a given set of points by minimizing the sum of the squares of the
+offsets (&#8220;the residuals&#8221;) of the points from the curve. <em>Least squares</em> means that the overall
+solution minimizes the sum of the squares of the errors made in the results of every single
+equation.</p>
 
-<h2 id="a-simple-function">A simple function</h2>
+<p>The function <code>least.squares()</code> in the <a href="http://yihui.name/animation"><strong>animation</strong> package</a> has
+provided an illustration of least squares in univariate linear regression.</p>
 
-<p>The default objective function in <code>grad.desc()</code> is <script type="math/tex">f(x,y)=x{^2}+2y{^2}</script>. The arrows will take
-you to the minima step by step:</p>
+<p>let&#8217;s assume that the relationship between x andy is a linear one.</p>
+
+<p>Let <script type="math/tex">y=ax+b</script> be the eauation of the best fit line to the data. We need to determine the valuses
+of both the slop <script type="math/tex">a</script> and intercept <script type="math/tex">b</script>. Assuming each data point carries eauql weight, each
+<script type="math/tex">y_{i}</script> point has exactly the same actual error asscociated with it, we find <script type="math/tex">a</script> and <script type="math/tex">b</script> by
+minimizing the sum of the squares of the deviations of the actual values of <script type="math/tex">y_{i}</script> from the
+line&#8217;s calcualted value of y.</p>
+
+<p>The formulas for <script type="math/tex">a</script> and <script type="math/tex">b</script> are:</p>
+
+<script type="math/tex; mode=display">a=SLOPE=\frac{n\sum{x_{i}y_{i}}-\sum {x_{i}}\sum{y_{i}}}{n\sum{x_{i}^{2}}-(\sum{x_{i}})^2}</script>
+
+<script type="math/tex; mode=display">b=INTERCEPT=\frac{\sum{x_{i}^{2}}\sum{y_{i}}-\sum{x_{i}}\sum{y_{i}}}{n\sum{x_{i}^{2}}-(\sum{x_{i}})^2}</script>
+
+<p>Here is the simple demonstration of the meaning of least squares in univariate linear regression.</p>
+
+<h2 id="with-slope-changing">With slope changing</h2>
 
 <div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
-par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">0.1</span><span class="p">))</span>
-grad.desc<span class="p">()</span></code></pre></div>
+ani.options<span class="p">(</span>interval <span class="o">=</span> <span class="m">0.3</span><span class="p">)</span>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0.1</span><span class="p">),</span> mgp <span class="o">=</span> c<span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> tcl <span class="o">=</span> <span class="m">-0.3</span><span class="p">)</span>
+<span class="c1">## slope changing</span>
+least.squares<span class="p">()</span></code></pre></div>
 
 <div class="scianimator">
-<div id="grad_desc_right" style="display: inline-block;">
+<div id="slope_changing" style="display: inline-block;">
 </div>
 </div>
 <script type="text/javascript">
   (function($) {
     $(document).ready(function() {
-      var imgs = Array(36);
+      var imgs = Array(50);
       for (i=0; ; i++) {
         if (i == imgs.length) break;
-        imgs[i] = "/figures/2013-03-24-gradient-descent-algorithm-with-r/grad-desc-right" + (i + 1) + ".png";
+        imgs[i] = "/figures/2013-05-08-least-squares/slope-changing" + (i + 1) + ".png";
       }
-      $("#grad_desc_right").scianimator({
+      $("#slope_changing").scianimator({
           "images": imgs,
-          "delay": 200,
+          "delay": 300,
           "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
       });
-      $("#grad_desc_right").scianimator("play");
+      $("#slope_changing").scianimator("play");
     });
   })(jQuery);
 </script>
 
-<h2 id="when-the-algorithm-fails">When the algorithm fails</h2>
+<h2 id="with-intercept-changing">With intercept changing</h2>
 
-<p>This example shows how the gradient descent algorithm will fail with a too large step length.</p>
-
-<p>To find a local minimum of a bivariate objective function:</p>
-
-<script type="math/tex; mode=display">z=\sin(\frac{1}{2}x{^2}-\frac{1}{4}y{^4}+3)\cos(2x+1-e{^y})</script>
-
-<div class="highlight"><pre><code class="r">ani.options<span class="p">(</span>nmax <span class="o">=</span> <span class="m">70</span><span class="p">)</span>
-par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">0.1</span><span class="p">))</span>
-f2 <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">,</span> y<span class="p">)</span> sin<span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="m">2</span> <span class="o">*</span> x<span class="o">^</span><span class="m">2</span> <span class="o">-</span> <span class="m">1</span><span class="o">/</span><span class="m">4</span> <span class="o">*</span> y<span class="o">^</span><span class="m">2</span> <span class="o">+</span> <span class="m">3</span><span class="p">)</span> <span class="o">*</span> cos<span class="p">(</span><span class="m">2</span> <span class="o">*</span> x <span class="o">+</span> <span class="m">1</span> <span class="o">-</span> 
-  exp<span class="p">(</span>y<span class="p">))</span>
-grad.desc<span class="p">(</span>f2<span class="p">,</span> c<span class="p">(</span><span class="m">-2</span><span class="p">,</span> <span class="m">-2</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">),</span> c<span class="p">(</span><span class="m">-1</span><span class="p">,</span> <span class="m">0.5</span><span class="p">),</span> gamma <span class="o">=</span> <span class="m">0.3</span><span class="p">,</span> tol <span class="o">=</span> <span class="m">1e-04</span><span class="p">)</span></code></pre></div>
-
-<div class="highlight"><pre><code class="text">## Warning: Maximum number of iterations reached!</code></pre></div>
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
+ani.options<span class="p">(</span>interval <span class="o">=</span> <span class="m">0.3</span><span class="p">)</span>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0.1</span><span class="p">),</span> mgp <span class="o">=</span> c<span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> tcl <span class="o">=</span> <span class="m">-0.3</span><span class="p">)</span>
+<span class="c1"># slope changing</span>
+least.squares<span class="p">(</span>ani.type <span class="o">=</span> <span class="s">&quot;intercept&quot;</span><span class="p">)</span></code></pre></div>
 
 <div class="scianimator">
-<div id="grad_desc_wrong" style="display: inline-block;">
+<div id="intercept_changing_" style="display: inline-block;">
 </div>
 </div>
 <script type="text/javascript">
   (function($) {
     $(document).ready(function() {
-      var imgs = Array(70);
+      var imgs = Array(50);
       for (i=0; ; i++) {
         if (i == imgs.length) break;
-        imgs[i] = "/figures/2013-03-24-gradient-descent-algorithm-with-r/grad-desc-wrong" + (i + 1) + ".png";
+        imgs[i] = "/figures/2013-05-08-least-squares/intercept-changing_" + (i + 1) + ".png";
       }
-      $("#grad_desc_wrong").scianimator({
+      $("#intercept_changing_").scianimator({
           "images": imgs,
-          "delay": 200,
+          "delay": 300,
           "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
       });
-      $("#grad_desc_wrong").scianimator("play");
+      $("#intercept_changing_").scianimator("play");
     });
   })(jQuery);
 </script>
 
-<p>Apparently the arrows get lost eventually. You can replace <code>gamma=0.3</code> with a smaller value and
-retry the function.</p>
 
   <div class="meta">
     <h3>Meta</h3>
@@ -214,7 +223,7 @@ retry the function.</p>
 
   
      
-    	<li><a href="/tags.html#gradient descent algorithm-ref">gradient descent algorithm <span>1</span></a></li>
+    	<li><a href="/tags.html#Least Squares-ref">Least Squares <span>1</span></a></li>
     
   
 
@@ -233,8 +242,8 @@ retry the function.</p>
     		animation <span>24</span>
     	</a></li>
      
-    	<li><a href="/categories.html#computational statistics-ref">
-    		computational statistics <span>5</span>
+    	<li><a href="/categories.html#linear models-ref">
+    		linear models <span>1</span>
     	</a></li>
     
   
@@ -249,7 +258,7 @@ retry the function.</p>
     
     </ul>
     
-    You can find the R Markdown source document in the <a href="https://github.com/supstat/vistat/tree/gh-pages/_source/2013-03-24-gradient-descent-algorithm-with-r.Rmd">vistat repository</a> on GitHub.
+    You can find the R Markdown source document in the <a href="https://github.com/supstat/vistat/tree/gh-pages/_source/2013-05-08-least-squares.Rmd">vistat repository</a> on GitHub.
   </div>
   
 
@@ -278,11 +287,11 @@ document.onkeydown = function(e) {
   var url = false;
   if (e.which == 37 || e.which == 74) {  // Left arrow and J
   
-  url = '/2012/11/make-xkcd-style-graphs-in-r';
+  url = '/2013/05/k-means-cluster-algorithm';
   
   } else if (e.which == 39 || e.which == 75) {  // Right arrow and K
   
-  url = '/2013/03/make-visual-illusions-in-r';
+  url = '/2013/05/sampling-without-replacement';
   
   }
   if (url) {

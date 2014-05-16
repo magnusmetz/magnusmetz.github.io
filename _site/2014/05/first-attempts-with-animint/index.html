@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="author" content="Magnus Metz" />
+    <meta name="citation_title" content="First attempts with pitchRx and animint">
+    <meta name="citation_author" content="">
+    <meta name="citation_publication_date" content="2014/05/15">
+    <meta name="citation_journal_title" content="Magnus Metz">
+    <title>First attempts with pitchRx and animint | Vistat</title>
+
+    <link href="/feed/" rel="alternate" title="Magnus Metz" type="application/atom+xml" />
+    <link rel="stylesheet" href="/assets/themes/dinky/css/styles.css">
+    <link rel="stylesheet" href="/assets/themes/dinky/css/pygment_trac.css">
+    <script src="/assets/themes/dinky/js/scale.fix.js"></script>
+    
+    <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header"><a href="/">Magnus Metz</a></h1>
+        <p class="header">Blog</p>
+        <ul>
+          
+          
+          
+
+
+  
+    
+      
+      	
+      	<li><a href="/about.html">About</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+          <li><a href="/feed/">RSS</a></li>
+        </ul>
+        
+        
+        <div class="misc vcard">
+          <h4>contact</h4>
+          <ul>
+            
+            <li class="contact"><address><span class="fn email">metz.magnus@gmail.com</span></address></li>
+            
+            
+            <li class="github"><a href="http://github.com/magnusmetz/" rel="me">github.com/magnusmetz</a></li>
+            
+            
+            <li class="twitter"><a href="http://twitter.com/metz_magnus/" rel="me">twitter.com/metz_magnus</a></li>
+            
+            
+          </ul>
+        </div><!-- misc -->
+        
+      </header>
+
+      <section>
+      
+<section>
+  <h1>First attempts with pitchRx and animint</h1>
+  <ul class="author">
+  
+    <li>
+    Please specify author information for Magnus Metz in <a href="https://github.com/supstat/vistat/blob/gh-pages/_config.yml">_config.yml</a>.
+    </li>
+  
+  </ul>
+  
+<p>Thanks to Carsen Sievert&#8217;s
+<a href="http://cpsievert.github.io/2014/03/fun-with-pitchrx-and-animint/">article</a> I was able to make some
+first experiences with the <a href="https://github.com/tdhock/animint">animint</a> package, which allows one
+to create linked, interactive (even animated) web graphics using ggplot2 code.</p>
+
+<p>This short post demonstrates linked plots using data from the
+<a href="http://cran.r-project.org/web/packages/pitchRx/">pitchRx</a> package. The pitchRx package provides
+Major League Baseball Advanced Media&#8217;s Gamedata. In addition with PITCHf/x 3D animations of the
+baseball flightpaths can be created. If you click on the bars in the bar chart below, the
+corresponding start versus end speed scatterplot should change to reflect the current selection.
+According to Sievert the package fills a void where other similar (and also great) packages like
+<a href="http://rcharts.io/">rCharts</a> and <a href="http://ggvis.rstudio.com/">ggvis</a> currently fall short. I
+hopefully can spend more time with the package in the future and apply it to different data.</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>pitchRx<span class="p">)</span>
+library<span class="p">(</span>animint<span class="p">)</span>
+data<span class="p">(</span>pitches<span class="p">,</span> package <span class="o">=</span> <span class="s">&quot;pitchRx&quot;</span><span class="p">)</span>
+pitches<span class="o">$</span>type <span class="o">&lt;-</span> interaction<span class="p">(</span>pitches<span class="o">$</span>pitch_type<span class="p">,</span> pitches<span class="o">$</span>pitcher_name<span class="p">)</span>
+counts <span class="o">&lt;-</span> ddply<span class="p">(</span>pitches<span class="p">,</span> c<span class="p">(</span><span class="s">&quot;pitch_type&quot;</span><span class="p">,</span> <span class="s">&quot;pitcher_name&quot;</span><span class="p">,</span> <span class="s">&quot;type&quot;</span><span class="p">),</span>
+                summarise<span class="p">,</span> count <span class="o">=</span> length<span class="p">(</span>px<span class="p">))</span>
+viz <span class="o">&lt;-</span> list<span class="p">(</span>bars <span class="o">=</span> ggplot<span class="p">()</span> <span class="o">+</span>
+              geom_bar<span class="p">(</span>aes<span class="p">(</span>x <span class="o">=</span> factor<span class="p">(</span>pitch_type<span class="p">),</span> y <span class="o">=</span> count<span class="p">,</span>
+                           fill <span class="o">=</span> pitcher_name<span class="p">,</span> clickSelects <span class="o">=</span> type<span class="p">),</span>
+                      position <span class="o">=</span> <span class="s">&quot;dodge&quot;</span><span class="p">,</span> stat <span class="o">=</span> <span class="s">&quot;identity&quot;</span><span class="p">,</span> data <span class="o">=</span> counts<span class="p">),</span>
+            scatter <span class="o">=</span> ggplot<span class="p">()</span> <span class="o">+</span>
+              geom_point<span class="p">(</span>aes<span class="p">(</span>start_speed<span class="p">,</span> end_speed<span class="p">,</span> fill <span class="o">=</span> pitcher_name<span class="p">,</span> showSelected <span class="o">=</span> type<span class="p">),</span>
+                         alpha <span class="o">=</span> <span class="m">0.65</span><span class="p">,</span> data <span class="o">=</span> pitches<span class="p">))</span>
+gg2animint<span class="p">(</span>viz<span class="p">)</span></code></pre></div>
+
+<iframe src="http://magnusmetz.github.io/figures/2014-05-15-first-attempts-with-animint/animint/" style="background: #FFFFFF;" width="1200" height="500"> </iframe>
+
+  <div class="meta">
+    <h3>Meta</h3>
+    Keywords:
+    <ul class="tag_box inline">
+        
+      
+
+
+  
+     
+    	<li><a href="/tags.html#pitchRx-ref">pitchRx <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#animint-ref">animint <span>1</span></a></li>
+    
+  
+
+
+
+    </ul>
+    Categories:
+    <ul class="tag_box inline">
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#pitchfx-ref">
+    		pitchfx <span>2</span>
+    	</a></li>
+     
+    	<li><a href="/categories.html#interactive graphics-ref">
+    		interactive graphics <span>1</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+    Reviewer:
+    <ul class="tag_box inline">
+    
+    </ul>
+    
+    You can find the R Markdown source document in the <a href="https://github.com/supstat/vistat/tree/gh-pages/_source/2014-05-15-first-attempts-with-animint.Rmd">vistat repository</a> on GitHub.
+  </div>
+  
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'magnusmetz'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+</section>
+<script type="text/javascript">
+document.onkeydown = function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37 || e.which == 74) {  // Left arrow and J
+  
+  url = '/2014/05/new-post';
+  
+  } else if (e.which == 39 || e.which == 75) {  // Right arrow and K
+  
+  url = '/2014/05/yu-darvishs-deception-factor';
+  
+  }
+  if (url) {
+      window.location = url;
+  }
+};
+</script>
+
+
+      </section>
+      <div class="banner"><a href="https://github.com/supstat/vistat"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a></div>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
+</html>
+

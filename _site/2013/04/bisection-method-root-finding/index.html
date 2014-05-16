@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <meta name="author" content="Magnus Metz" />
-    <meta name="citation_title" content="Buffon's needle">
+    <meta name="citation_title" content="The Bisection Method for Root finding on an Interval">
     <meta name="citation_author" content="">
-    <meta name="citation_publication_date" content="2013/04/16">
+    <meta name="citation_publication_date" content="2013/04/20">
     <meta name="citation_journal_title" content="Magnus Metz">
-    <title>Buffon's needle | Vistat</title>
+    <title>The Bisection Method for Root finding on an Interval | Vistat</title>
 
     <link href="/feed/" rel="alternate" title="Magnus Metz" type="application/atom+xml" />
     <link rel="stylesheet" href="/assets/themes/dinky/css/styles.css">
@@ -118,7 +118,7 @@
       <section>
       
 <section>
-  <h1>Buffon's needle</h1>
+  <h1>The Bisection Method for Root finding on an Interval</h1>
   <ul class="author">
   
     <li>
@@ -127,51 +127,61 @@
   
   </ul>
   
-<p>Given a needle of length <script type="math/tex">L</script> dropped on a plane ruled with parallel lines <script type="math/tex">D</script> units apart, what
-is the probability that the needle will cross a line? This question is first posed in the 18th
-century by <a href="http://en.wikipedia.org/wiki/Georges-Louis_Leclerc,_Comte_de_Buffon">Georges-Louis Leclerc, Comte de
-Buffon</a>. The answer is
-<script type="math/tex">P=\frac{2L}{D\pi}</script> where <script type="math/tex">D</script> is the distance between two adjacent lines, and <script type="math/tex">L</script> is the
-length of the needle.</p>
+<p>A root of a function is an input value that produces an output of zero. When a function is plotted,
+the roots are points where the function crosses the x-axis. Usually, we can use <a href="http://en.wikipedia.org/wiki/Vieta's_formulas">Vieta&#8217;s
+formulas</a> to find roots of <a href="http://en.wikipedia.org/wiki/Polynomial#Solving_polynomial_equations">polynomial
+equations</a>. But how does the
+computer find the roots? Some scientists have implemented several numerical root- finding methods
+to solve the problem.</p>
 
-<p>The solution, in the case where the needle length is not greater than the width of the strips, can
-be used to design a <a href="http://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo method</a> for
-approximating the number <script type="math/tex">\pi</script>.</p>
+<p>The numerical <a href="http://en.wikipedia.org/wiki/Root-finding_algorithm">root finding methods</a> use
+iteration, producing a sequence of numbers that hopefully converge towards a limit which is a root.</p>
 
-<p>In the <a href="http://yihui.name/animation"><strong>animation</strong> package</a>, the function <code>buffon.needle()</code> can be
-used to simulate Buffon&#8217;s needle. There are three graphs made in each step: the top one is a
-simulation of the scenario, the bottom-left one can help us understand the connection between
-dropping needles and the mathematical method to estimate <script type="math/tex">\pi</script>, and the bottom-right one is the
-simulation result <script type="math/tex">\pi</script> for each drop.</p>
+<p>In this article, I will apply the <a href="http://yihui.name/animation"><strong>animation</strong> package</a>&#8217;s function
+<code>bisection.method()</code> to show you one of the numercical root-finding methods &#8211; the <a href="http://en.wikipedia.org/wiki/Root-finding_algorithm#Bisection_Method">Bisection
+Method</a>.</p>
+
+<p>Basically, the bisection method finding the root from both sides by making use of the <a href="http://en.wikipedia.org/wiki/Intermediate_value_theorem">Intermediate
+Value Theorem</a>. In essence, this theorem
+says that if <script type="math/tex">f</script> is a <strong>continous function</strong> on <script type="math/tex">[a, b]</script> and the sign of <script type="math/tex">f(a)</script> is different
+from the sign of <script type="math/tex">f(b)</script>, then there must be some point <script type="math/tex">c</script>, in the interval such that
+<script type="math/tex">f(c)=0</script>, and is thus a root of the function.</p>
+
+<p>Here is an example of Bisection Method, the continuous function is <script type="math/tex">f(x)=x{^3}-7x-10</script>, the
+interval is <script type="math/tex">[-3,5]</script>. The root on the interval is 3.184.</p>
 
 <div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
-ani.options<span class="p">(</span>nmax <span class="o">=</span> <span class="m">100</span><span class="p">,</span> interval <span class="o">=</span> <span class="m">0.5</span><span class="p">)</span>
-par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">2.5</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0.2</span><span class="p">),</span> pch <span class="o">=</span> <span class="m">20</span><span class="p">,</span> mgp <span class="o">=</span> c<span class="p">(</span><span class="m">1.5</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
-buffon.needle<span class="p">(</span>mat <span class="o">=</span> matrix<span class="p">(</span>c<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span> <span class="m">2</span><span class="p">))</span></code></pre></div>
+ani.options<span class="p">(</span>interval <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">4.5</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">1.5</span><span class="p">))</span>
+f <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> x<span class="o">^</span><span class="m">3</span> <span class="o">-</span> <span class="m">7</span> <span class="o">*</span> x <span class="o">-</span> <span class="m">10</span>
+xx <span class="o">=</span> bisection.method<span class="p">(</span>f<span class="p">,</span> c<span class="p">(</span><span class="m">-3</span><span class="p">,</span> <span class="m">5</span><span class="p">))</span></code></pre></div>
 
 <div class="scianimator">
-<div id="buffon_needle" style="display: inline-block;">
+<div id="bisection_method" style="display: inline-block;">
 </div>
 </div>
 <script type="text/javascript">
   (function($) {
     $(document).ready(function() {
-      var imgs = Array(100);
+      var imgs = Array(16);
       for (i=0; ; i++) {
         if (i == imgs.length) break;
-        imgs[i] = "/figures/2013-04-16-buffons-needle/buffon-needle" + (i + 1) + ".png";
+        imgs[i] = "/figures/2013-04-20-bisection-method-root-finding/bisection-method" + (i + 1) + ".png";
       }
-      $("#buffon_needle").scianimator({
+      $("#bisection_method").scianimator({
           "images": imgs,
-          "delay": 500,
+          "delay": 2000,
           "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
       });
-      $("#buffon_needle").scianimator("play");
+      $("#bisection_method").scianimator("play");
     });
   })(jQuery);
 </script>
 
-<p>You can use larger <code>nmax</code> values in the code to drop the needle for more times.</p>
+<div class="highlight"><pre><code class="r">xx<span class="o">$</span>root</code></pre></div>
+
+<div class="highlight"><pre><code class="text">## [1] 3.184</code></pre></div>
+
 
   <div class="meta">
     <h3>Meta</h3>
@@ -183,11 +193,11 @@ buffon.needle<span class="p">(</span>mat <span class="o">=</span> matrix<span cl
 
   
      
-    	<li><a href="/tags.html#Buffon's needle-ref">Buffon's needle <span>1</span></a></li>
+    	<li><a href="/tags.html#Bisection method-ref">Bisection method <span>1</span></a></li>
      
-    	<li><a href="/tags.html#Monte Carlo-ref">Monte Carlo <span>3</span></a></li>
+    	<li><a href="/tags.html#Intermediate Value theorem-ref">Intermediate Value theorem <span>1</span></a></li>
      
-    	<li><a href="/tags.html#Pi-ref">Pi <span>1</span></a></li>
+    	<li><a href="/tags.html#root finding-ref">root finding <span>2</span></a></li>
     
   
 
@@ -206,8 +216,8 @@ buffon.needle<span class="p">(</span>mat <span class="o">=</span> matrix<span cl
     		animation <span>24</span>
     	</a></li>
      
-    	<li><a href="/categories.html#probability-ref">
-    		probability <span>5</span>
+    	<li><a href="/categories.html#computational statistics-ref">
+    		computational statistics <span>5</span>
     	</a></li>
     
   
@@ -222,7 +232,7 @@ buffon.needle<span class="p">(</span>mat <span class="o">=</span> matrix<span cl
     
     </ul>
     
-    You can find the R Markdown source document in the <a href="https://github.com/supstat/vistat/tree/gh-pages/_source/2013-04-16-buffons-needle.Rmd">vistat repository</a> on GitHub.
+    You can find the R Markdown source document in the <a href="https://github.com/supstat/vistat/tree/gh-pages/_source/2013-04-20-bisection-method-root-finding.Rmd">vistat repository</a> on GitHub.
   </div>
   
 
@@ -251,11 +261,11 @@ document.onkeydown = function(e) {
   var url = false;
   if (e.which == 37 || e.which == 74) {  // Left arrow and J
   
-  url = '/2013/04/central-limit-theorem';
+  url = '/2013/04/law-of-large-numbers';
   
   } else if (e.which == 39 || e.which == 75) {  // Right arrow and K
   
-  url = '/2013/04/law-of-large-numbers';
+  url = '/2013/04/hit-or-miss-monte-carlo-integration';
   
   }
   if (url) {

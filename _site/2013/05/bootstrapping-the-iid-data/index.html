@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <meta name="author" content="Magnus Metz" />
-    <meta name="citation_title" content="Buffon's needle">
+    <meta name="citation_title" content="Bootstrapping the i.i.d data">
     <meta name="citation_author" content="">
-    <meta name="citation_publication_date" content="2013/04/16">
+    <meta name="citation_publication_date" content="2013/05/08">
     <meta name="citation_journal_title" content="Magnus Metz">
-    <title>Buffon's needle | Vistat</title>
+    <title>Bootstrapping the i.i.d data | Vistat</title>
 
     <link href="/feed/" rel="alternate" title="Magnus Metz" type="application/atom+xml" />
     <link rel="stylesheet" href="/assets/themes/dinky/css/styles.css">
@@ -118,7 +118,7 @@
       <section>
       
 <section>
-  <h1>Buffon's needle</h1>
+  <h1>Bootstrapping the i.i.d data</h1>
   <ul class="author">
   
     <li>
@@ -127,51 +127,56 @@
   
   </ul>
   
-<p>Given a needle of length <script type="math/tex">L</script> dropped on a plane ruled with parallel lines <script type="math/tex">D</script> units apart, what
-is the probability that the needle will cross a line? This question is first posed in the 18th
-century by <a href="http://en.wikipedia.org/wiki/Georges-Louis_Leclerc,_Comte_de_Buffon">Georges-Louis Leclerc, Comte de
-Buffon</a>. The answer is
-<script type="math/tex">P=\frac{2L}{D\pi}</script> where <script type="math/tex">D</script> is the distance between two adjacent lines, and <script type="math/tex">L</script> is the
-length of the needle.</p>
+<p>The <a href="http://en.wikipedia.org/wiki/Bootstrapping_(statistics)">bootstrap</a> was introduced in 1979 by
+<a href="http://www-stat.stanford.edu/~ckirby/brad/">Bradley Efron</a>. It is a method for assigning measures
+of accuracy to sample estimates. For example, if I only hvae 20 samples from one school&#8217;s math test
+score. I can caculate the mean and variance of samples. But does the result reflect the
+population(whole students) mean and variance ? It depends on if you have know the population size.
+When the population size is very large, the answer is no. Bootstrap can help to solve the problem.</p>
 
-<p>The solution, in the case where the needle length is not greater than the width of the strips, can
-be used to design a <a href="http://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo method</a> for
-approximating the number <script type="math/tex">\pi</script>.</p>
+<p>The bootstrap works by treating inference of the true probability distribution <script type="math/tex">J</script>, given the
+original data, as being analogous to inference of the empirical distribution of <script type="math/tex">\hat{J}</script>, given
+the resampled data. The accuracy of inferences regarding <script type="math/tex">\hat{J}</script> using the resampled data can
+be assessed because we know <script type="math/tex">\hat{J}</script>. If <script type="math/tex">\hat{J}</script> is a reasonable approximation to <script type="math/tex">J</script>,
+then the quality of inference on <script type="math/tex">J</script> can in turn be inferred.</p>
 
-<p>In the <a href="http://yihui.name/animation"><strong>animation</strong> package</a>, the function <code>buffon.needle()</code> can be
-used to simulate Buffon&#8217;s needle. There are three graphs made in each step: the top one is a
-simulation of the scenario, the bottom-left one can help us understand the connection between
-dropping needles and the mathematical method to estimate <script type="math/tex">\pi</script>, and the bottom-right one is the
-simulation result <script type="math/tex">\pi</script> for each drop.</p>
+<p>The function <code>boot.iid()</code> in the <a href="http://yihui.name/animation"><strong>animation</strong> package</a> has provided
+an illustration of bootstrapping for the i.i.d data.</p>
+
+<p>This is a naive version of bootstrapping but may be useful for novices. In the top plot, the
+circles denote the original dataset, while the red sunflowers (probably) with leaves denote the
+points being resampled; the number of leaves just means how many times these points are resampled,
+as bootstrap samples with replacement. The bottom plot shows the distribution of <script type="math/tex">\bar{x}^{*}</script>.
+The whole process has illustrated the steps of resampling, computing the statistic and plotting its
+distribution based on bootstrapping.</p>
 
 <div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
-ani.options<span class="p">(</span>nmax <span class="o">=</span> <span class="m">100</span><span class="p">,</span> interval <span class="o">=</span> <span class="m">0.5</span><span class="p">)</span>
-par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">2.5</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0.2</span><span class="p">),</span> pch <span class="o">=</span> <span class="m">20</span><span class="p">,</span> mgp <span class="o">=</span> c<span class="p">(</span><span class="m">1.5</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
-buffon.needle<span class="p">(</span>mat <span class="o">=</span> matrix<span class="p">(</span>c<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span> <span class="m">2</span><span class="p">))</span></code></pre></div>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">1.5</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0.1</span><span class="p">),</span> cex.lab <span class="o">=</span> <span class="m">0.8</span><span class="p">,</span> cex.axis <span class="o">=</span> <span class="m">0.8</span><span class="p">,</span> mgp <span class="o">=</span> c<span class="p">(</span><span class="m">2</span><span class="p">,</span> 
+  <span class="m">0.5</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> tcl <span class="o">=</span> <span class="m">-0.3</span><span class="p">)</span>
+boot.iid<span class="p">()</span></code></pre></div>
 
 <div class="scianimator">
-<div id="buffon_needle" style="display: inline-block;">
+<div id="bootstrap" style="display: inline-block;">
 </div>
 </div>
 <script type="text/javascript">
   (function($) {
     $(document).ready(function() {
-      var imgs = Array(100);
+      var imgs = Array(50);
       for (i=0; ; i++) {
         if (i == imgs.length) break;
-        imgs[i] = "/figures/2013-04-16-buffons-needle/buffon-needle" + (i + 1) + ".png";
+        imgs[i] = "/figures/2013-05-08-bootstrapping-the-iid-data/bootstrap" + (i + 1) + ".png";
       }
-      $("#buffon_needle").scianimator({
+      $("#bootstrap").scianimator({
           "images": imgs,
-          "delay": 500,
+          "delay": 200,
           "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
       });
-      $("#buffon_needle").scianimator("play");
+      $("#bootstrap").scianimator("play");
     });
   })(jQuery);
 </script>
 
-<p>You can use larger <code>nmax</code> values in the code to drop the needle for more times.</p>
 
   <div class="meta">
     <h3>Meta</h3>
@@ -183,11 +188,9 @@ buffon.needle<span class="p">(</span>mat <span class="o">=</span> matrix<span cl
 
   
      
-    	<li><a href="/tags.html#Buffon's needle-ref">Buffon's needle <span>1</span></a></li>
+    	<li><a href="/tags.html#Bootstrapping-ref">Bootstrapping <span>2</span></a></li>
      
-    	<li><a href="/tags.html#Monte Carlo-ref">Monte Carlo <span>3</span></a></li>
-     
-    	<li><a href="/tags.html#Pi-ref">Pi <span>1</span></a></li>
+    	<li><a href="/tags.html#sampling-ref">sampling <span>2</span></a></li>
     
   
 
@@ -206,8 +209,12 @@ buffon.needle<span class="p">(</span>mat <span class="o">=</span> matrix<span cl
     		animation <span>24</span>
     	</a></li>
      
-    	<li><a href="/categories.html#probability-ref">
-    		probability <span>5</span>
+    	<li><a href="/categories.html#data mining-ref">
+    		data mining <span>2</span>
+    	</a></li>
+     
+    	<li><a href="/categories.html#machine learning-ref">
+    		machine learning <span>2</span>
     	</a></li>
     
   
@@ -222,7 +229,7 @@ buffon.needle<span class="p">(</span>mat <span class="o">=</span> matrix<span cl
     
     </ul>
     
-    You can find the R Markdown source document in the <a href="https://github.com/supstat/vistat/tree/gh-pages/_source/2013-04-16-buffons-needle.Rmd">vistat repository</a> on GitHub.
+    You can find the R Markdown source document in the <a href="https://github.com/supstat/vistat/tree/gh-pages/_source/2013-05-08-bootstrapping-the-iid-data.Rmd">vistat repository</a> on GitHub.
   </div>
   
 
@@ -251,11 +258,11 @@ document.onkeydown = function(e) {
   var url = false;
   if (e.which == 37 || e.which == 74) {  // Left arrow and J
   
-  url = '/2013/04/central-limit-theorem';
+  url = '/2013/04/sample-mean-monte-carlo-integration';
   
   } else if (e.which == 39 || e.which == 75) {  // Right arrow and K
   
-  url = '/2013/04/law-of-large-numbers';
+  url = '/2013/05/bubbles-animation';
   
   }
   if (url) {

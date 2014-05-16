@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <meta name="author" content="Magnus Metz" />
-    <meta name="citation_title" content="Demonstration of the Gradient Descent Algorithm">
+    <meta name="citation_title" content=" The Newton Raphson Method for Root finding">
     <meta name="citation_author" content="">
-    <meta name="citation_publication_date" content="2013/03/24">
+    <meta name="citation_publication_date" content="2013/04/30">
     <meta name="citation_journal_title" content="Magnus Metz">
-    <title>Demonstration of the Gradient Descent Algorithm | Vistat</title>
+    <title> The Newton Raphson Method for Root finding | Vistat</title>
 
     <link href="/feed/" rel="alternate" title="Magnus Metz" type="application/atom+xml" />
     <link rel="stylesheet" href="/assets/themes/dinky/css/styles.css">
@@ -118,7 +118,7 @@
       <section>
       
 <section>
-  <h1>Demonstration of the Gradient Descent Algorithm</h1>
+  <h1> The Newton Raphson Method for Root finding</h1>
   <ul class="author">
   
     <li>
@@ -127,82 +127,81 @@
   
   </ul>
   
-<p>In the <a href="http://yihui.name/animation"><strong>animation</strong> package</a>, there is a function named
-<code>grad.desc()</code>. It provides a visual illustration for the process of minimizing a real-valued
-function through the <a href="http://en.wikipedia.org/wiki/Gradient_descent">Gradient Descent Algorithm</a>.
-The two examples below show you how to use the <code>grad.desc()</code> function.</p>
+<p>In numerical analysis, <a href="http://en.wikipedia.org/wiki/Newton's_method">Newton Raphson Method</a> is a
+method for finding successively better approximations to the roots (or zeroes) of a real-valued
+function.</p>
 
-<h2 id="a-simple-function">A simple function</h2>
+<p>As mentioned in Wikipedia, the idea of the method is as follows: one starts with an initial guess
+which is reasonably close to the true root, then the function is approximated by its tangent line
+(which can be computed using the tools of calculus), and one computes the x-intercept of this
+tangent line (which is easily done with elementary algebra). This x-intercept will typically be a
+better approximation to the function’s root than the original guess, and the method can be
+iterated.</p>
 
-<p>The default objective function in <code>grad.desc()</code> is <script type="math/tex">f(x,y)=x{^2}+2y{^2}</script>. The arrows will take
-you to the minima step by step:</p>
+<p>The function <code>newton.method()</code> in the <a href="http://yihui.name/animation"><strong>animation</strong> package</a> can give
+you a demonstration of the Newton-Raphson Method. Let’s set the function
+<script type="math/tex">f(x)=5x{^2}-7x{^2}-40x+100</script>, the starting point is 7.15 and the interval is <script type="math/tex">[-6.2, 7.1]</script>.</p>
 
 <div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
-par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">0.1</span><span class="p">))</span>
-grad.desc<span class="p">()</span></code></pre></div>
+ani.options<span class="p">(</span>nmax <span class="o">=</span> <span class="m">100</span><span class="p">,</span> interval <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1.5</span><span class="p">),</span> mgp <span class="o">=</span> c<span class="p">(</span><span class="m">1.5</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> pch <span class="o">=</span> <span class="m">19</span><span class="p">)</span>
+newton.method<span class="p">(</span><span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="m">5</span> <span class="o">*</span> x<span class="o">^</span><span class="m">3</span> <span class="o">-</span> <span class="m">7</span> <span class="o">*</span> x<span class="o">^</span><span class="m">2</span> <span class="o">-</span> <span class="m">40</span> <span class="o">*</span> x <span class="o">+</span> <span class="m">100</span><span class="p">,</span> init <span class="o">=</span> <span class="m">7.15</span><span class="p">,</span> 
+  rg <span class="o">=</span> c<span class="p">(</span><span class="m">-6.2</span><span class="p">,</span> <span class="m">7.1</span><span class="p">))</span></code></pre></div>
 
 <div class="scianimator">
-<div id="grad_desc_right" style="display: inline-block;">
+<div id="newton_method_right" style="display: inline-block;">
 </div>
 </div>
 <script type="text/javascript">
   (function($) {
     $(document).ready(function() {
-      var imgs = Array(36);
+      var imgs = Array(21);
       for (i=0; ; i++) {
         if (i == imgs.length) break;
-        imgs[i] = "/figures/2013-03-24-gradient-descent-algorithm-with-r/grad-desc-right" + (i + 1) + ".png";
+        imgs[i] = "/figures/2013-04-30-newton-raphson-method-root-finding/newton-method-right" + (i + 1) + ".png";
       }
-      $("#grad_desc_right").scianimator({
+      $("#newton_method_right").scianimator({
           "images": imgs,
-          "delay": 200,
+          "delay": 500,
           "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
       });
-      $("#grad_desc_right").scianimator("play");
+      $("#newton_method_right").scianimator("play");
     });
   })(jQuery);
 </script>
 
-<h2 id="when-the-algorithm-fails">When the algorithm fails</h2>
+<p>The algorithm might not converge – it depends on the starting value. See the examples below.</p>
 
-<p>This example shows how the gradient descent algorithm will fail with a too large step length.</p>
-
-<p>To find a local minimum of a bivariate objective function:</p>
-
-<script type="math/tex; mode=display">z=\sin(\frac{1}{2}x{^2}-\frac{1}{4}y{^4}+3)\cos(2x+1-e{^y})</script>
-
-<div class="highlight"><pre><code class="r">ani.options<span class="p">(</span>nmax <span class="o">=</span> <span class="m">70</span><span class="p">)</span>
-par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">0.1</span><span class="p">))</span>
-f2 <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">,</span> y<span class="p">)</span> sin<span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="m">2</span> <span class="o">*</span> x<span class="o">^</span><span class="m">2</span> <span class="o">-</span> <span class="m">1</span><span class="o">/</span><span class="m">4</span> <span class="o">*</span> y<span class="o">^</span><span class="m">2</span> <span class="o">+</span> <span class="m">3</span><span class="p">)</span> <span class="o">*</span> cos<span class="p">(</span><span class="m">2</span> <span class="o">*</span> x <span class="o">+</span> <span class="m">1</span> <span class="o">-</span> 
-  exp<span class="p">(</span>y<span class="p">))</span>
-grad.desc<span class="p">(</span>f2<span class="p">,</span> c<span class="p">(</span><span class="m">-2</span><span class="p">,</span> <span class="m">-2</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">),</span> c<span class="p">(</span><span class="m">-1</span><span class="p">,</span> <span class="m">0.5</span><span class="p">),</span> gamma <span class="o">=</span> <span class="m">0.3</span><span class="p">,</span> tol <span class="o">=</span> <span class="m">1e-04</span><span class="p">)</span></code></pre></div>
-
-<div class="highlight"><pre><code class="text">## Warning: Maximum number of iterations reached!</code></pre></div>
+<div class="highlight"><pre><code class="r"><span class="c1">## does not converge!</span>
+par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1.5</span><span class="p">),</span> mgp <span class="o">=</span> c<span class="p">(</span><span class="m">1.5</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> pch <span class="o">=</span> <span class="m">19</span><span class="p">)</span>
+xx <span class="o">=</span> newton.method<span class="p">(</span><span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> atan<span class="p">(</span>x<span class="p">),</span> rg <span class="o">=</span> c<span class="p">(</span><span class="m">-5</span><span class="p">,</span> <span class="m">5</span><span class="p">),</span> init <span class="o">=</span> <span class="m">1.5</span><span class="p">)</span></code></pre></div>
 
 <div class="scianimator">
-<div id="grad_desc_wrong" style="display: inline-block;">
+<div id="newton_method_wrong" style="display: inline-block;">
 </div>
 </div>
 <script type="text/javascript">
   (function($) {
     $(document).ready(function() {
-      var imgs = Array(70);
+      var imgs = Array(12);
       for (i=0; ; i++) {
         if (i == imgs.length) break;
-        imgs[i] = "/figures/2013-03-24-gradient-descent-algorithm-with-r/grad-desc-wrong" + (i + 1) + ".png";
+        imgs[i] = "/figures/2013-04-30-newton-raphson-method-root-finding/newton-method-wrong" + (i + 1) + ".png";
       }
-      $("#grad_desc_wrong").scianimator({
+      $("#newton_method_wrong").scianimator({
           "images": imgs,
-          "delay": 200,
+          "delay": 500,
           "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
       });
-      $("#grad_desc_wrong").scianimator("play");
+      $("#newton_method_wrong").scianimator("play");
     });
   })(jQuery);
 </script>
 
-<p>Apparently the arrows get lost eventually. You can replace <code>gamma=0.3</code> with a smaller value and
-retry the function.</p>
+<div class="highlight"><pre><code class="r">xx<span class="o">$</span>root  <span class="c1"># Inf</span></code></pre></div>
+
+<div class="highlight"><pre><code class="text">## [1] Inf</code></pre></div>
+
 
   <div class="meta">
     <h3>Meta</h3>
@@ -214,7 +213,9 @@ retry the function.</p>
 
   
      
-    	<li><a href="/tags.html#gradient descent algorithm-ref">gradient descent algorithm <span>1</span></a></li>
+    	<li><a href="/tags.html#Newton Raphson Method-ref">Newton Raphson Method <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#root finding-ref">root finding <span>2</span></a></li>
     
   
 
@@ -249,7 +250,7 @@ retry the function.</p>
     
     </ul>
     
-    You can find the R Markdown source document in the <a href="https://github.com/supstat/vistat/tree/gh-pages/_source/2013-03-24-gradient-descent-algorithm-with-r.Rmd">vistat repository</a> on GitHub.
+    You can find the R Markdown source document in the <a href="https://github.com/supstat/vistat/tree/gh-pages/_source/2013-04-30-newton-raphson-method-root-finding.Rmd">vistat repository</a> on GitHub.
   </div>
   
 
@@ -278,11 +279,11 @@ document.onkeydown = function(e) {
   var url = false;
   if (e.which == 37 || e.which == 74) {  // Left arrow and J
   
-  url = '/2012/11/make-xkcd-style-graphs-in-r';
+  url = '/2013/04/hit-or-miss-monte-carlo-integration';
   
   } else if (e.which == 39 || e.which == 75) {  // Right arrow and K
   
-  url = '/2013/03/make-visual-illusions-in-r';
+  url = '/2013/04/sample-mean-monte-carlo-integration';
   
   }
   if (url) {

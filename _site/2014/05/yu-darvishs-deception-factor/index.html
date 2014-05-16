@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="author" content="Magnus Metz" />
+    <meta name="citation_title" content="Yu Darvish's deception factor">
+    <meta name="citation_author" content="">
+    <meta name="citation_publication_date" content="2014/05/15">
+    <meta name="citation_journal_title" content="Magnus Metz">
+    <title>Yu Darvish's deception factor | Vistat</title>
+
+    <link href="/feed/" rel="alternate" title="Magnus Metz" type="application/atom+xml" />
+    <link rel="stylesheet" href="/assets/themes/dinky/css/styles.css">
+    <link rel="stylesheet" href="/assets/themes/dinky/css/pygment_trac.css">
+    <script src="/assets/themes/dinky/js/scale.fix.js"></script>
+    
+    <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header"><a href="/">Magnus Metz</a></h1>
+        <p class="header">Blog</p>
+        <ul>
+          
+          
+          
+
+
+  
+    
+      
+      	
+      	<li><a href="/about.html">About</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+          <li><a href="/feed/">RSS</a></li>
+        </ul>
+        
+        
+        <div class="misc vcard">
+          <h4>contact</h4>
+          <ul>
+            
+            <li class="contact"><address><span class="fn email">metz.magnus@gmail.com</span></address></li>
+            
+            
+            <li class="github"><a href="http://github.com/magnusmetz/" rel="me">github.com/magnusmetz</a></li>
+            
+            
+            <li class="twitter"><a href="http://twitter.com/metz_magnus/" rel="me">twitter.com/metz_magnus</a></li>
+            
+            
+          </ul>
+        </div><!-- misc -->
+        
+      </header>
+
+      <section>
+      
+<section>
+  <h1>Yu Darvish's deception factor</h1>
+  <ul class="author">
+  
+    <li>
+    Please specify author information for Magnus Metz in <a href="https://github.com/supstat/vistat/blob/gh-pages/_config.yml">_config.yml</a>.
+    </li>
+  
+  </ul>
+  
+<p>This article is another reproduction of <a href="http://cpsievert.github.io/2013/05/yu-darvishs-deception-factor/">Carson
+Sievert</a>. On April 2nd, 2013 Yu
+Darvish <a href="http://sports.yahoo.com/news/yu-darvish-loses-perfect-game-030913556--mlb.html">flirted with pitching
+perfection</a>. To
+demonstrate his ability to deceive batters with a consistent delivery over different pitch types,
+<a href="http://www.reddit.com/r/baseball/comments/1d2z6d/all_of_darvishs_primary_pitches_at_once/">redditor DShep created this
+gif</a>,
+which layers video of five different pitches thrown by Darvish on April 24th:</p>
+
+<div align="center">
+  <img class="decoded" src="http://i.minus.com/i3SXAH4AAxtWS.gif" alt="http://i.minus.com/i3SXAH4AAxtWS.gif" />
+</div>
+
+<p>Cool, huh? Well, I will show you how to &#8216;recreate&#8217; a similar &#8216;gif&#8217; with publicly available PITCHf/x
+data using the <a href="http://cran.r-project.org/web/packages/pitchRx/">pitchRx</a>
+<a href="http://cran.r-project.org">R</a> package. First, we collect all the pitches thrown by Darvish to
+Albert Pujols on April 24th:</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
+library<span class="p">(</span>pitchRx<span class="p">)</span>
+dat <span class="o">&lt;-</span> scrape<span class="p">(</span>start <span class="o">=</span> <span class="s">&quot;2013-04-24&quot;</span><span class="p">,</span> end <span class="o">=</span> <span class="s">&quot;2013-04-24&quot;</span><span class="p">)</span>
+atbats <span class="o">&lt;-</span> subset<span class="p">(</span>dat<span class="o">$</span>atbat<span class="p">,</span> pitcher_name <span class="o">==</span> <span class="s">&quot;Yu Darvish&quot;</span> <span class="o">&amp;</span> batter_name <span class="o">==</span> 
+  <span class="s">&quot;Albert Pujols&quot;</span><span class="p">)</span>
+pitches <span class="o">&lt;-</span> plyr<span class="o">::</span>join<span class="p">(</span>atbats<span class="p">,</span> dat<span class="o">$</span>pitch<span class="p">,</span> by <span class="o">=</span> c<span class="p">(</span><span class="s">&quot;num&quot;</span><span class="p">,</span> <span class="s">&quot;url&quot;</span><span class="p">),</span> type <span class="o">=</span> <span class="s">&quot;inner&quot;</span><span class="p">)</span></code></pre></div>
+
+<p>Lets animate these <code>pitches</code> using <code>animateFX</code>. Note that we take a different perspective from
+above by imagining the pitches coming closer as time progresses.</p>
+
+<div class="highlight"><pre><code class="r">animateFX<span class="p">(</span>pitches<span class="p">)</span></code></pre></div>
+
+<div align="center">
+ <embed width="504" height="504" name="plugin" src="2014-05-15-yu-darvishs-deception-factor/ani.swf" type="application/x-shockwave-flash" /> 
+</div>
+
+<p>One thing to notice here is the different release points by Darvish (especially for his slider).
+Furthermore, Darvish didn&#8217;t even throw a curveball to Pujols. If you look closer at the original
+gif, you can actually see a different batter (than Pujols) in the batter&#8217;s box (look for a white
+bat). Darvish&#8217;s delivery looks very similar on videotape, but his arm angle (and thus) release
+point might be slightly different for different pitch types according to the PITCHf/x data. Let&#8217;s
+take a closer look at Darvish&#8217;s release point during this start.</p>
+
+<div class="highlight"><pre><code class="r">atbats <span class="o">&lt;-</span> subset<span class="p">(</span>dat<span class="o">$</span>atbat<span class="p">,</span> pitcher_name <span class="o">==</span> <span class="s">&quot;Yu Darvish&quot;</span><span class="p">)</span>
+Darvish <span class="o">&lt;-</span> plyr<span class="o">::</span>join<span class="p">(</span>atbats<span class="p">,</span> dat<span class="o">$</span>pitch<span class="p">,</span> by <span class="o">=</span> c<span class="p">(</span><span class="s">&quot;num&quot;</span><span class="p">,</span> <span class="s">&quot;url&quot;</span><span class="p">),</span> type <span class="o">=</span> <span class="s">&quot;inner&quot;</span><span class="p">)</span>
+qplot<span class="p">(</span>data <span class="o">=</span> Darvish<span class="p">,</span> x <span class="o">=</span> as.numeric<span class="p">(</span>x0<span class="p">),</span> y <span class="o">=</span> as.numeric<span class="p">(</span>z0<span class="p">),</span> color <span class="o">=</span> pitch_type<span class="p">)</span> <span class="o">+</span> 
+  coord_equal<span class="p">()</span></code></pre></div>
+
+<p><img src="/figures/2014-05-15-yu-darvishs-deception-factor/release.png" title="plot of chunk release" alt="plot of chunk release" style="display: block; margin: auto;" /></p>
+
+<p>As you can see, Darvish has quite different release points according to pitch type. For example,
+his slider tends to be more &#8216;side-arm&#8217; compared to his four-seam fastball. Now, whether that
+difference is distinguishable to the human-eye is another question&#8230;</p>
+
+<p>EDIT: Thanks to a recommendation by <a href="https://twitter.com/Sky_Kalkman">@Sky_Kalman</a>, normalizing
+release points should make it easier to make visual comparison of flight paths across the pitch
+types. Here is one way to go about that:</p>
+
+<div class="highlight"><pre><code class="r">pitches<span class="o">$</span>x0 <span class="o">&lt;-</span> mean<span class="p">(</span>as.numeric<span class="p">(</span>pitches<span class="o">$</span>x0<span class="p">))</span>
+pitches<span class="o">$</span>z0 <span class="o">&lt;-</span> mean<span class="p">(</span>as.numeric<span class="p">(</span>pitches<span class="o">$</span>z0<span class="p">))</span>
+animateFX<span class="p">(</span>pitches<span class="p">)</span></code></pre></div>
+
+<div align="center">
+ <embed width="504" height="504" name="plugin" src="2014-05-15-yu-darvishs-deception-factor/normalized.swf" type="application/x-shockwave-flash" /> 
+</div>
+
+<p>Lastly, just for fun, let&#8217;s take an interactive look at Darvish&#8217;s pitches to Pujols. If your
+browser has <a href="http://get.webgl.org/">WebGL enabled</a>, go ahead and play with the object below!</p>
+
+<div class="highlight"><pre><code class="r">library<span class="p">(</span>rgl<span class="p">)</span>
+interactiveFX<span class="p">(</span>pitches<span class="p">)</span></code></pre></div>
+
+<iframe src="http://cpsievert.github.io/pitchRx/YuDarvish/" width="800" height="600"></iframe>
+
+<p>I think it would be awesome to have a similar tool in
+<a href="http://cran.r-project.org/web/packages/pitchRx/">pitchRx</a> for creating &#8216;gifs&#8217; with actual video.
+If anybody has ideas on how we can connect PITCHf/x data with actual video, please contact me or
+leave a comment!</p>
+
+  <div class="meta">
+    <h3>Meta</h3>
+    Keywords:
+    <ul class="tag_box inline">
+        
+      
+
+
+  
+     
+    	<li><a href="/tags.html#MLB-ref">MLB <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#PITCHfx-ref">PITCHfx <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#pitchRx-ref">pitchRx <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#animation-ref">animation <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#rgl-ref">rgl <span>2</span></a></li>
+    
+  
+
+
+
+    </ul>
+    Categories:
+    <ul class="tag_box inline">
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#webgl-ref">
+    		webgl <span>1</span>
+    	</a></li>
+     
+    	<li><a href="/categories.html#animation-ref">
+    		animation <span>24</span>
+    	</a></li>
+     
+    	<li><a href="/categories.html#baseball-ref">
+    		baseball <span>2</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+    Reviewer:
+    <ul class="tag_box inline">
+    
+    </ul>
+    
+    You can find the R Markdown source document in the <a href="https://github.com/supstat/vistat/tree/gh-pages/_source/2014-05-15-yu-darvishs-deception-factor.Rmd">vistat repository</a> on GitHub.
+  </div>
+  
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'magnusmetz'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+</section>
+<script type="text/javascript">
+document.onkeydown = function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37 || e.which == 74) {  // Left arrow and J
+  
+  url = '/2014/05/first-attempts-with-animint';
+  
+  } else if (e.which == 39 || e.which == 75) {  // Right arrow and K
+  
+  url = '/2014/05/normalized-pitchfx';
+  
+  }
+  if (url) {
+      window.location = url;
+  }
+};
+</script>
+
+
+      </section>
+      <div class="banner"><a href="https://github.com/supstat/vistat"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a></div>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
+</html>
+

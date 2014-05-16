@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <meta name="author" content="Magnus Metz" />
-    <meta name="citation_title" content="Buffon's needle">
+    <meta name="citation_title" content="Hit or Miss Monte Carlo Integration">
     <meta name="citation_author" content="">
-    <meta name="citation_publication_date" content="2013/04/16">
+    <meta name="citation_publication_date" content="2013/04/30">
     <meta name="citation_journal_title" content="Magnus Metz">
-    <title>Buffon's needle | Vistat</title>
+    <title>Hit or Miss Monte Carlo Integration | Vistat</title>
 
     <link href="/feed/" rel="alternate" title="Magnus Metz" type="application/atom+xml" />
     <link rel="stylesheet" href="/assets/themes/dinky/css/styles.css">
@@ -118,7 +118,7 @@
       <section>
       
 <section>
-  <h1>Buffon's needle</h1>
+  <h1>Hit or Miss Monte Carlo Integration</h1>
   <ul class="author">
   
     <li>
@@ -127,51 +127,79 @@
   
   </ul>
   
-<p>Given a needle of length <script type="math/tex">L</script> dropped on a plane ruled with parallel lines <script type="math/tex">D</script> units apart, what
-is the probability that the needle will cross a line? This question is first posed in the 18th
-century by <a href="http://en.wikipedia.org/wiki/Georges-Louis_Leclerc,_Comte_de_Buffon">Georges-Louis Leclerc, Comte de
-Buffon</a>. The answer is
-<script type="math/tex">P=\frac{2L}{D\pi}</script> where <script type="math/tex">D</script> is the distance between two adjacent lines, and <script type="math/tex">L</script> is the
-length of the needle.</p>
+<h2 id="introduction">Introduction</h2>
 
-<p>The solution, in the case where the needle length is not greater than the width of the strips, can
-be used to design a <a href="http://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo method</a> for
-approximating the number <script type="math/tex">\pi</script>.</p>
+<p>I first heard the <a href="http://en.wikipedia.org/wiki/Monte_Carlo_method">Montre Carlo Method</a> is on a
+story of the nuclear weapon project. The Montre Carlo Method was invented in the late 1940s by
+Stanislaw Ulam, they were used at Los Alamos for early work relating to the development of the
+hydrogen bomb, and became popularized in the fields of physics, physical chemistry, and operations
+research.</p>
 
-<p>In the <a href="http://yihui.name/animation"><strong>animation</strong> package</a>, the function <code>buffon.needle()</code> can be
-used to simulate Buffon&#8217;s needle. There are three graphs made in each step: the top one is a
-simulation of the scenario, the bottom-left one can help us understand the connection between
-dropping needles and the mathematical method to estimate <script type="math/tex">\pi</script>, and the bottom-right one is the
-simulation result <script type="math/tex">\pi</script> for each drop.</p>
+<p>The Montre Carlo Method used for drawing a sample at random from the empirical distribution. The
+oldest well-known example is that of the <a href="2013-04-16-buffons-needle.Rmd">Buffon&#8217;s needle</a>, where
+supposing a needle of the same length as the width between cracks we have: <script type="math/tex">P=\frac{2L}{D\pi}</script>
+implying <script type="math/tex">\hat{\pi}=2\frac{L}{D}P</script>, the <script type="math/tex">\frac{L}{D}</script> is a constant.</p>
+
+<h2 id="what-is-a-monte-carlo-method">What is a Monte Carlo Method?</h2>
+
+<p>In physics and statistics many of the problems Monte Carlo is used on is under the form of the
+estimate of an integral unkown in closed form: <script type="math/tex">\hat{\theta}=\int_0^1 f(u)du</script>, which can be seen
+as the evalutaion of <script type="math/tex">Ef(u)</script>, where <script type="math/tex">u \sim U(0,1)</script>.</p>
+
+<p>The <strong>hit-or-miss</strong> Monte Carlo method generates random points in a bounded graph and counts the
+number of &#8216;hits&#8217; or points that are in the region whose area we want to evaluate,
+<script type="math/tex">\hat{\theta}=\frac{\#hits}{\#total}</script>. As shown in the <a href="2013-04-16-buffons-needle.Rmd">Buffon&#8217;s
+needle</a>, the <script type="math/tex">\pi</script> can be calculated by the sumilation.</p>
+
+<p>Here, I show one of the simulation of <script type="math/tex">\pi</script> by function <code>MC.hitormiss()</code>in the <a href="http://yihui.name/animation"><strong>animation</strong>
+package</a>. This function can generate uniform random numbers and
+compute the proportion of points under the curve. Consider a circle inscribed in a unit square.
+Given that the circle and the square have a ratio of areas that is <script type="math/tex">P=\pi/4</script>, the value of
+<script type="math/tex">\pi</script> can be approximated using a Monte Carlo method. We only need to counts the number of &#8216;hits&#8217;
+or points that are in the circle, the <script type="math/tex">\pi=4P</script>.</p>
 
 <div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
-ani.options<span class="p">(</span>nmax <span class="o">=</span> <span class="m">100</span><span class="p">,</span> interval <span class="o">=</span> <span class="m">0.5</span><span class="p">)</span>
-par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">2.5</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0.2</span><span class="p">),</span> pch <span class="o">=</span> <span class="m">20</span><span class="p">,</span> mgp <span class="o">=</span> c<span class="p">(</span><span class="m">1.5</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
-buffon.needle<span class="p">(</span>mat <span class="o">=</span> matrix<span class="p">(</span>c<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span> <span class="m">2</span><span class="p">))</span></code></pre></div>
+ani.options<span class="p">(</span>nmax <span class="o">=</span> <span class="m">200</span><span class="p">)</span>
+f <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> sqrt<span class="p">(</span><span class="m">1</span> <span class="o">-</span> x<span class="o">^</span><span class="m">2</span><span class="p">)</span>
+P <span class="o">=</span> MC.hitormiss<span class="p">(</span>f<span class="p">,</span> from <span class="o">=</span> <span class="m">0</span><span class="p">,</span> to <span class="o">=</span> <span class="m">1</span><span class="p">)</span><span class="o">$</span>est</code></pre></div>
 
 <div class="scianimator">
-<div id="buffon_needle" style="display: inline-block;">
+<div id="hit_or_miss_montre_carlo" style="display: inline-block;">
 </div>
 </div>
 <script type="text/javascript">
   (function($) {
     $(document).ready(function() {
-      var imgs = Array(100);
+      var imgs = Array(200);
       for (i=0; ; i++) {
         if (i == imgs.length) break;
-        imgs[i] = "/figures/2013-04-16-buffons-needle/buffon-needle" + (i + 1) + ".png";
+        imgs[i] = "/figures/2013-04-30-hit-or-miss-monte-carlo-integration/hit-or-miss-montre-carlo" + (i + 1) + ".png";
       }
-      $("#buffon_needle").scianimator({
+      $("#hit_or_miss_montre_carlo").scianimator({
           "images": imgs,
-          "delay": 500,
+          "delay": 100,
           "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
       });
-      $("#buffon_needle").scianimator("play");
+      $("#hit_or_miss_montre_carlo").scianimator("play");
     });
   })(jQuery);
 </script>
 
-<p>You can use larger <code>nmax</code> values in the code to drop the needle for more times.</p>
+<div class="highlight"><pre><code class="r">Pi <span class="o">=</span> P <span class="o">*</span> <span class="m">4</span>
+Pi</code></pre></div>
+
+<div class="highlight"><pre><code class="text">## [1] 3.064</code></pre></div>
+
+<h2 id="note">Note</h2>
+
+<p>This function is for demonstration purpose only; the integral might be very inaccurate when n is
+small.</p>
+
+<p><code>ani.options('nmax')</code> specifies the maximum number of trials.</p>
+
+<h2 id="reference">Reference</h2>
+<p>1.Monte
+Carlo,<a href="http://www-stat.stanford.edu/~susan/courses/s208/node14.html">http://www-stat.stanford.edu/~susan/courses/s208/node14.html</a></p>
 
   <div class="meta">
     <h3>Meta</h3>
@@ -183,11 +211,9 @@ buffon.needle<span class="p">(</span>mat <span class="o">=</span> matrix<span cl
 
   
      
-    	<li><a href="/tags.html#Buffon's needle-ref">Buffon's needle <span>1</span></a></li>
+    	<li><a href="/tags.html#hit-or-miss-ref">hit-or-miss <span>1</span></a></li>
      
     	<li><a href="/tags.html#Monte Carlo-ref">Monte Carlo <span>3</span></a></li>
-     
-    	<li><a href="/tags.html#Pi-ref">Pi <span>1</span></a></li>
     
   
 
@@ -206,8 +232,8 @@ buffon.needle<span class="p">(</span>mat <span class="o">=</span> matrix<span cl
     		animation <span>24</span>
     	</a></li>
      
-    	<li><a href="/categories.html#probability-ref">
-    		probability <span>5</span>
+    	<li><a href="/categories.html#computational statistics-ref">
+    		computational statistics <span>5</span>
     	</a></li>
     
   
@@ -222,7 +248,7 @@ buffon.needle<span class="p">(</span>mat <span class="o">=</span> matrix<span cl
     
     </ul>
     
-    You can find the R Markdown source document in the <a href="https://github.com/supstat/vistat/tree/gh-pages/_source/2013-04-16-buffons-needle.Rmd">vistat repository</a> on GitHub.
+    You can find the R Markdown source document in the <a href="https://github.com/supstat/vistat/tree/gh-pages/_source/2013-04-30-hit-or-miss-monte-carlo-integration.Rmd">vistat repository</a> on GitHub.
   </div>
   
 
@@ -251,11 +277,11 @@ document.onkeydown = function(e) {
   var url = false;
   if (e.which == 37 || e.which == 74) {  // Left arrow and J
   
-  url = '/2013/04/central-limit-theorem';
+  url = '/2013/04/bisection-method-root-finding';
   
   } else if (e.which == 39 || e.which == 75) {  // Right arrow and K
   
-  url = '/2013/04/law-of-large-numbers';
+  url = '/2013/04/newton-raphson-method-root-finding';
   
   }
   if (url) {
