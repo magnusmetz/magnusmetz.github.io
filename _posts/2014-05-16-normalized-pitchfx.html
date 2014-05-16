@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Loading required package: ggplot2</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<p>{% include JB/setup %}</p>
+
+<p>After <a href="http://cpsievert.github.io/2013/05/yu-darvishs-deception-factor/">my most recent post</a>,
+<a href="http://twitter.com/Sky_Kalkman">@Sky_Kalkman</a> threw out the idea of forcing release points to a
+central point in the animation - to ease the visual comparison of flight paths across pitch types.
+I implemented his idea by just using average release points; but that can be deceptive, since it
+the alters the entire path of each pitch.</p>
+
+<p>This got me thinking about how we might be able to do better. My (current) proposal is what I&#39;ll
+call &#39;normalized&#39; (or regressed towards the mean) PITCHf/x animations. The idea is to get an idea
+of a &#39;typical&#39; flight path for each pitch type. I think averaging over the relevant PITCHf/x
+parameters is the best way to go about this - help <a href="http://twitter.com/pobguy">@pobguy</a>! Anyway,
+this is a starting point. Note that I&#39;m using the same <code>Darvish</code> data frame from my most recent
+post.</p>
+
+<p>{% highlight text %}</p>
+
+<h2>Loading required package: ggplot2</h2>
+
+<h2>Loading required package: methods</h2>
+
+<h2>If file names don&#39;t print right away, please be patient.</h2>
+
+<p>{% endhighlight %}</p>
+
+<p>{% highlight r %}
+library(pitchRx)
+library(plyr)
+library(reshape2)
+idx &lt;- c(&ldquo;x0&rdquo;, &ldquo;y0&rdquo;, &ldquo;z0&rdquo;, &ldquo;vx0&rdquo;, &ldquo;vy0&rdquo;, &ldquo;vz0&rdquo;, &ldquo;ax&rdquo;, &ldquo;ay&rdquo;, &ldquo;az&rdquo;)
+for (i in idx) Darvish[, i] &lt;- as.numeric(Darvish[, i])
+agDarvish &lt;- ddply(Darvish, c(&ldquo;pitch_type&rdquo;, &ldquo;stand&rdquo;), summarize, x0 = mean(x0), 
+  y0 = 55, z0 = mean(z0), vx0 = mean(vx0), vy0 = mean(vy0), vz0 = mean(vz0), 
+  ax = mean(ax), ay = mean(ay), az = mean(az))
+agDarvish$b_height &lt;- &ldquo;6-1&rdquo;  #estimate average batter height (for strikezones)
+animateFX(agDarvish, layer = facet_wrap(~stand))
+{% endhighlight %}</p>
+
+<div align = "center">
+ <embed width="504" height="504" name="plugin" src="2014-05-16-normalized-pitchfx/ani1.swf" type="application/x-shockwave-flash"> 
+</div>
+
+</body>
+
+</html>
+
