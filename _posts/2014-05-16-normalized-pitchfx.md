@@ -27,17 +27,6 @@ library(pitchRx)
 library(animation)
 opts_knit$set(animation.fun = hook_r2swf)
 dat <- scrape(start = "2013-04-24", end = "2013-04-24")
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## If file names don't print right away, please be patient.
-{% endhighlight %}
-
-
-
-{% highlight r %}
 atbats <- subset(dat$atbat, pitcher_name == "Yu Darvish")
 Darvish <- plyr::join(atbats, dat$pitch, by = c("num", "url"), type = "inner")
 {% endhighlight %}

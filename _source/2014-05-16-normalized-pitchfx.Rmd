@@ -20,7 +20,7 @@ parameters is the best way to go about this - help [@pobguy](http://twitter.com/
 this is a starting point. Note that I'm using the same `Darvish` data frame from my most recent
 post.
 
-```{r setup, echo=TRUE, results='hide', cache=TRUE}
+```{r setup, echo=TRUE, message=FALSE, results='hide', cache=TRUE}
 library(knitr)
 library(pitchRx)
 library(animation)
