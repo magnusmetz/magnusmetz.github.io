@@ -32,7 +32,6 @@ Darvish <- plyr::join(atbats, dat$pitch, by=c("num", "url"), type="inner")
 
 
 ```{r ani1, fig.show='animate', fig.align='center', interval=0.05, dev="CairoPNG", cache=TRUE, warning=FALSE}
-library(pitchRx)
 library(plyr)
 library(reshape2)
 idx <- c("x0", "y0", "z0", "vx0", "vy0", "vz0", "ax", "ay", "az")

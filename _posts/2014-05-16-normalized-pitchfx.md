@@ -35,7 +35,6 @@ Darvish <- plyr::join(atbats, dat$pitch, by = c("num", "url"), type = "inner")
 
 
 {% highlight r %}
-library(pitchRx)
 library(plyr)
 library(reshape2)
 idx <- c("x0", "y0", "z0", "vx0", "vy0", "vz0", "ax", "ay", "az")
@@ -47,7 +46,26 @@ agDarvish$b_height <- "6-1"  #estimate average batter height (for strikezones)
 animateFX(agDarvish, layer = facet_wrap(~stand))
 {% endhighlight %}
 
-<div align = "center">
- <embed width="504" height="504" name="plugin" src="2014-05-16-normalized-pitchfx/ani1.swf" type="application/x-shockwave-flash"> 
+
+<div class="scianimator">
+<div id="ani1" style="display: inline-block;">
 </div>
+</div>
+<script type="text/javascript">
+  (function($) {
+    $(document).ready(function() {
+      var imgs = Array(64);
+      for (i=0; ; i++) {
+        if (i == imgs.length) break;
+        imgs[i] = "/figures/2014-05-16-normalized-pitchfx/ani1" + (i + 1) + ".png";
+      }
+      $("#ani1").scianimator({
+          "images": imgs,
+          "delay": 50,
+          "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
+      });
+      $("#ani1").scianimator("play");
+    });
+  })(jQuery);
+</script>
 
