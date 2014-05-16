@@ -40,5 +40,5 @@ viz <- list(bars = ggplot() +
 gg2animint(viz)
 {% endhighlight %}
 
-<iframe src="http://magnusmetz.github.io/pitchRx/animint/" style="background: #FFFFFF;"
-width="1200" height="500"> </iframe>
+<iframe src="http://magnusmetz.github.io/figures/2014-05-15-first-attempts-with-animint/animint/"
+style="background: #FFFFFF;" width="1200" height="500"> </iframe>

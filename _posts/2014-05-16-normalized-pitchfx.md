@@ -44,6 +44,6 @@ animateFX(agDarvish, layer = facet_wrap(~stand))
 {% endhighlight %}
 
 <div align = "center">
- <embed width="504" height="504" name="plugin" src="figures/2014-05-16-normalized-pitchfx/ani1.swf" type="application/x-shockwave-flash"> 
+ <embed width="504" height="504" name="plugin" src="2014-05-16-normalized-pitchfx/ani1.swf" type="application/x-shockwave-flash"> 
 </div>
 
