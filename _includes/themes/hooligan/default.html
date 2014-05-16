@@ -22,6 +22,26 @@
     <link href="{{ ASSET_PATH }}/css/pygments.css" rel="stylesheet" type="text/css" media="all">
     <link href="{{ ASSET_PATH }}/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">
     <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    
+    <!-- following lines are added from default.html from dinky theme -->
+    <!-- <link rel="stylesheet" href="{{ ASSET_PATH }}/css/styles.css"> -->
+    <!-- <link rel="stylesheet" href="{{ ASSET_PATH }}/css/pygment_trac.css"> -->
+    <script src="{{ ASSET_PATH }}/js/scale.fix.js"></script>
+    
+    {% if page.animation %}
+    <link rel="stylesheet" href="{{ ASSET_PATH }}/css/scianimator.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="{{ ASSET_PATH }}/js/jquery.scianimator.min.js"></script>
+    {% endif %}
+    <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+    </script>
 
     <!-- fav and touch icons -->
     <!-- Update these with your own images
