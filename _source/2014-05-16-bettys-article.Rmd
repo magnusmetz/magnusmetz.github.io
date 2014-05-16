@@ -1,0 +1,21 @@
+---
+layout: post
+title: "Betty's article"
+author: [Bettina Lubach]
+categories: [R]
+tags: []
+reviewer: []
+---
+{% include JB/setup %}
+
+## Title
+
+Hello world!
+
+```{r}
+a <- rnorm(1000)
+
+plot (a)
+```
+
+Das ist ganz normaler \LaTeX code: $$\alpha+\beta$$, \[\alpha+\tau\]
