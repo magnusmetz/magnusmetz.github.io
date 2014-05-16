@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>
       
-        The Bean Machine and the Central Limit Theorem - 
+        Betty's article - 
       
       Magnus Metz
     </title>
@@ -138,7 +138,7 @@
           
 <div class="page-header">
   <h1>
-    The Bean Machine and the Central Limit Theorem 
+    Betty's article 
     
   </h1>
 </div>
@@ -146,51 +146,26 @@
 <div class="row">
   <div class="span8">
     
-<p>The bean machine, also known as the quincunx or Galton box, is a device invented by Sir <a href="http://en.wikipedia.org/wiki/Francis_Galton">Francis
-Galton</a> to demonstrate the <a href="http://en.wikipedia.org/wiki/Central_limit_theorem">Central Limit
-Theorem</a>, in particular that the Normal
-distribution is approximated from the Binomial distribution, or properly speaking, <a href="http://en.wikipedia.org/wiki/De_Moivre%E2%80%93Laplace_theorem">de
-Moivre–Laplace theorem</a>.</p>
+<h2 id="title">Title</h2>
 
-<p>The function <code>quincunx()</code> in the <a href="http://yihui.name/animation"><strong>animation</strong> package</a> shows you how
-balls bounce left and right as they hit the pins. You can see the height of ball columns in the
-bins approximates a <a href="http://en.wikipedia.org/wiki/Normal_distribution">bell curve</a>.</p>
+<p>Hello world!</p>
 
-<div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
-ani.options<span class="p">(</span>interval <span class="o">=</span> <span class="m">0.03</span><span class="p">,</span> nmax <span class="o">=</span> <span class="m">213</span><span class="p">)</span>
-quincunx<span class="p">()</span></code></pre></div>
+<div class="highlight"><pre><code class="r">a <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">1000</span><span class="p">)</span>
 
-<div class="scianimator">
-<div id="bean_machine" style="display: inline-block;">
-</div>
-</div>
-<script type="text/javascript">
-  (function($) {
-    $(document).ready(function() {
-      var imgs = Array(213);
-      for (i=0; ; i++) {
-        if (i == imgs.length) break;
-        imgs[i] = "/figures/2013-04-13-bean-machine/bean-machine" + (i + 1) + ".png";
-      }
-      $("#bean_machine").scianimator({
-          "images": imgs,
-          "delay": 50,
-          "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
-      });
-      $("#bean_machine").scianimator("play");
-    });
-  })(jQuery);
-</script>
+plot<span class="p">(</span>a<span class="p">)</span></code></pre></div>
 
+<p><img src="/figures/2014-05-16-bettys-article/unnamed-chunk-1.png" alt="plot of chunk unnamed-chunk-1" /> </p>
+
+<p>Das ist ganz normaler \LaTeX code: <script type="math/tex">\alpha+\beta</script>, [\alpha+\tau]</p>
 
     <hr>
     <div class="pagination btn-group">
       
-        <a class="btn prev" href="/2013/04/plotting-symbols-and-color-palettes" title="Cheat Sheets for Plotting Symbols and Color Palettes">&larr; Previous</a>
+        <a class="btn prev" href="/2014/05/yu-darvishs-deception-factor" title="Yu Darvish's deception factor">&larr; Previous</a>
       
         <a class="btn" href="/archive.html">Archive</a>
       
-        <a class="btn next" href="/2013/04/central-limit-theorem" title="Demonstration of the Central Limit Theorem">Next &rarr;</a>
+        <a class="btn next" href="/2014/05/normalized-pitchfx" title="Normalizing PITCHfx">Next &rarr;</a>
       
     </div>
     <hr>
@@ -219,29 +194,9 @@ quincunx<span class="p">()</span></code></pre></div>
   <div class="span4">
     <section>
       <h4>Published</h4>
-      <div class="date"><span>13 April 2013</span></div>
+      <div class="date"><span>16 May 2014</span></div>
     </section>
          
-    
-      <section>
-        <h4>Tags</h4>
-        <ul class="tag_box">
-          
-          
-
-
-  
-     
-    	<li><a href="/tags.html#Bean machine-ref">Bean machine <span>1</span></a></li>
-     
-    	<li><a href="/tags.html#Central Limit Theorem-ref">Central Limit Theorem <span>2</span></a></li>
-    
-  
-
-
-
-        </ul>
-      </section>
              
   </div>
 </div>

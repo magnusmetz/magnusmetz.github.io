@@ -7,7 +7,7 @@
     <title>Magnus Metz</title>
     <atom:link href="http://magnusmetz.github.io/feed/" rel="self" type="application/rss+xml" />
     <link>http://magnusmetz.github.io</link>
-    <lastBuildDate>2014-05-16T15:30:38+02:00</lastBuildDate>
+    <lastBuildDate>2014-05-16T23:26:59+02:00</lastBuildDate>
     <webMaster>metz.magnus@gmail.com</webMaster>
     
     <item>
@@ -70,6 +70,27 @@ animateFX<span class="p">(</span>agDarvish<span class="p">,</span> layer <span c
   })(jQuery);
 </script>
 
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Betty's article</title>
+      <link>http://magnusmetz.github.io/2014/05/bettys-article</link>
+      <pubDate>2014-05-16T00:00:00+02:00</pubDate>
+      <author></author>
+      <guid>http://magnusmetz.github.io/2014/05/bettys-article</guid>
+      <content:encoded><![CDATA[
+<h2 id="title">Title</h2>
+
+<p>Hello world!</p>
+
+<div class="highlight"><pre><code class="r">a <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">1000</span><span class="p">)</span>
+
+plot<span class="p">(</span>a<span class="p">)</span></code></pre></div>
+
+<p><img src="/figures/2014-05-16-bettys-article/unnamed-chunk-1.png" alt="plot of chunk unnamed-chunk-1" /> </p>
+
+<p>Das ist ganz normaler \LaTeX code: <script type="math/tex">\alpha+\beta</script>, [\alpha+\tau]</p>
 ]]></content:encoded>
     </item>
     
@@ -512,61 +533,6 @@ kmeans.ani<span class="p">(</span>x<span class="p">,</span> centers <span class=
           "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
       });
       $("#k_means").scianimator("play");
-    });
-  })(jQuery);
-</script>
-
-]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>The concept of confidence intervals</title>
-      <link>http://magnusmetz.github.io/2013/05/concept-of-confidence-intervals</link>
-      <pubDate>2013-05-08T00:00:00+02:00</pubDate>
-      <author></author>
-      <guid>http://magnusmetz.github.io/2013/05/concept-of-confidence-intervals</guid>
-      <content:encoded><![CDATA[
-<p>A <a href="http://en.wikipedia.org/wiki/Confidence_interval">confidence interval</a> gives an estimated range
-of values which is likely to include an unknown population parameter, the estimated range being
-calculated from a given set of sample data.</p>
-
-<p>The interval covers the true parameter with a probability <script type="math/tex">1-\alpha</script> or the true parameter lies
-in the interval with a probability <script type="math/tex">1-\alpha</script>? The answer is the latter.</p>
-
-<p>Confidence intervals consist of a range of values (interval) that act as good estimates of the
-unknown population parameter. However, in infrequent cases, none of these values may cover the
-value of the parameter. The level of confidence of the confidence interval would indicate the
-probability that the confidence range captures this true population parameter given a distribution
-of samples. It does not describe any single sample.</p>
-
-<p>Function <code>Rosling.bubbles()</code> in the <a href="http://yihui.name/animation"><strong>animation</strong> package</a> shows the
-concept of the confidence interval which depends on the observations: if the samples change, the
-interval changes too. At last we can see that the coverage rate will be approximate to the
-confidence level.</p>
-
-<div class="highlight"><pre><code class="r">library<span class="p">(</span>animation<span class="p">)</span>
-ani.options<span class="p">(</span>nmax <span class="o">=</span> <span class="m">100</span><span class="p">,</span> interval <span class="o">=</span> <span class="m">0.15</span><span class="p">)</span>
-par<span class="p">(</span>mar <span class="o">=</span> c<span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0.5</span><span class="p">),</span> mgp <span class="o">=</span> c<span class="p">(</span><span class="m">1.5</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> tcl <span class="o">=</span> <span class="m">-0.3</span><span class="p">)</span>
-conf.int<span class="p">()</span></code></pre></div>
-
-<div class="scianimator">
-<div id="systematic_sampling" style="display: inline-block;">
-</div>
-</div>
-<script type="text/javascript">
-  (function($) {
-    $(document).ready(function() {
-      var imgs = Array(100);
-      for (i=0; ; i++) {
-        if (i == imgs.length) break;
-        imgs[i] = "/figures/2013-05-08-concept-of-confidence-intervals/systematic-sampling" + (i + 1) + ".png";
-      }
-      $("#systematic_sampling").scianimator({
-          "images": imgs,
-          "delay": 500,
-          "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
-      });
-      $("#systematic_sampling").scianimator("play");
     });
   })(jQuery);
 </script>

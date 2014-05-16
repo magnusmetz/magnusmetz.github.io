@@ -8,6 +8,7 @@ http://magnusmetz.github.io/sitemap.txt
 http://magnusmetz.github.io/tags.html
 
 http://magnusmetz.github.io/2014/05/normalized-pitchfx
+http://magnusmetz.github.io/2014/05/bettys-article
 http://magnusmetz.github.io/2014/05/yu-darvishs-deception-factor
 http://magnusmetz.github.io/2014/05/first-attempts-with-animint
 http://magnusmetz.github.io/2014/05/new-post
