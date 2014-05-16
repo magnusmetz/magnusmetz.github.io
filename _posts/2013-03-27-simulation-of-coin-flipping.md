@@ -38,7 +38,7 @@ flip.coin(bg = "yellow")
       var imgs = Array(100);
       for (i=0; ; i++) {
         if (i == imgs.length) break;
-        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-03-27-simulation-of-coin-flipping/head-or-tail" + (i + 1) + ".png";
+        imgs[i] = "/figures/2013-03-27-simulation-of-coin-flipping/head-or-tail" + (i + 1) + ".png";
       }
       $("#head_or_tail").scianimator({
           "images": imgs,
@@ -79,7 +79,7 @@ flip.coin(faces = c("Head", "Stand", "Tail"), type = "n", prob = c(0.45,
       var imgs = Array(100);
       for (i=0; ; i++) {
         if (i == imgs.length) break;
-        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-03-27-simulation-of-coin-flipping/coin-stands" + (i + 1) + ".png";
+        imgs[i] = "/figures/2013-03-27-simulation-of-coin-flipping/coin-stands" + (i + 1) + ".png";
       }
       $("#coin_stands").scianimator({
           "images": imgs,

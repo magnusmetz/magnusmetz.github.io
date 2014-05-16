@@ -45,7 +45,7 @@ buffon.needle(mat = matrix(c(1, 2, 1, 3), 2))
       var imgs = Array(100);
       for (i=0; ; i++) {
         if (i == imgs.length) break;
-        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-04-16-buffons-needle/buffon-needle" + (i + 1) + ".png";
+        imgs[i] = "/figures/2013-04-16-buffons-needle/buffon-needle" + (i + 1) + ".png";
       }
       $("#buffon_needle").scianimator({
           "images": imgs,

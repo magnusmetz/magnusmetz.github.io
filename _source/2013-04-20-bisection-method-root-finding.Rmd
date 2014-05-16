@@ -12,9 +12,9 @@ animation: true
 A root of a function is an input value that produces an output of zero. When a function is plotted,
 the roots are points where the function crosses the x-axis. Usually, we can use [Vieta's
 formulas](http://en.wikipedia.org/wiki/Vieta's_formulas) to find roots of [polynomial
-equations](http://en.wikipedia.org/wiki/Polynomial#Solving_polynomial_equations). But how
-does the computer find the roots? Some scientists have implemented several numerical root-
-finding methods to solve the problem.
+equations](http://en.wikipedia.org/wiki/Polynomial#Solving_polynomial_equations). But how does the
+computer find the roots? Some scientists have implemented several numerical root- finding methods
+to solve the problem.
 
 The numerical [root finding methods](http://en.wikipedia.org/wiki/Root-finding_algorithm) use
 iteration, producing a sequence of numbers that hopefully converge towards a limit which is a root.
@@ -29,8 +29,8 @@ says that if $$f$$ is a **continous function** on $$[a, b]$$ and the sign of $$f
 from the sign of $$f(b)$$, then there must be some point $$c$$, in the interval such that
 $$f(c)=0$$, and is thus a root of the function.
 
-Here is an example of Bisection Method, the continuous function is
-$$f(x)=x{^3}-7x-10$$, the interval is $$[-3,5]$$. The root on the interval is 3.184.
+Here is an example of Bisection Method, the continuous function is $$f(x)=x{^3}-7x-10$$, the
+interval is $$[-3,5]$$. The root on the interval is 3.184.
 
 
 ```{r bisection-method, fig.show='animate', interval=2}

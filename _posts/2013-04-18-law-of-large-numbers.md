@@ -37,7 +37,7 @@ lln.ani(FUN = function(n, mu) rchisq(n, df = mu), mu = 5, cex = 0.6)
       var imgs = Array(50);
       for (i=0; ; i++) {
         if (i == imgs.length) break;
-        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-04-18-law-of-large-numbers/chi-squared" + (i + 1) + ".png";
+        imgs[i] = "/figures/2013-04-18-law-of-large-numbers/chi-squared" + (i + 1) + ".png";
       }
       $("#chi_squared").scianimator({
           "images": imgs,

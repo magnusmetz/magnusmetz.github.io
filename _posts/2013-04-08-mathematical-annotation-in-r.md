@@ -20,7 +20,7 @@ demo(plotmath)
 
 
 
-![plot of chunk plotmath](http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/plotmath1.png) ![plot of chunk plotmath](http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/plotmath2.png) ![plot of chunk plotmath](http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/plotmath3.png) ![plot of chunk plotmath](http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/plotmath4.png) ![plot of chunk plotmath](http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/plotmath5.png) 
+![plot of chunk plotmath](/figures/2013-04-08-mathematical-annotation-in-r/plotmath1.png) ![plot of chunk plotmath](/figures/2013-04-08-mathematical-annotation-in-r/plotmath2.png) ![plot of chunk plotmath](/figures/2013-04-08-mathematical-annotation-in-r/plotmath3.png) ![plot of chunk plotmath](/figures/2013-04-08-mathematical-annotation-in-r/plotmath4.png) ![plot of chunk plotmath](/figures/2013-04-08-mathematical-annotation-in-r/plotmath5.png) 
 
 
 ## Combining expressions and text
@@ -36,7 +36,7 @@ plot(rnorm(100), rnorm(100),
   main = expression(paste("Plot of ", alpha^beta, " versus ", hat(mu)[0])))
 {% endhighlight %}
 
-![plot of chunk math-text](http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/math-text.png) 
+![plot of chunk math-text](/figures/2013-04-08-mathematical-annotation-in-r/math-text.png) 
 
 
 Finally, if we want to include variables from an R session in mathematical expressions, and
@@ -55,5 +55,5 @@ hist(rnorm(100, x_mean, x_sd),
 )
 {% endhighlight %}
 
-![plot of chunk math-text-sub](http://isu.r-forge.r-project.org/vistat/2013-04-08-mathematical-annotation-in-r/math-text-sub.png) 
+![plot of chunk math-text-sub](/figures/2013-04-08-mathematical-annotation-in-r/math-text-sub.png) 
 

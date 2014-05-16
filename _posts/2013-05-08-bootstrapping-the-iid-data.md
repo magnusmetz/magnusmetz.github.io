@@ -1,0 +1,68 @@
+---
+layout: post
+title: "Bootstrapping the i.i.d data"
+author: [yulijia]
+categories: [Animation, Data Mining, Machine Learning]
+tags: [Bootstrapping, sampling]
+reviewer: [yihui]
+animation: true
+---
+{% include JB/setup %}
+
+
+The [bootstrap](http://en.wikipedia.org/wiki/Bootstrapping_(statistics)) was introduced in 1979 by
+[Bradley Efron](http://www-stat.stanford.edu/~ckirby/brad/). It is a method for assigning measures
+of accuracy to sample estimates. For example, if I only hvae 20 samples from one school's math test
+score. I can caculate the mean and variance of samples. But does the result reflect the
+population(whole students) mean and variance ? It depends on if you have know the population size.
+When the population size is very large, the answer is no. Bootstrap can help to solve the problem.
+
+The bootstrap works by treating inference of the true probability distribution $$J$$, given the
+original data, as being analogous to inference of the empirical distribution of $$\hat{J}$$, given
+the resampled data. The accuracy of inferences regarding $$\hat{J}$$ using the resampled data can
+be assessed because we know $$\hat{J}$$. If $$\hat{J}$$ is a reasonable approximation to $$J$$,
+then the quality of inference on $$J$$ can in turn be inferred.
+
+The function `boot.iid()` in the [**animation** package](http://yihui.name/animation) has provided
+an illustration of bootstrapping for the i.i.d data.
+
+
+This is a naive version of bootstrapping but may be useful for novices. In the top plot, the
+circles denote the original dataset, while the red sunflowers (probably) with leaves denote the
+points being resampled; the number of leaves just means how many times these points are resampled,
+as bootstrap samples with replacement. The bottom plot shows the distribution of $$\bar{x}^{*}$$.
+The whole process has illustrated the steps of resampling, computing the statistic and plotting its
+distribution based on bootstrapping.
+
+
+
+{% highlight r %}
+library(animation)
+par(mar = c(1.5, 3, 1, 0.1), cex.lab = 0.8, cex.axis = 0.8, mgp = c(2, 
+  0.5, 0), tcl = -0.3)
+boot.iid()
+{% endhighlight %}
+
+
+<div class="scianimator">
+<div id="bootstrap" style="display: inline-block;">
+</div>
+</div>
+<script type="text/javascript">
+  (function($) {
+    $(document).ready(function() {
+      var imgs = Array(50);
+      for (i=0; ; i++) {
+        if (i == imgs.length) break;
+        imgs[i] = "/figures/2013-05-08-bootstrapping-the-iid-data/bootstrap" + (i + 1) + ".png";
+      }
+      $("#bootstrap").scianimator({
+          "images": imgs,
+          "delay": 200,
+          "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
+      });
+      $("#bootstrap").scianimator("play");
+    });
+  })(jQuery);
+</script>
+

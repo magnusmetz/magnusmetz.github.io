@@ -36,7 +36,7 @@ plot(x, y, type = "l", xlim = c(-1, 1), ylim = c(-1, 1), asp = 1,
   col = "orange1", lwd = 5, axes = FALSE)
 {% endhighlight %}
 
-![plot of chunk draw-egg](http://isu.r-forge.r-project.org/vistat/2013-03-31-draw-easter-eggs/draw-egg.png) 
+![plot of chunk draw-egg](/figures/2013-03-31-draw-easter-eggs/draw-egg.png) 
 
 
 We need a [Rotation matrix](http://en.wikipedia.org/wiki/Rotation_matrix) to draw the rotating egg:
@@ -86,7 +86,7 @@ egg_rotation()
       var imgs = Array(30);
       for (i=0; ; i++) {
         if (i == imgs.length) break;
-        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-03-31-draw-easter-eggs/rotating-egg" + (i + 1) + ".png";
+        imgs[i] = "/figures/2013-03-31-draw-easter-eggs/rotating-egg" + (i + 1) + ".png";
       }
       $("#rotating_egg").scianimator({
           "images": imgs,
@@ -139,7 +139,7 @@ for (j in 1:10) {
       var imgs = Array(100);
       for (i=0; ; i++) {
         if (i == imgs.length) break;
-        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-03-31-draw-easter-eggs/easter-egg" + (i + 1) + ".png";
+        imgs[i] = "/figures/2013-03-31-draw-easter-eggs/easter-egg" + (i + 1) + ".png";
       }
       $("#easter_egg").scianimator({
           "images": imgs,
@@ -192,7 +192,7 @@ surface3d(x, y, z, color = rainbow(10))
 par3d(zoom = 0.7)
 {% endhighlight %}
 
-![plot of chunk draw-3d-egg](http://isu.r-forge.r-project.org/vistat/2013-03-31-draw-easter-eggs/draw-3d-egg.png) 
+![plot of chunk draw-3d-egg](/figures/2013-03-31-draw-easter-eggs/draw-3d-egg.png) 
 
 
 ## References

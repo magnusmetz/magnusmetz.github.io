@@ -1,0 +1,36 @@
+---
+layout: post
+title: "The Bubbles Animation in Hans Rosling's Talk"
+author: [yulijia]
+categories: [Animation, Data Analysis]
+tags: [Bubbles Animation]
+reviewer: [yihui]
+animation: true
+---
+{% include JB/setup %}
+
+In the [**animation** package](http://yihui.name/animation) a function `Rosling.bubbles()` used to
+mimic Hans Rosling's talk using bubbles animation. In Hans Rosling's attractive talk “Debunking
+third-world myths with the best stats you've ever seen”, he used a lot of bubble plots to
+illustrate trends behind the data over time. This function gives an imitation of those moving
+bubbles, besides, as this function is based on **symbols**, we can also make use of other symbols
+such as squares, rectangles, thermometers, etc. But, the bubble symbol is the better one to
+illustrate than other symbols, bubble graphs can give a quick comparison of values for your data.
+
+[Here](http://blog.programet.org/wp-content/uploads/HansRosling.txt) is a beautiful demo made by
+'严酷的魔王' using **animation** package.
+
+
+```{r rosling-bubbles, fig.show='animate', interval=.2}
+library(animation)
+ani.options(interval = 0.2)
+par(mar = c(4, 4, 0.2, 0.2))
+# with 'years' as the background
+Rosling.bubbles(text = 1951:2000)
+```
+
+
+## Reference
+
+-[Hans Rosling: The best stats you've ever
+seen](http://www.ted.com/index.php/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen.html)

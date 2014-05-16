@@ -23,7 +23,7 @@ Below is a figure containing the plot symbols from `pch = 0` to `25` along with 
 character-based plot symbols. We can use, for example, `plot(x, y, pch = 3)` for plus signs (`+`)
 in a scatterplot.
 
-![plot of chunk pch](http://isu.r-forge.r-project.org/vistat/2013-04-08-plotting-symbols-and-color-palettes/pch.png) 
+![plot of chunk pch](/figures/2013-04-08-plotting-symbols-and-color-palettes/pch.png) 
 
 
 ## Color palettes
@@ -50,7 +50,7 @@ pie(rep(1, length(pal)), labels = sprintf("%d (%s)", seq_along(pal),
   pal), col = pal)
 {% endhighlight %}
 
-![plot of chunk default-pal](http://isu.r-forge.r-project.org/vistat/2013-04-08-plotting-symbols-and-color-palettes/default-pal.png) 
+![plot of chunk default-pal](/figures/2013-04-08-plotting-symbols-and-color-palettes/default-pal.png) 
 
 
 Below are the color palettes in **RColorBrewer** (if you do not want to use **ggplot2**, you should
@@ -64,7 +64,7 @@ par(mar = c(0, 4, 0, 0))
 display.brewer.all()
 {% endhighlight %}
 
-![plot of chunk brewer-pal](http://isu.r-forge.r-project.org/vistat/2013-04-08-plotting-symbols-and-color-palettes/brewer-pal.png) 
+![plot of chunk brewer-pal](/figures/2013-04-08-plotting-symbols-and-color-palettes/brewer-pal.png) 
 
 {% highlight r %}
 # generate 8 colors from the Set2 palette

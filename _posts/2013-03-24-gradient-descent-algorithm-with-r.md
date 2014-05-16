@@ -37,7 +37,7 @@ grad.desc()
       var imgs = Array(36);
       for (i=0; ; i++) {
         if (i == imgs.length) break;
-        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-03-24-gradient-descent-algorithm-with-r/grad-desc-right" + (i + 1) + ".png";
+        imgs[i] = "/figures/2013-03-24-gradient-descent-algorithm-with-r/grad-desc-right" + (i + 1) + ".png";
       }
       $("#grad_desc_right").scianimator({
           "images": imgs,
@@ -84,7 +84,7 @@ grad.desc(f2, c(-2, -2, 2, 2), c(-1, 0.5), gamma = 0.3, tol = 1e-04)
       var imgs = Array(70);
       for (i=0; ; i++) {
         if (i == imgs.length) break;
-        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-03-24-gradient-descent-algorithm-with-r/grad-desc-wrong" + (i + 1) + ".png";
+        imgs[i] = "/figures/2013-03-24-gradient-descent-algorithm-with-r/grad-desc-wrong" + (i + 1) + ".png";
       }
       $("#grad_desc_wrong").scianimator({
           "images": imgs,

@@ -218,7 +218,7 @@ With R, it is just one line of code but it is a static plot (not interactive):
 contour(volcano, col = "darkgreen", lwd = 2)
 {% endhighlight %}
 
-![plot of chunk contour-r](http://isu.r-forge.r-project.org/vistat/2012-11-07-contour-plots-with-d3-and-r/contour-r.png) 
+![plot of chunk contour-r](/figures/2012-11-07-contour-plots-with-d3-and-r/contour-r.png) 
 
 
 ## Conclusion

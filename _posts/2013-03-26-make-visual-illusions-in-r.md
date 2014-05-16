@@ -29,7 +29,7 @@ library(animation)
 vi.grid.illusion()
 {% endhighlight %}
 
-![plot of chunk scintillating-grid-illusion](http://isu.r-forge.r-project.org/vistat/2013-03-26-make-visual-illusions-in-r/scintillating-grid-illusion.png) 
+![plot of chunk scintillating-grid-illusion](/figures/2013-03-26-make-visual-illusions-in-r/scintillating-grid-illusion.png) 
 
 
 ## Hermann grid illusion
@@ -42,7 +42,7 @@ intersection.
 vi.grid.illusion(type = "h", lwd = 22, nrow = 5, ncol = 5, col = "white")
 {% endhighlight %}
 
-![plot of chunk hermann-grid-illusion](http://isu.r-forge.r-project.org/vistat/2013-03-26-make-visual-illusions-in-r/hermann-grid-illusion.png) 
+![plot of chunk hermann-grid-illusion](/figures/2013-03-26-make-visual-illusions-in-r/hermann-grid-illusion.png) 
 
 
 ## Lilac Chaser
@@ -74,7 +74,7 @@ vi.lilac.chaser()
       var imgs = Array(16);
       for (i=0; ; i++) {
         if (i == imgs.length) break;
-        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-03-26-make-visual-illusions-in-r/lilac-chaser" + (i + 1) + ".png";
+        imgs[i] = "/figures/2013-03-26-make-visual-illusions-in-r/lilac-chaser" + (i + 1) + ".png";
       }
       $("#lilac_chaser").scianimator({
           "images": imgs,

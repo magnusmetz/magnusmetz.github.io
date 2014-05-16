@@ -1,0 +1,29 @@
+---
+layout: post
+title: "K Means Cluster Algorithm"
+author: [yulijia]
+categories: [Animation, Data Mining, Machine Learning, Multivariate Statistics]
+tags: [K-means, cluster]
+reviewer: [yihui]
+animation: true
+---
+{% include JB/setup %}
+
+The [k-means clustering](http://en.wikipedia.org/wiki/K-means_clustering) aims to partition $$n$$
+observations into $$k$$ clusters in which each observation belongs to the cluster with the nearest
+mean, serving as a prototype (clustering center) of the cluster. Generally speaking, it may include
+a series of iterations: finding cluster centers, computing distances between sample points, and
+redefining cluster membership. It is one of the top 10 algorithms in data mining.
+
+In the [**animation** package](http://yihui.name/animation), function `kmeans.ani()` is a
+demonstration for k-means cluster algorithm, here is the example. The beautiful graph let me think
+this demostration function is the best one in the **animation** package.
+
+```{r k-means, fig.show='animate', interval=.5}
+library(animation)
+cent = 1.5 * c(1, 1, -1, -1, 1, -1, 1, -1)
+x = NULL
+for (i in 1:8) x = c(x, rnorm(25, mean = cent[i]))
+x = matrix(x, ncol = 2)
+kmeans.ani(x,centers = 4, pch = 1:4, col = 1:4)
+```

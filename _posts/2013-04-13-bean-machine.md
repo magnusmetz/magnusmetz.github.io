@@ -38,7 +38,7 @@ quincunx()
       var imgs = Array(213);
       for (i=0; ; i++) {
         if (i == imgs.length) break;
-        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-04-13-bean-machine/bean-machine" + (i + 1) + ".png";
+        imgs[i] = "/figures/2013-04-13-bean-machine/bean-machine" + (i + 1) + ".png";
       }
       $("#bean_machine").scianimator({
           "images": imgs,

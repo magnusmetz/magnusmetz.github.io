@@ -50,7 +50,7 @@ clt.ani(FUN = f, mean = lambda, sd = lambda)
       var imgs = Array(50);
       for (i=0; ; i++) {
         if (i == imgs.length) break;
-        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-04-15-central-limit-theorem/poisson-clt" + (i + 1) + ".png";
+        imgs[i] = "/figures/2013-04-15-central-limit-theorem/poisson-clt" + (i + 1) + ".png";
       }
       $("#poisson_clt").scianimator({
           "images": imgs,
@@ -88,7 +88,7 @@ clt.ani(FUN = f, mean = NA, sd = NA)
       var imgs = Array(50);
       for (i=0; ; i++) {
         if (i == imgs.length) break;
-        imgs[i] = "http://isu.r-forge.r-project.org/vistat/2013-04-15-central-limit-theorem/cauchy-clt" + (i + 1) + ".png";
+        imgs[i] = "/figures/2013-04-15-central-limit-theorem/cauchy-clt" + (i + 1) + ".png";
       }
       $("#cauchy_clt").scianimator({
           "images": imgs,

@@ -1,0 +1,78 @@
+---
+layout: post
+title: "The Bisection Method for Root finding on an Interval"
+author: [yulijia]
+categories: [Animation, Computational Statistics]
+tags: [Bisection method, Intermediate Value theorem, root finding]
+reviewer: [yihui]
+animation: true
+---
+{% include JB/setup %}
+
+A root of a function is an input value that produces an output of zero. When a function is plotted,
+the roots are points where the function crosses the x-axis. Usually, we can use [Vieta's
+formulas](http://en.wikipedia.org/wiki/Vieta's_formulas) to find roots of [polynomial
+equations](http://en.wikipedia.org/wiki/Polynomial#Solving_polynomial_equations). But how does the
+computer find the roots? Some scientists have implemented several numerical root- finding methods
+to solve the problem.
+
+The numerical [root finding methods](http://en.wikipedia.org/wiki/Root-finding_algorithm) use
+iteration, producing a sequence of numbers that hopefully converge towards a limit which is a root.
+
+In this article, I will apply the [**animation** package](http://yihui.name/animation)'s function
+`bisection.method()` to show you one of the numercical root-finding methods -- the [Bisection
+Method](http://en.wikipedia.org/wiki/Root-finding_algorithm#Bisection_Method).
+
+Basically, the bisection method finding the root from both sides by making use of the [Intermediate
+Value Theorem](http://en.wikipedia.org/wiki/Intermediate_value_theorem). In essence, this theorem
+says that if $$f$$ is a **continous function** on $$[a, b]$$ and the sign of $$f(a)$$ is different
+from the sign of $$f(b)$$, then there must be some point $$c$$, in the interval such that
+$$f(c)=0$$, and is thus a root of the function.
+
+Here is an example of Bisection Method, the continuous function is $$f(x)=x{^3}-7x-10$$, the
+interval is $$[-3,5]$$. The root on the interval is 3.184.
+
+
+
+{% highlight r %}
+library(animation)
+ani.options(interval = 2)
+par(mar = c(4, 4.5, 2, 1.5))
+f = function(x) x^3 - 7 * x - 10
+xx = bisection.method(f, c(-3, 5))
+{% endhighlight %}
+
+
+<div class="scianimator">
+<div id="bisection_method" style="display: inline-block;">
+</div>
+</div>
+<script type="text/javascript">
+  (function($) {
+    $(document).ready(function() {
+      var imgs = Array(16);
+      for (i=0; ; i++) {
+        if (i == imgs.length) break;
+        imgs[i] = "/figures/2013-04-20-bisection-method-root-finding/bisection-method" + (i + 1) + ".png";
+      }
+      $("#bisection_method").scianimator({
+          "images": imgs,
+          "delay": 2000,
+          "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
+      });
+      $("#bisection_method").scianimator("play");
+    });
+  })(jQuery);
+</script>
+
+
+{% highlight r %}
+xx$root
+{% endhighlight %}
+
+
+
+{% highlight text %}
+## [1] 3.184
+{% endhighlight %}
+
