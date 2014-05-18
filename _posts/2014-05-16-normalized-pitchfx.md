@@ -4,6 +4,7 @@ title: "Normalizing PITCHfx"
 author: [Magnus Metz]
 categories: [baseball, PITCHfx, pitchRx, animation]
 tags: [MLB, animation]
+animation: true
 ---
 {% include JB/setup %}
 
