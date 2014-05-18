@@ -4,11 +4,14 @@ title: "Yu Darvish's deception factor"
 author: [Magnus Metz]
 categories: [WebGL, Animation, Baseball]
 tags: [MLB, PITCHfx, pitchRx, animation, rgl]
+animation: true
 ---
 {% include JB/setup %}
 
 
-This article is another reproduction of [Carson Sievert](http://cpsievert.github.io/2013/05/yu-darvishs-deception-factor/). On April 2nd, 2013 Yu Darvish [flirted with pitching
+This article is another reproduction of [Carson
+Sievert](http://cpsievert.github.io/2013/05/yu-darvishs-deception-factor/). On April 2nd, 2013 Yu
+Darvish [flirted with pitching
 perfection](http://sports.yahoo.com/news/yu-darvish-loses-perfect-game-030913556--mlb.html). To
 demonstrate his ability to deceive batters with a consistent delivery over different pitch types,
 [redditor DShep created this

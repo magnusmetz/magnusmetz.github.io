@@ -4,6 +4,7 @@ title: "Yu Darvish's deception factor"
 author: [Magnus Metz]
 categories: [WebGL, Animation, Baseball]
 tags: [MLB, PITCHfx, pitchRx, animation, rgl]
+animation: true
 ---
 {% include JB/setup %}
 
