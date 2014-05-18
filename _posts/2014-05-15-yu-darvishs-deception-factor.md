@@ -88,7 +88,7 @@ animateFX(pitches)
 {% endhighlight %}
 
 <div align = "center">
- <embed width="504" height="504" name="plugin" src="2014-05-15-yu-darvishs-deception-factor/normalized.swf" type="application/x-shockwave-flash"> 
+ <embed width="504" height="504" name="plugin" src="/figures/2014-05-15-yu-darvishs-deception-factor/normalized.swf" type="application/x-shockwave-flash"> 
 </div>
 
 
