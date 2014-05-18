@@ -24,7 +24,7 @@ R -- it is nothing but `cumsum(rnorm(n))`, and that is what `brownian.motion()` 
 library(animation)
 ani.options(nmax = 50)  # create 50 image frames
 set.seed(20121106)
-brownian.motion(n = 20, pch = 21, cex = 4, col = "red", bg = "yellow", 
+brownian.motion(n = 20, pch = 21, cex = 4, col = "magenta", bg = "cyan", 
   xlim = c(-10, 10), ylim = c(-15, 15))
 {% endhighlight %}
 

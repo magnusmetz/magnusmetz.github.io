@@ -8,9 +8,10 @@ reviewer: []
 ---
 {% include JB/setup %}
 
-This article was borrowed from my [blog
-post](http://yihui.name/en/2008/09/to-see-a-circle-in-a-pile-of-sand/) to show how to visualize a
-large amount of data in scatter plots. Here is how the original data was generated:
+This article was borrowed from a [blog
+post](http://yihui.name/en/2008/09/to-see-a-circle-in-a-pile-of-sand/) of
+**[knitr](http://yihui.name/knitr/)** founder [Yihui Xie](http://yihui.name/) to show how to
+visualize a large amount of data in scatter plots. Here is how the original data was generated:
 
 ```{r gen-data}
 # generate the data
