@@ -42,3 +42,7 @@ gg2animint(viz)
 
 <iframe src="http://magnusmetz.github.io/figures/2014-05-15-first-attempts-with-animint/animint/"
 style="background: #FFFFFF;" width="1200" height="500"> </iframe>
+
+## References
+
+- This article was reproduced from [cpsievert](http://cpsievert.github.io/2014/03/fun-with-pitchrx-and-animint/)

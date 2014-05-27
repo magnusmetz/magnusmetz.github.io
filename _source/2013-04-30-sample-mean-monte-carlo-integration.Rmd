@@ -9,7 +9,7 @@ animation: true
 ---
 {% include JB/setup %}
 
-As discussed [before](sample-mean-monte-carlo-integration.Rmd), in physics and statistics many of
+As discussed [before](http://magnusmetz.github.io/2013/04/sample-mean-monte-carlo-integration/), in physics and statistics many of
 the problems Monte Carlo is used on is under the form of the estimate of an integral unkown in
 closed form: $$\hat{\theta}=\int_0^1 f(u)du$$, which can be seen as the evalutaion of $$Ef(u)$$,
 where $$u \sim U(0,1)$$. There is another Monte Carlo method named mean-value Monte Carlo method.
@@ -25,6 +25,6 @@ library(animation)
 MC.samplemean(border = NA)$est
 ```
 
-## Reference
-1.Monte
+## References
+- Monte
 Carlo,[http://www-stat.stanford.edu/~susan/courses/s208/node14.html](http://www-stat.stanford.edu/~susan/courses/s208/node14.html)

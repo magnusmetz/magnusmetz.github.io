@@ -59,3 +59,7 @@ buffon.needle(mat = matrix(c(1, 2, 1, 3), 2))
 
 
 You can use larger `nmax` values in the code to drop the needle for more times.
+
+## References
+
+This article was reproduced from [vistat](http://vis.supstat.com/2013/04/buffons-needle/)

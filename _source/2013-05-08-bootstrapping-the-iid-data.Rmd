@@ -12,10 +12,10 @@ animation: true
 
 The [bootstrap](http://en.wikipedia.org/wiki/Bootstrapping_(statistics)) was introduced in 1979 by
 [Bradley Efron](http://www-stat.stanford.edu/~ckirby/brad/). It is a method for assigning measures
-of accuracy to sample estimates. For example, if I only hvae 20 samples from one school's math test
-score. I can caculate the mean and variance of samples. But does the result reflect the
-population(whole students) mean and variance ? It depends on if you have know the population size.
-When the population size is very large, the answer is no. Bootstrap can help to solve the problem.
+of accuracy to sample estimates. For example, if I only have 20 samples from one school's math test
+score. I can caculate the mean and variance of samples. But does the result reflect the population
+(whole students) mean and variance? It depends on if you have known the population size. When the
+population size is very large, the answer is no. Bootstrap can help to solve the problem.
 
 The bootstrap works by treating inference of the true probability distribution $$J$$, given the
 original data, as being analogous to inference of the empirical distribution of $$\hat{J}$$, given

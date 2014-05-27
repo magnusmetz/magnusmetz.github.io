@@ -91,3 +91,8 @@ flip.coin(faces = c("Head", "Stand", "Tail"), type = "n", prob = c(0.45,
   })(jQuery);
 </script>
 
+
+## References
+
+This article was reproduced from
+[vistat](http://vis.supstat.com/2013/03/simulation-of-coin-flipping/).

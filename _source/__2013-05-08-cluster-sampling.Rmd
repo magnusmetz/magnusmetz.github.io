@@ -19,9 +19,9 @@ A common motivation for cluster sampling is to reduce the total number of interv
 given the desired accuracy. Assuming a fixed sample size, the technique gives more accurate results
 when most of the variation in the population is within the groups, not between them.
 
-Everyone may be familiar with one of the versions of cluster sampling, it's called **area
-sampling** or **geographical cluster sampling**. A geographically dispersed population can be
-expensive to survey, so we can apply a census for thousand people in each area.
+Everyone may be familiar with one of the versions of cluster sampling, it's called **area sampling** or
+**geographical cluster sampling**. A geographically dispersed population can be expensive to
+survey, so we can apply a census for thousand people in each area.
 
 In the [**animation** package](http://yihui.name/animation), function `sample.cluster()` is a
 demonstration for cluster sampling, here is the example.

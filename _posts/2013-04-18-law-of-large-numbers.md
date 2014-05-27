@@ -49,3 +49,6 @@ lln.ani(FUN = function(n, mu) rchisq(n, df = mu), mu = 5, cex = 0.6)
   })(jQuery);
 </script>
 
+
+## References
+- This article was reproduced from [vistat](http://vis.supstat.com/2013/04/law-of-large-numbers/)

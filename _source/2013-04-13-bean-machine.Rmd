@@ -25,3 +25,7 @@ library(animation)
 ani.options(interval = 0.03, nmax = 213)
 quincunx()
 ```
+
+## References
+
+- This article was reproduced from [vistat](http://vis.supstat.com/2013/04/bean-machine/)

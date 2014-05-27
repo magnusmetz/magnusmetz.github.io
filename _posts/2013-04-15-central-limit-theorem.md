@@ -14,10 +14,10 @@ Theorem (CLT)](http://en.wikipedia.org/wiki/Central_limit_theorem) states that, 
 conditions, the mean of a sufficiently large number of independent random variables, each with a
 well-defined mean and well-defined variance, will be approximately normally distributed.
 
-As shown in the [Bean Machine](/2013/04/bean-machine/) article, CLT has a number of variants. This
-article shows you as long as the conditions of CLT are satisfied, the distribution of the sample
-mean will be approximate to the Normal distribution when the sample size n is large enough, no
-matter what is the original distribution.
+As shown in the [Bean Machine](http://magnusmetz.github.io/2013/04/bean-machine/) article, CLT has
+a number of variants. This article shows you as long as the conditions of CLT are satisfied, the
+distribution of the sample mean will be approximate to the Normal distribution when the sample size
+n is large enough, no matter what is the original distribution.
 
 In the [**animation** package](http://yihui.name/animation), there is a function named `clt.ani()`.
 It shows the distribution of the sample mean when the sample size $$n$$ grows up. The test
@@ -100,3 +100,6 @@ clt.ani(FUN = f, mean = NA, sd = NA)
   })(jQuery);
 </script>
 
+
+## References
+- This article was reproduced from [vistat](http://vis.supstat.com/2013/04/central-limit-theorem/)

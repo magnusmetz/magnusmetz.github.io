@@ -83,3 +83,7 @@ In R, the function `colors()` returns a vector of 657 color names. When you real
 need to specify the color by its name, you are recommended to check out this nice [color
 chart](http://research.stowers-institute.org/efg/R/Color/Chart/ColorChart.pdf) created by Earl F.
 Glynn.
+
+## References
+
+- This article was reproduced from [vistat](http://vis.supstat.com/2013/04/plotting-symbols-and-color-palettes/)

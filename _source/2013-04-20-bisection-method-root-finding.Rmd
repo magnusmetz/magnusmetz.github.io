@@ -19,9 +19,9 @@ to solve the problem.
 The numerical [root finding methods](http://en.wikipedia.org/wiki/Root-finding_algorithm) use
 iteration, producing a sequence of numbers that hopefully converge towards a limit which is a root.
 
-In this article, I will apply the [**animation** package](http://yihui.name/animation)'s function
-`bisection.method()` to show you one of the numercical root-finding methods -- the [Bisection
-Method](http://en.wikipedia.org/wiki/Root-finding_algorithm#Bisection_Method).
+In this article, the [**animation** package](http://yihui.name/animation)'s function
+`bisection.method()` is applied to show you one of the numercical root-finding methods -- the
+[Bisection Method](http://en.wikipedia.org/wiki/Root-finding_algorithm#Bisection_Method).
 
 Basically, the bisection method finding the root from both sides by making use of the [Intermediate
 Value Theorem](http://en.wikipedia.org/wiki/Intermediate_value_theorem). In essence, this theorem

@@ -11,11 +11,9 @@ animation: ture
 
 ## Introduction
 
-I first heard the [Montre Carlo Method](http://en.wikipedia.org/wiki/Monte_Carlo_method) is on a
-story of the nuclear weapon project. The Montre Carlo Method was invented in the late 1940s by
-Stanislaw Ulam, they were used at Los Alamos for early work relating to the development of the
-hydrogen bomb, and became popularized in the fields of physics, physical chemistry, and operations
-research.
+The Montre Carlo Method was invented in the late 1940s by Stanislaw Ulam, they were used at Los
+Alamos for early work relating to the development of the hydrogen bomb, and became popularized in
+the fields of physics, physical chemistry, and operations research.
 
 The Montre Carlo Method used for drawing a sample at random from the empirical distribution. The
 oldest well-known example is that of the [Buffon's needle](2013-04-16-buffons-needle.Rmd), where
@@ -33,9 +31,9 @@ number of 'hits' or points that are in the region whose area we want to evaluate
 $$\hat{\theta}=\frac{\#hits}{\#total}$$. As shown in the [Buffon's
 needle](2013-04-16-buffons-needle.Rmd), the $$\pi$$ can be calculated by the sumilation.
 
-Here, I show one of the simulation of $$\pi$$ by function `MC.hitormiss()`in the [**animation**
-package](http://yihui.name/animation). This function can generate uniform random numbers and
-compute the proportion of points under the curve. Consider a circle inscribed in a unit square.
+Here, one of the simulations of $$\pi$$ by function `MC.hitormiss()`in the [**animation**
+package](http://yihui.name/animation) is shown. This function can generate uniform random numbers
+and compute the proportion of points under the curve. Consider a circle inscribed in a unit square.
 Given that the circle and the square have a ratio of areas that is $$P=\pi/4$$, the value of
 $$\pi$$ can be approximated using a Monte Carlo method. We only need to counts the number of 'hits'
 or points that are in the circle, the $$\pi=4P$$.

@@ -43,5 +43,4 @@ flip.coin(faces = c("Head", "Stand", "Tail"), type = "n", prob = c(0.45, 0.1, 0.
 
 ## References
 
-This article was reproduced from
-[vistat](http://vis.supstat.com/2013/03/simulation-of-coin-flipping/).
+This article was reproduced from [vistat](http://vis.supstat.com/2013/03/simulation-of-coin-flipping/).

@@ -57,3 +57,8 @@ hist(rnorm(100, x_mean, x_sd),
 
 ![plot of chunk math-text-sub](/figures/2013-04-08-mathematical-annotation-in-r/math-text-sub.png) 
 
+
+
+## References
+
+- This article was reproduced from [vistat](http://vis.supstat.com/2013/04/mathematical-annotation-in-r/)

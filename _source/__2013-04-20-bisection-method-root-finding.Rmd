@@ -20,8 +20,8 @@ The numerical [root finding methods](http://en.wikipedia.org/wiki/Root-finding_a
 iteration, producing a sequence of numbers that hopefully converge towards a limit which is a root.
 
 In this article, the [**animation** package](http://yihui.name/animation)'s function
-`bisection.method()` is applied to show you one of the numercical root-finding methods -- the
-[Bisection Method](http://en.wikipedia.org/wiki/Root-finding_algorithm#Bisection_Method).
+`bisection.method()` is applied to show you one of the numercical root-finding methods -- the [Bisection
+Method](http://en.wikipedia.org/wiki/Root-finding_algorithm#Bisection_Method).
 
 Basically, the bisection method finding the root from both sides by making use of the [Intermediate
 Value Theorem](http://en.wikipedia.org/wiki/Intermediate_value_theorem). In essence, this theorem
@@ -33,46 +33,11 @@ Here is an example of Bisection Method, the continuous function is $$f(x)=x{^3}-
 interval is $$[-3,5]$$. The root on the interval is 3.184.
 
 
-
-{% highlight r %}
+```{r bisection-method, fig.show='animate', interval=2}
 library(animation)
 ani.options(interval = 2)
 par(mar = c(4, 4.5, 2, 1.5))
 f = function(x) x^3 - 7 * x - 10
-xx = bisection.method(f, c(-3, 5))
-{% endhighlight %}
-
-
-<div class="scianimator">
-<div id="bisection_method" style="display: inline-block;">
-</div>
-</div>
-<script type="text/javascript">
-  (function($) {
-    $(document).ready(function() {
-      var imgs = Array(16);
-      for (i=0; ; i++) {
-        if (i == imgs.length) break;
-        imgs[i] = "/figures/2013-04-20-bisection-method-root-finding/bisection-method" + (i + 1) + ".png";
-      }
-      $("#bisection_method").scianimator({
-          "images": imgs,
-          "delay": 2000,
-          "controls": ["first", "previous", "play", "next", "last", "loop", "speed"],
-      });
-      $("#bisection_method").scianimator("play");
-    });
-  })(jQuery);
-</script>
-
-
-{% highlight r %}
+xx=bisection.method(f, c(-3, 5))
 xx$root
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] 3.184
-{% endhighlight %}
-
+```

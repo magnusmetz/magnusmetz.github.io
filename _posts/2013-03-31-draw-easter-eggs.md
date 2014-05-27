@@ -10,9 +10,9 @@ animation: true
 {% include JB/setup %}
 
 
-This article shows you how to draw an egg with R. I wrote this article after I learned to use the
-[**animation** package](http://yihui.name/animation) for one week. So I will show you the simplest
-way to create an animated figure. The only function used in this package is `ani.pause()`.
+This article shows you how to draw an egg with R. It's probably the simplest way to create an
+animated figure using the [**animation** package](http://yihui.name/animation). The only function
+used in this package is `ani.pause()`.
 
 Let's get started!
 
@@ -196,6 +196,6 @@ par3d(zoom = 0.7)
 
 
 ## References
-
+- This article was reproduced from [vistat](http://vis.supstat.com/2013/03/draw-easter-eggs/)
 - [Equation of Egg Shaped Curve II ](http://www16.ocn.ne.jp/~akiko-y/Egg_by_Itou/index_egg_by_Itou_E.html)
 - [Mathematically defined Easter eggs](http://danielwalsh.tumblr.com/post/2742366331/mathematically-defined-easter-eggs)
