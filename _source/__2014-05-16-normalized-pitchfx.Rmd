@@ -8,15 +8,15 @@ animation: true
 ---
 {% include JB/setup %}
 
-In this article the idea of forcing release points to a
-central point in the animation is realized - to ease the visual comparison of flight paths across pitch types.
-The idea was implemented by just using average release points; but that can be deceptive, since it
-the alters the entire path of each pitch.
+In this article the idea of forcing release points to a central point in the animation is realized
+- to ease the visual comparison of flight paths across pitch types. The idea was implemented by
+just using average release points; but that can be deceptive, since it the alters the entire path
+of each pitch.
 
-The (current) proposal is what we will call 'normalized' (or regressed towards the mean) PITCHf/x animations. The idea is to get an idea
-of a 'typical' flight path for each pitch type. It is assumed that averaging over the relevant PITCHf/x
-parameters is the best way to go about this! Anyway,
-this is a starting point. Note that the same `Darvish` data frame from my most recent
+The (current) proposal is what we will call 'normalized' (or regressed towards the mean) PITCHf/x
+animations. The idea is to get an idea of a 'typical' flight path for each pitch type. It is
+assumed that averaging over the relevant PITCHf/x parameters is the best way to go about this!
+Anyway, this is a starting point. Note that the same `Darvish` data frame from my most recent
 [post](http://magnusmetz.github.io/2014/05/yu-darvishs-deception-factor/) is used.
 
 ```{r setup, echo=TRUE, message=FALSE, results='hide', cache=TRUE}
@@ -41,3 +41,7 @@ agDarvish <- ddply(Darvish, c("pitch_type", "stand"), summarize,
 agDarvish$b_height <- "6-1" #estimate average batter height (for strikezones)
 animateFX(agDarvish, layer=facet_wrap(~stand))
 ```
+
+## References 
+
+- This article was reproduced from [cpsievert](http://cpsievert.github.io/2013/05/normalized-pitchfx/)

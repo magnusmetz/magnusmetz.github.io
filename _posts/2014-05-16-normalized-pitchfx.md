@@ -68,3 +68,7 @@ animateFX(agDarvish, layer = facet_wrap(~stand))
   })(jQuery);
 </script>
 
+
+## References
+
+- This article was reproduced from [cpsievert](http://cpsievert.github.io/2013/05/normalized-pitchfx/)

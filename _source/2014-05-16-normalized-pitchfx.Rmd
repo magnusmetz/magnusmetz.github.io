@@ -41,3 +41,7 @@ agDarvish <- ddply(Darvish, c("pitch_type", "stand"), summarize,
 agDarvish$b_height <- "6-1" #estimate average batter height (for strikezones)
 animateFX(agDarvish, layer=facet_wrap(~stand))
 ```
+
+## References
+
+- This article was reproduced from [cpsievert](http://cpsievert.github.io/2013/05/normalized-pitchfx/)
