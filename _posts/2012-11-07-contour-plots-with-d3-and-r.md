@@ -228,5 +228,5 @@ blindly believing that one ring will rule them all. R is good for statistical co
 graphics, and D3 is awesome for the web. Both are good in one way but weak in another, so let's
 make `1 + 1 > 2`.
 
-This article is reprduced from
+This article is reproduced from
 [vistat](http://vis.supstat.com/2012/11/contour-plots-with-d3-and-r/).
