@@ -10,10 +10,10 @@ d3: true
 {% include JB/setup %}
 
 [D3](https://github.com/mbostock/d3) is a popular JavaScript library to draw graphics on the web.
-Powerful as it is, I often feel it is limited to me as a statistician, especially a statistician
-spoiled by [R](http://www.r-project.org) -- in which I can draw plots without thinking of
-primitives such as points, lines, segments and so on, and all kinds of statistical functions are
-there for me to call. In this article I explain how to combine R and D3 to draw a contour plot.
+Powerful as it is, it also has its challenges, especially for people usually working e.g. with
+[R](http://www.r-project.org) -- in which plots can be drawn without thinking of primitives such as
+points, lines, segments and so on, and all kinds of statistical functions are there to be called.
+In this article I explain how to combine R and D3 to draw a contour plot.
 
 ## Computing in R
 
@@ -227,3 +227,6 @@ It is rare that we solve a problem with a single tool. Take the advantages of al
 blindly believing that one ring will rule them all. R is good for statistical computing and
 graphics, and D3 is awesome for the web. Both are good in one way but weak in another, so let's
 make `1 + 1 > 2`.
+
+This article is reprduced from
+[vistat](http://vis.supstat.com/2012/11/contour-plots-with-d3-and-r/).

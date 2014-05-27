@@ -109,4 +109,3 @@ play3d(par3dinterp(userMatrix = list(M,
 webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 
 Please let me know if you have other ideas.
-This article was reproduced from [vistat](http://vis.supstat.com/2012/11/to-see-a-world-in-grains-of-sand/).

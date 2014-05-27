@@ -53,3 +53,5 @@ brownian.motion(n = 20, pch = 21, cex = 4, col = "magenta", bg = "cyan",
 
 
 Done.
+
+This article was reproduced form [vistat](http://vis.supstat.com/2012/11/brownian-motion-with-r/).

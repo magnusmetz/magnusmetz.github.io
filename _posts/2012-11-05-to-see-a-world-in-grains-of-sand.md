@@ -143,5 +143,4 @@ play3d(par3dinterp(userMatrix = list(M, rotate3d(M, pi/2, 1, 0, 0),
 <iframe src="http://player.vimeo.com/video/4745847" width="500" height="465" frameborder="0"
 webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 
-Please let me know if you have other ideas. This article was reproduced from
-[vistat](http://vis.supstat.com/2012/11/to-see-a-world-in-grains-of-sand/).
+Please let me know if you have other ideas.
