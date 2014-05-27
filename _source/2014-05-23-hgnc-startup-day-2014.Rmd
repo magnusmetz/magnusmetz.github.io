@@ -1,0 +1,26 @@
+---
+layout: post
+title: "hgnc startup day 2014"
+author: [Magnus Metz]
+categories: [big data]
+tags: []
+reviewer: []
+---
+{% include JB/setup %}
+
+## StartUp-Day 2014 in Cologne for the topic Big Data
+On May 20, 2014 the annual StartUp-Day took place at the Trinitatis church in Cologne with a strong focus on the topic Big Data. The StartUp-Day was organized as a standalone event of the [Interactive Cologne](http://2014.interactive-cologne.com/). The outline was as follows:
+
+**General part**
+* Welcome and introduction to hgnc
+* The successful video presentation for startups
+* Finance opportunities for startups
+* How do I prepare myself for investor negotiations
+
+**Topic Big Data**
+* Introductory presentation "Big Data"
+* The development of innovative business models within Big Data
+* Big Data - Business models, niches, trends, moderated panel discussion
+* Field of application Big Data at the example of Graph Analytics
+* Data protection, copyright & co - legal challenges for Big Data
+* Networking
