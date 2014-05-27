@@ -61,12 +61,6 @@ lines(x, -1.5 + runif(length(x), -0.005, 0.005), xpd = NA, lwd = 2)
 There are other ways to use additional fonts in R graphics, such as the **tikzDevice** and
 **extrafonts** package; the former requires knowledge of LaTeX, and the latter is easier to use.
 
-## Acknowledgments
-
-I thank Mark Bulling for the answer under the SO post. I used base R graphics instead of
-**ggplot2** as Mark did because I think the pen-and-paper model of base R is more natural for
-drawing such a plot (the grammar of graphics seems to be overkill).
-
 ## Session info
 
 Since I'm not entirely sure about how **Cairo** performs under Windows; here is my R session info:
@@ -93,3 +87,8 @@ print(sessionInfo(), locale = FALSE)
 ## [4] formatR_0.10    stringr_0.6.2   tools_3.1.0
 {% endhighlight %}
 
+
+## References
+
+This article was reproduced from
+[vistat](http://vis.supstat.com/2012/11/make-xkcd-style-graphs-in-r/).

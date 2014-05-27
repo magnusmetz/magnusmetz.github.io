@@ -99,3 +99,8 @@ grad.desc(f2, c(-2, -2, 2, 2), c(-1, 0.5), gamma = 0.3, tol = 1e-04)
 
 Apparently the arrows get lost eventually. You can replace `gamma=0.3` with a smaller value and
 retry the function.
+
+## References
+
+This article was reproduced from
+[vistat](http://vis.supstat.com/2013/03/gradient-descent-algorithm-with-r/).

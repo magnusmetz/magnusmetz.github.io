@@ -96,3 +96,8 @@ of people with perfectly normal vision who just don’t see it, often for reason
 
 You can see more illusions created by [Kohske](http://rpubs.com/kohske/R-de-illusion) in R, which
 also illustrated the power of the **grid** package.
+
+## References
+
+This article was reproduced from
+[vistat](http://vis.supstat.com/2013/03/make-visual-illusions-in-r/).
